@@ -25,10 +25,15 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
+//Admin Dashboard
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 });
 
+//Vendor Dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/dashboard', [VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
 });
+
+Route::get('/admin/login', [AdminController::class, 'adminLogin']);
