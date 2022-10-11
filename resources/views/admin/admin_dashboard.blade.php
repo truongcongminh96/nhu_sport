@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/dark-theme.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/semi-dark.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/header-colors.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}" >
     <title>Như Sport - Admin</title>
 </head>
 
@@ -161,10 +162,33 @@
 <script src="{{ asset('admin_backend/assets/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('admin_backend/assets/plugins/jquery-knob/excanvas.js') }}"></script>
 <script src="{{ asset('admin_backend/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin_backend/assets/js/toastr.min.js') }}"></script>
 <script>
     $(function () {
         $(".knob").knob();
     });
+</script>
+<script>
+    @if(Session::has('message'))
+    const type = "{{ Session::get('alert-type','info') }}";
+    switch(type){
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
 </script>
 <script src="{{ asset('admin_backend/assets/js/index.js') }}"></script>
 <!--app JS-->

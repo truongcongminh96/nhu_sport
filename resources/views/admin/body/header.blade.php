@@ -342,10 +342,13 @@
                     </li>
                 </ul>
             </div>
+            @php
+                $adminProfile = App\Models\User::find(Auth::id());
+            @endphp
             <div class="user-box dropdown">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('admin_backend/assets/images/avatars/avatar-2.png') }}" class="user-img" alt="user avatar">
+                    <img src="{{ (!empty($adminProfile->photo)) ? url('upload/admin_images/'.$adminProfile->photo) : url('upload/no_image.jpg')}}" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         <p class="user-name mb-0">Pauline Seitz</p>
                         <p class="designattion mb-0">Web Designer</p>
