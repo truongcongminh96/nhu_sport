@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -80,5 +81,34 @@ class AdminController extends Controller
         ];
 
         return redirect()->back()->with($notification);
+    }
+
+    /**
+     * @return Factory|View|Application
+     */
+    public function adminChangePassword(): Factory|View|Application
+    {
+        return view('admin.admin_change_password');
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function adminUpdatePassword(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'old_password' => 'required|min:8',
+            'new_password' => 'required|min:8|required_with:confirm_new_password|same:confirm_new_password',
+            'confirm_new_password' => 'required|min:8'
+        ]);
+
+        if (!Hash::check($request->old_password, Auth::user()->getAuthPassword())) return back()->with('error', 'old password does not match');
+
+        User::whereId(Auth::id())->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with('status', 'Your password has been changed');
     }
 }
