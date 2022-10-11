@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
+
+//Admin Dashboard
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'adminProfile'])->name('admin.profile');
+    Route::post('/admin/profile/store', [AdminController::class, 'adminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/profile/change-password', [AdminController::class, 'adminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/update-password', [AdminController::class, 'adminUpdatePassword'])->name('update.password');
+});
+
+//Vendor Dashboard
+Route::middleware(['auth', 'role:vendor'])->group(function () {
+    Route::get('/vendor/dashboard', [VendorController::class, 'vendorDashboard'])->name('vendor.dashboard');
+});
+
+Route::get('/admin/login', [AdminController::class, 'adminLogin']);
