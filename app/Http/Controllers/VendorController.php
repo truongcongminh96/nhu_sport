@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Context\BuildProfileContext;
 use App\Models\User;
+use App\Strategy\ConcreteStrategyVendor\ConcreteVendorProfile;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,6 +16,17 @@ use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
 {
+    private BuildProfileContext $buildProfileContext;
+
+    /**
+     * @param BuildProfileContext $buildProfileContext
+     */
+    public function __construct(BuildProfileContext $buildProfileContext)
+    {
+        $this->buildProfileContext = $buildProfileContext;
+        $this->buildProfileContext->setBuildProfileContext(new ConcreteVendorProfile());
+    }
+
     /**
      * @return Factory|View|Application
      */
@@ -60,21 +73,7 @@ class VendorController extends Controller
      */
     public function vendorProfileStore(Request $request): RedirectResponse
     {
-        $vendorData = User::find(Auth::id());
-        $vendorData->name = $request->name;
-        $vendorData->email = $request->email;
-        $vendorData->phone = $request->phone;
-        $vendorData->address = $request->address;
-
-        if ($request->file('photo')) {
-            $file = $request->file('photo');
-            if ($vendorData->photo) @unlink(public_path('upload/vendor_images/' . $vendorData->photo));
-            $fileName = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/vendor_images'), $fileName);
-            $vendorData->photo = $fileName;
-        }
-
-        $vendorData->save();
+        $this->buildProfileContext->runUpdateProfile($request);
         $notification = [
             'message' => 'Vendor Profile Updated!',
             'alert-type' => 'success'

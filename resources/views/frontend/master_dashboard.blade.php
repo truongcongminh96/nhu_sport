@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Nest - Multipurpose eCommerce HTML Template</title>
+    <title>Như Sport - Shop Bán Vợt Cầu Lông Chính Hãng 2022 Giá Rẻ Toàn Quốc</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
+    <meta name="description" content="Như Sport - Shop bán vợt cầu lông Yonex chính hãng, vợt Victor, vợt Lining 2022... và là điểm mua vợt cầu lông giá rẻ, báo giá vợt cầu lông, COD toàn quốc." />
+    <meta name="keywords" content="Shop Vợt cầu lông, vợt cầu lông giá rẻ, vot cau long, mua vợt cầu lông, giá vợt cầu lông, vợt cầu lông yonex, vợt cầu lông proace,  vợt yonex chính hãng, vợt Victor,  vợt Lining, vợt cầu lông Apacs,"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />

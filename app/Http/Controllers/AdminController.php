@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Context\BuildProfileContext;
 use App\Models\User;
+use App\Strategy\ConcreteStrategyAdmin\ConcreteAdminProfile;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,6 +16,17 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    private BuildProfileContext $buildProfileContext;
+
+    /**
+     * @param BuildProfileContext $buildProfileContext
+     */
+    public function __construct(BuildProfileContext $buildProfileContext)
+    {
+        $this->buildProfileContext = $buildProfileContext;
+        $this->buildProfileContext->setBuildProfileContext(new ConcreteAdminProfile());
+    }
+
     /**
      * @return Factory|View|Application
      */
@@ -60,21 +73,7 @@ class AdminController extends Controller
      */
     public function adminProfileStore(Request $request): RedirectResponse
     {
-        $adminData = User::find(Auth::id());
-        $adminData->name = $request->name;
-        $adminData->email = $request->email;
-        $adminData->phone = $request->phone;
-        $adminData->address = $request->address;
-
-        if ($request->file('photo')) {
-            $file = $request->file('photo');
-            if ($adminData->photo) @unlink(public_path('upload/admin_images/' . $adminData->photo));
-            $fileName = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'), $fileName);
-            $adminData->photo = $fileName;
-        }
-
-        $adminData->save();
+        $this->buildProfileContext->runUpdateProfile($request);
         $notification = [
             'message' => 'Admin Profile Updated!',
             'alert-type' => 'success'

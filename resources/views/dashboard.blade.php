@@ -1,17 +1,87 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
+<head>
+    <meta charset="utf-8"/>
+    <title>Như Sport - Shop Bán Vợt Cầu Lông Chính Hãng 2022 Giá Rẻ Toàn Quốc</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content=""/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}"/>
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}" >
+</head>
+
+<body>
+@include('frontend.body.header')
+<!-- End Header  -->
+
+<main class="main pages">
+    @yield('user')
+</main>
+@include('frontend.body.footer')
+<!-- Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="text-center">
+                <img src="assets/imgs/theme/loading.gif" alt=""/>
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+<!-- Vendor JS-->
+<script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/slick.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.syotimer.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/wow.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/magnific-popup.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/select2.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/waypoints.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/counterup.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/images-loaded.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/isotope.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/scrollup.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.vticker-min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.theia.sticky.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
+<!-- Template  JS -->
+<script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
+<script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+<script type="text/javascript" src="{{ asset('admin_backend/assets/js/toastr.min.js') }}"></script>
+<script>
+    @if(Session::has('message'))
+    const type = "{{ Session::get('alert-type','info') }}";
+    switch (type) {
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+</script>
+</body>
+
+</html>
