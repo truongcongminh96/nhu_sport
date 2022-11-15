@@ -47,8 +47,16 @@
                                            href="#account-detail" role="tab" aria-controls="account-detail"
                                            aria-selected="true"><i class="fi-rs-user mr-10"></i>Chi tiết tài khoản</a>
                                     </li>
+
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('user.logout') }}"><i class="fi-rs-sign-out mr-10"></i>Đăng xuất</a>
+                                        <a class="nav-link" id="change-password-tab" data-bs-toggle="tab"
+                                           href="#change-password" role="tab" aria-controls="change-password"
+                                           aria-selected="true"><i class="fi-rs-user mr-10"></i>Đổi mật khẩu</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('user.logout') }}"><i
+                                                    class="fi-rs-sign-out mr-10"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </div>
@@ -61,7 +69,8 @@
                                         <div class="card-header">
                                             <h3 class="mb-0">Hello {{ $userData->name }}!</h3>
                                             <br>
-                                            <img id="showImage" src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg')}}"
+                                            <img id="showImage"
+                                                 src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg')}}"
                                                  alt="User" class="rounded-circle p-1 bg-primary" width="110">
                                         </div>
                                         <div class="card-body">
@@ -196,42 +205,103 @@
                                             <h5>Chi tiết tài khoản</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form method="POST" action="{{ route('user.profile.store')}}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{ route('user.profile.store')}}"
+                                                  enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
                                                         <label>User Name <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="username" type="text" value="{{ $userData->username }}"/>
+                                                        <input required="" class="form-control" name="username"
+                                                               type="text" value="{{ $userData->username }}"/>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Họ và tên <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="name" value="{{ $userData->name }}"/>
+                                                        <input required="" class="form-control" name="name"
+                                                               value="{{ $userData->name }}"/>
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Email <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="email" type="email" value="{{ $userData->email }}"/>
+                                                        <input required="" class="form-control" name="email"
+                                                               type="email" value="{{ $userData->email }}"/>
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Phone <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="phone" type="text" value="{{ $userData->phone }}"/>
+                                                        <input required="" class="form-control" name="phone" type="text"
+                                                               value="{{ $userData->phone }}"/>
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Địa chỉ <span class="required">*</span></label>
-                                                        <input required="" class="form-control" name="address" type="text" value="{{ $userData->address }}"/>
+                                                        <input required="" class="form-control" name="address"
+                                                               type="text" value="{{ $userData->address }}"/>
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Photo </label>
-                                                        <input class="form-control" name="photo" type="file" id="image"/>
+                                                        <input class="form-control" name="photo" type="file"
+                                                               id="image"/>
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <img id="showImage" src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg')}}"
-                                                             alt="User" class="rounded-circle p-1 bg-primary" width="110">
+                                                        <img id="showImage"
+                                                             src="{{ (!empty($userData->photo)) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg')}}"
+                                                             alt="User" class="rounded-circle p-1 bg-primary"
+                                                             width="110">
                                                     </div>
 
                                                     <div class="col-md-12">
                                                         <button type="submit"
                                                                 class="btn btn-fill-out submit font-weight-bold"
                                                                 name="submit" value="Submit">Save Change
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="change-password" role="tabpanel"
+                                     aria-labelledby="change-password-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Đổi mật khẩu</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="POST" action="{{ route('user.update.password')}}">
+                                                @csrf
+                                                @if(session('status'))
+                                                    <div class="alert alert-success" role="alert">
+                                                        {{session('status')}}
+                                                    </div>
+                                                @elseif(session('error'))
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{session('error')}}
+                                                    </div>
+                                                @endif
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Mật khẩu cũ <span class="required">*</span></label>
+                                                        <input required="" class="form-control @error('old_password') is-invalid @enderror" name="old_password" id="current_password" type="password"/>
+                                                        @error('old_password')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label>Mật khẩu mới<span class="required">*</span></label>
+                                                        <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="new_password"/>
+                                                        @error('new_password')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="form-group col-md-12">
+                                                        <label>Xác nhận mật khẩu mới<span class="required">*</span></label>
+                                                        <input type="password" name="confirm_new_password" class="form-control" id="confirm_new_password"/>
+
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <button type="submit"
+                                                                class="btn btn-fill-out submit font-weight-bold"
+                                                                name="submit" value="Submit">Xác nhận
                                                         </button>
                                                     </div>
                                                 </div>

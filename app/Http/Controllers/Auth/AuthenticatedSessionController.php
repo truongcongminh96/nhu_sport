@@ -32,6 +32,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $notification = [
+            'message' => 'Đăng nhập thành công',
+            'alert-type' => 'success'
+        ];
+
         $url = match ($request->user()->role) {
             'admin' => 'admin/dashboard',
             'vendor' => 'vendor/dashboard',
@@ -39,7 +44,7 @@ class AuthenticatedSessionController extends Controller
             default => RouteServiceProvider::HOME
         };
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
     /**

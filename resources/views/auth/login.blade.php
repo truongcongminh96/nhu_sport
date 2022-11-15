@@ -2,19 +2,20 @@
 <html class="no-js" lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Nest - Multipurpose eCommerce HTML Template</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content=""/>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}"/>
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}">
 </head>
 
 <body>
@@ -36,34 +37,42 @@
                 <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
                     <div class="row">
                         <div class="col-lg-6 pr-30 d-none d-lg-block">
-                            <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}" alt="" />
+                            <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}"
+                                 alt=""/>
                         </div>
                         <div class="col-lg-6 col-md-8">
                             <div class="login_wrap widget-taber-content background-white">
                                 <div class="padding_eight_all bg-white">
                                     <div class="heading_s1">
                                         <h1 class="mb-5">Login</h1>
-                                        <p class="mb-30">Don't have an account? <a href="page-register.html">Create here</a></p>
+                                        <p class="mb-30">Don't have an account? <a href="page-register.html">Create
+                                                here</a></p>
                                     </div>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" id="email" required="" name="email" placeholder="Username or Email *" />
+                                            <input type="email" id="email" required="" name="email"
+                                                   placeholder="Username or Email *"/>
                                         </div>
                                         <div class="form-group">
-                                            <input required="" id="password" type="password" name="password" placeholder="Your password *" />
+                                            <input required="" id="password" type="password" name="password"
+                                                   placeholder="Your password *"/>
                                         </div>
                                         <div class="login_footer form-group mb-50">
                                             <div class="chek-form">
                                                 <div class="custome-checkbox">
-                                                    <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
+                                                    <input class="form-check-input" type="checkbox" name="checkbox"
+                                                           id="exampleCheckbox1" value=""/>
                                                     <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                                 </div>
                                             </div>
-                                            <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
+                                            <a class="text-muted" href="{{ route('password.request') }}">Forgot
+                                                password?</a>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                            <button type="submit" class="btn btn-heading btn-block hover-up"
+                                                    name="login">Log in
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -81,7 +90,7 @@
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
             <div class="text-center">
-                <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
+                <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt=""/>
             </div>
         </div>
     </div>
@@ -109,6 +118,31 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+<script type="text/javascript" src="{{ asset('admin_backend/assets/js/toastr.min.js') }}"></script>
+<script>
+    @if(Session::has('message'))
+    const type = "{{ Session::get('alert-type','info') }}";
+    switch (type) {
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+</script>
+
 </body>
 
 </html>

@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -62,6 +63,32 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        $notification = [
+            'message' => 'Bạn đã đăng xuất khỏi ứng dụng',
+            'alert-type' => 'success'
+        ];
+
+        return redirect('/login')->with($notification);
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function userUpdatePassword(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'old_password' => 'required|min:8',
+            'new_password' => 'required|min:8|required_with:confirm_new_password|same:confirm_new_password',
+            'confirm_new_password' => 'required|min:8'
+        ]);
+
+        if (!Hash::check($request->old_password, Auth::user()->getAuthPassword())) return back()->with('error', 'old password does not match');
+
+        User::whereId(Auth::id())->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with('status', 'Your password has been changed');
     }
 }
