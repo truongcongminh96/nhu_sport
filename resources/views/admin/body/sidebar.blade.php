@@ -41,7 +41,7 @@
             <ul>
                 <li><a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách thương hiệu</a>
                 </li>
-                <li><a href="dashboard-analytics.html"><i class="bx bx-right-arrow-alt"></i>Thêm thương hiệu</a>
+                <li><a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Thêm thương hiệu</a>
                 </li>
             </ul>
         </li>

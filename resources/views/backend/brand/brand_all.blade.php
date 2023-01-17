@@ -19,13 +19,11 @@
                     <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                             data-bs-toggle="dropdown"><span class="visually-hidden">Toggle Dropdown</span>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"><a class="dropdown-item"
-                                                                                           href="javascript:;">Thêm
-                            thương hiệu</a>
-                        <a class="dropdown-item" href="javascript:;">Another action</a>
-                        <a class="dropdown-item" href="javascript:;">Something else here</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"><a class="dropdown-item" href="{{ route('add.brand') }}">Thêm thương hiệu</a>
+                        <a class="dropdown-item" href="">Another action</a>
+                        <a class="dropdown-item" href="">Something else here</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:;">Separated link</a>
+                        <a class="dropdown-item" href="">Separated link</a>
                     </div>
                 </div>
             </div>
