@@ -33,6 +33,19 @@
             </ul>
         </li>
         <li>
+            <a class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                </div>
+                <div class="menu-title">Thương hiệu</div>
+            </a>
+            <ul>
+                <li><a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách thương hiệu</a>
+                </li>
+                <li><a href="dashboard-analytics.html"><i class="bx bx-right-arrow-alt"></i>Thêm thương hiệu</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
