@@ -37,7 +37,7 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.profile.store')}}"
+                                <form method="POST" action="{{ route('store.brand')}}"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
@@ -53,7 +53,7 @@
                                             <h6 class="mb-0">Hình ảnh</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="photo" class="form-control" id="image"/>
+                                            <input type="file" name="brand_image" class="form-control" id="image"/>
                                         </div>
                                     </div>
 

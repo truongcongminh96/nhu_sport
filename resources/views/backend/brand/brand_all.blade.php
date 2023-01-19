@@ -49,7 +49,7 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $brand->brand_name }}</td>
                                 <td><img alt="" src="{{ asset($brand->brand_image) }}"
-                                         style="max-width: 100%; height: auto;"></td>
+                                         style="width: 50px; height: 50px;"></td>
                                 <td>
                                     <a href="" class="btn btn-info">Sửa</a>
                                     <a href="" class="btn btn-info">Xóa</a>
