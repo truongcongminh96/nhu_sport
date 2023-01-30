@@ -26,6 +26,15 @@ class BrandController extends Controller
     public function storeBrand(Request $request)
     {
         $image = $request->file('brand_image');
+        if (!$image) {
+            $notification = [
+                'message' => 'Vui lòng chọn hình ảnh thương hiệu',
+                'alert-type' => 'error'
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
         $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(300, 300)->save('upload/brand/' . $generateName);
         $saveUrl = 'upload/brand/' . $generateName;

@@ -37,15 +37,15 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('store.brand')}}"
+                                <form id="myForm" method="POST" action="{{ route('store.brand')}}"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Tên thương hiệu</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <label><input type="text" name="brand_name" class="form-control" required/></label>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <label><input type="text" name="brand_name" class="form-control"/></label>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -53,7 +53,8 @@
                                             <h6 class="mb-0">Hình ảnh</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="brand_image" class="form-control" id="image"/>
+                                            <input type="file" name="brand_image" class="form-control" id="image"
+                                                   required/>
                                         </div>
                                     </div>
 
@@ -92,6 +93,30 @@
                     $('#showImage').attr('src', e.target.result);
                 };
                 reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    brand_name: {required: true}
+                },
+                messages: {
+                    brand_name: {required: 'Vui lòng nhập tên thương hiệu'}
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                }
             });
         });
     </script>

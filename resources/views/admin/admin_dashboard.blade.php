@@ -192,6 +192,7 @@
     @endif
 </script>
 <script src="{{ asset('admin_backend/assets/js/index.js') }}"></script>
+<script src="{{ asset('admin_backend/assets/js/validate.min.js') }}"></script>
 <!--app JS-->
 <script src="{{ asset('admin_backend/assets/js/app.js') }}"></script>
 
