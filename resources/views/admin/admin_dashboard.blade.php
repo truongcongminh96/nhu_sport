@@ -24,8 +24,9 @@
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/dark-theme.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/semi-dark.css') }}"/>
     <link rel="stylesheet" href="{{ asset('admin_backend/assets/css/header-colors.css') }}"/>
-    <link href="{{ asset('admin_backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}" >
+    <link href="{{ asset('admin_backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}"
+          rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}">
     <title>Như Sport - Admin</title>
 </head>
 
@@ -172,7 +173,7 @@
 <script>
     @if(Session::has('message'))
     const type = "{{ Session::get('alert-type','info') }}";
-    switch(type){
+    switch (type) {
         case 'info':
             toastr.info(" {{ Session::get('message') }} ");
             break;
@@ -199,21 +200,24 @@
 <script src="{{ asset('admin_backend/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin_backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#example').DataTable();
-    } );
+    });
 </script>
 <script>
-    $(document).ready(function() {
-        var table = $('#example2').DataTable( {
+    $(document).ready(function () {
+        var table = $('#example2').DataTable({
             lengthChange: false,
-            buttons: [ 'copy', 'excel', 'pdf', 'print']
-        } );
+            buttons: ['copy', 'excel', 'pdf', 'print']
+        });
 
         table.buttons().container()
-            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
-    } );
+            .appendTo('#example2_wrapper .col-md-6:eq(0)');
+    });
 </script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('admin_backend/assets/js/code.js') }}"></script>
 
 </body>
 

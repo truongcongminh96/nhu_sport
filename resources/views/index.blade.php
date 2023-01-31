@@ -278,7 +278,10 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
                                                         <label>Mật khẩu cũ <span class="required">*</span></label>
-                                                        <input required="" class="form-control @error('old_password') is-invalid @enderror" name="old_password" id="current_password" type="password"/>
+                                                        <input required=""
+                                                               class="form-control @error('old_password') is-invalid @enderror"
+                                                               name="old_password" id="current_password"
+                                                               type="password"/>
                                                         @error('old_password')
                                                         <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -286,15 +289,19 @@
 
                                                     <div class="form-group col-md-12">
                                                         <label>Mật khẩu mới<span class="required">*</span></label>
-                                                        <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="new_password"/>
+                                                        <input type="password" name="new_password"
+                                                               class="form-control @error('new_password') is-invalid @enderror"
+                                                               id="new_password"/>
                                                         @error('new_password')
                                                         <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
 
                                                     <div class="form-group col-md-12">
-                                                        <label>Xác nhận mật khẩu mới<span class="required">*</span></label>
-                                                        <input type="password" name="confirm_new_password" class="form-control" id="confirm_new_password"/>
+                                                        <label>Xác nhận mật khẩu mới<span
+                                                                    class="required">*</span></label>
+                                                        <input type="password" name="confirm_new_password"
+                                                               class="form-control" id="confirm_new_password"/>
 
                                                     </div>
 

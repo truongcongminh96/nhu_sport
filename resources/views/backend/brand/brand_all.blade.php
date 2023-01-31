@@ -19,7 +19,9 @@
                     <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                             data-bs-toggle="dropdown"><span class="visually-hidden">Toggle Dropdown</span>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"><a class="dropdown-item" href="{{ route('add.brand') }}">Thêm thương hiệu</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"><a class="dropdown-item"
+                                                                                           href="{{ route('add.brand') }}">Thêm
+                            thương hiệu</a>
                         <a class="dropdown-item" href="">Another action</a>
                         <a class="dropdown-item" href="">Something else here</a>
                         <div class="dropdown-divider"></div>
@@ -51,8 +53,8 @@
                                 <td><img alt="" src="{{ asset($brand->brand_image) }}"
                                          style="width: 50px; height: 50px;"></td>
                                 <td>
-                                    <a href="" class="btn btn-info">Sửa</a>
-                                    <a href="" class="btn btn-info">Xóa</a>
+                                    <a href="{{ route('edit.brand', $brand->id) }}" class="btn btn-info">Sửa</a>
+                                    <a href="{{ route('delete.brand', $brand->id) }}" class="btn btn-danger" id="delete">Xóa</a>
                                 </td>
                             </tr>
                         @endforeach

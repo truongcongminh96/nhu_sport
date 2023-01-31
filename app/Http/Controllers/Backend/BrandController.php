@@ -7,6 +7,7 @@ use App\Models\Brand;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -23,7 +24,7 @@ class BrandController extends Controller
         return view('backend.brand.brand_add');
     }
 
-    public function storeBrand(Request $request)
+    public function storeBrand(Request $request): RedirectResponse
     {
         $image = $request->file('brand_image');
         if (!$image) {
@@ -51,5 +52,55 @@ class BrandController extends Controller
         ];
 
         return redirect()->route('all.brand')->with($notification);
+    }
+
+    public function editBrand(int $brandId): Factory|View|Application
+    {
+        $brand = Brand::findOrFail($brandId);
+        return view('backend.brand.brand_edit', compact('brand'));
+    }
+
+    public function updateBrand(Request $request): RedirectResponse
+    {
+        if ($request->file('brand_image')) {
+            $image = $request->file('brand_image');
+
+            $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(300, 300)->save('upload/brand/' . $generateName);
+            $saveUrl = 'upload/brand/' . $generateName;
+
+            if (file_exists($request->old_image)) unlink($request->old_image);
+
+            Brand::findOrFail($request->id)->update([
+                'brand_name' => $request->brand_name,
+                'brand_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->brand_name))),
+                'brand_image' => $saveUrl
+            ]);
+
+        } else {
+            Brand::findOrFail($request->id)->update([
+                'brand_name' => $request->brand_name,
+                'brand_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->brand_name)))
+            ]);
+        }
+
+        $notification = [
+            'message' => 'Cập nhật thành công!',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('all.brand')->with($notification);
+    }
+
+    public function deleteBrand(int $brandId): RedirectResponse
+    {
+        $brand = Brand::findOrFail($brandId);
+        if ($brand->brand_image) unlink($brand->brand_image);
+        $brand->delete();
+
+        $notification = [
+            'message' => 'Xóa thành công!',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
     }
 }
