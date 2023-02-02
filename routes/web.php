@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/brand', 'allBrand')->name('all.brand');
         Route::get('/add/brand', 'addBrand')->name('add.brand');
         Route::post('/store/brand', 'storeBrand')->name('store.brand');
+        Route::get('/edit/brand/{id}', 'editBrand')->name('edit.brand');
+        Route::post('/update/brand', 'updateBrand')->name('update.brand');
+        Route::get('/delete/brand/{id}', 'deleteBrand')->name('delete.brand');
+    });
+
+    //Admin Category
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/all/category', 'allCategory')->name('all.category');
+        Route::get('/add/category', 'addCategory')->name('add.category');
+        Route::post('/store/category', 'storeCategory')->name('store.category');
         Route::get('/edit/brand/{id}', 'editBrand')->name('edit.brand');
         Route::post('/update/brand', 'updateBrand')->name('update.brand');
         Route::get('/delete/brand/{id}', 'deleteBrand')->name('delete.brand');
