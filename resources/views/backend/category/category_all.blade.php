@@ -52,8 +52,8 @@
                                 <td><img alt="" src="{{ asset($category->category_image) }}"
                                          style="width: 50px; height: 50px;"></td>
                                 <td>
-                                    <a href="{{ route('edit.brand', $category->id) }}" class="btn btn-info">Sửa</a>
-                                    <a href="{{ route('delete.brand', $category->id) }}" class="btn btn-danger"
+                                    <a href="{{ route('edit.category', $category->id) }}" class="btn btn-info">Sửa</a>
+                                    <a href="{{ route('delete.category', $category->id) }}" class="btn btn-danger"
                                        id="delete">Xóa</a>
                                 </td>
                             </tr>

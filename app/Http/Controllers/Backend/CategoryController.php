@@ -53,4 +53,54 @@ class CategoryController extends Controller
 
         return redirect()->route('all.category')->with($notification);
     }
+
+    public function editCategory($categoryId): Factory|View|Application
+    {
+        $category = Category::findOrFail($categoryId);
+        return view('backend.category.category_edit', compact('category'));
+    }
+
+    public function updateCategory(Request $request): RedirectResponse
+    {
+        if ($request->file('category_image')) {
+            $image = $request->file('category_image');
+
+            $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(300, 300)->save('upload/category/' . $generateName);
+            $saveUrl = 'upload/category/' . $generateName;
+
+            if (file_exists($request->old_image)) unlink($request->old_image);
+
+            Category::findOrFail($request->id)->update([
+                'category_name' => $request->category_name,
+                'category_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->category_name))),
+                'category_image' => $saveUrl
+            ]);
+
+        } else {
+            Category::findOrFail($request->id)->update([
+                'category_name' => $request->category_name,
+                'category_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->category_name)))
+            ]);
+        }
+
+        $notification = [
+            'message' => 'Cập nhật thành công!',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('all.category')->with($notification);
+    }
+
+    public function deleteCategory(int $categoryId): RedirectResponse
+    {
+        $category = Category::findOrFail($categoryId);
+        if ($category->category_image) unlink($category->category_image);
+        $category->delete();
+
+        $notification = [
+            'message' => 'Xóa thành công!',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }
