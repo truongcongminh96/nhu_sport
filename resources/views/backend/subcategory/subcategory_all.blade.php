@@ -20,7 +20,7 @@
                             data-bs-toggle="dropdown"><span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                        <a class="dropdown-item" href="{{ route('add.category') }}">Thêm loại sản phẩm phụ</a>
+                        <a class="dropdown-item" href="{{ route('add.subcategory') }}">Thêm loại sản phẩm phụ</a>
                         <a class="dropdown-item" href="">Another action</a>
                         <a class="dropdown-item" href="">Something else here</a>
                         <div class="dropdown-divider"></div>

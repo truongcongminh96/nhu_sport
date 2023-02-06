@@ -67,7 +67,7 @@
             <ul>
                 <li><a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản phẩm phụ</a>
                 </li>
-                <li><a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Thêm sách loại sản phẩm phụ</a>
+                <li><a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Thêm sách loại sản phẩm phụ</a>
                 </li>
             </ul>
         </li>
