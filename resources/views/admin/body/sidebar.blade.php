@@ -57,28 +57,17 @@
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
-        <li>
-            <a href="widgets.html">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">Widgets</div>
-            </a>
-        </li>
+
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
-                <div class="menu-title">eCommerce</div>
+                <div class="menu-title">Loại sản phẩm phụ</div>
             </a>
             <ul>
-                <li><a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Products</a>
+                <li><a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản phẩm phụ</a>
                 </li>
-                <li><a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Product
-                        Details</a>
-                </li>
-                <li><a href="ecommerce-add-new-products.html"><i class="bx bx-right-arrow-alt"></i>Add New Products</a>
-                </li>
-                <li><a href="ecommerce-orders.html"><i class="bx bx-right-arrow-alt"></i>Orders</a>
+                <li><a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Thêm sách loại sản phẩm phụ</a>
                 </li>
             </ul>
         </li>
