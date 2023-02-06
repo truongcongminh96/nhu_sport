@@ -94,7 +94,7 @@ class BrandController extends Controller
     public function deleteBrand(int $brandId): RedirectResponse
     {
         $brand = Brand::findOrFail($brandId);
-        if ($brand->brand_image) unlink($brand->brand_image);
+        if (file_exists($brand->brand_image)) unlink($brand->brand_image);
         $brand->delete();
 
         $notification = [

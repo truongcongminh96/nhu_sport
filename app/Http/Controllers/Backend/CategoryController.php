@@ -94,7 +94,7 @@ class CategoryController extends Controller
     public function deleteCategory(int $categoryId): RedirectResponse
     {
         $category = Category::findOrFail($categoryId);
-        if ($category->category_image) unlink($category->category_image);
+        if (file_exists($category->category_image)) unlink($category->category_image);
         $category->delete();
 
         $notification = [
