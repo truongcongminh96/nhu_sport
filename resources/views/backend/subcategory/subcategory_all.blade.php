@@ -50,10 +50,9 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $subCategory->subcategory_name }}</td>
-                                    <a href="{{ route('edit.category', $category->id) }}" class="btn btn-info">Sửa</a>
-                                    <a href="{{ route('delete.category', $category->id) }}" class="btn btn-danger"
+                                    <a href="{{ route('edit.category', $subCategory->id) }}" class="btn btn-info">Sửa</a>
+                                    <a href="{{ route('delete.category', $subCategory->id) }}" class="btn btn-danger"
                                        id="delete">Xóa</a>
-                                </td>
                             </tr>
                         @endforeach
                         </tbody>

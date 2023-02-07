@@ -38,43 +38,27 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-                                <form id="myForm" method="POST" action="{{ route('store.category')}}"
-                                      enctype="multipart/form-data">
+                                <form id="myForm" method="POST" action="{{ route('store.subcategory')}}">
                                     @csrf
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Chọn loại sản phẩm</h6>
                                         </div>
                                         <div class="col-sm-9 mx-auto">
-                                            <select class="single-select">
+                                            <select name="category_id" class="single-select">
                                                 <option value="">Chọn loại sản phẩm</option>
                                                 @foreach($categories as $category)
-                                                    <option
-                                                        value="United Kingdom">{{ $category->category_name }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                                 @endforeach
-
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Hình ảnh</h6>
+                                            <h6 class="mb-0">Tên loại sản phẩm phụ</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="category_image" class="form-control" id="image"
-                                                   required/>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0"></h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <img id="showImage"
-                                                 src="{{url('upload/no_image.jpg')}}"
-                                                 alt="Admin"
-                                                 style="width: 100px; height: 100px;">
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <label><input type="text" name="subcategory_name" class="form-control"/></label>
                                         </div>
                                     </div>
 
@@ -94,5 +78,27 @@
         <!--end row-->
     </div>
     <!--end wrapper-->
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    subcategory_name: {required: true}
+                },
+                messages: {
+                    subcategory_name: {required: 'Vui lòng nhập tên loại sản phẩm'}
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                }
+            });
+        });
+    </script>
 @endsection
