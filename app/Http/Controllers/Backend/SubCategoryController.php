@@ -62,4 +62,15 @@ class SubCategoryController extends Controller
         ];
         return redirect()->route('all.subcategory')->with($notification);
     }
+
+    public function deleteSubCategory(int $subCategoryId): RedirectResponse
+    {
+        SubCategory::findOrFail($subCategoryId)->delete();
+
+        $notification = [
+            'message' => 'Xóa thành công!',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }
