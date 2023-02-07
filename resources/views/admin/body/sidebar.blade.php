@@ -65,9 +65,9 @@
                 <div class="menu-title">Loại sản phẩm phụ</div>
             </a>
             <ul>
-                <li><a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản phẩm phụ</a>
+                <li><a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản phẩm con</a>
                 </li>
-                <li><a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Thêm sách loại sản phẩm phụ</a>
+                <li><a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Thêm loại sản phẩm con</a>
                 </li>
             </ul>
         </li>
