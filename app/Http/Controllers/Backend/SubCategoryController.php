@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
 class SubCategoryController extends Controller
 {
@@ -39,6 +38,28 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         ];
 
+        return redirect()->route('all.subcategory')->with($notification);
+    }
+
+    public function editSubCategory($subCategoryId): Factory|View|Application
+    {
+        $categories = Category::latest()->get();
+        $subCategory = SubCategory::findOrFail($subCategoryId);
+        return view('backend.subcategory.subcategory_edit', compact('categories', 'subCategory'));
+    }
+
+    public function updateSubCategory(Request $request): RedirectResponse
+    {
+        SubCategory::findOrFail($request->id)->update([
+            'category_id' => $request->category_id,
+            'subcategory_name' => $request->subcategory_name,
+            'subcategory_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->subcategory_name)))
+        ]);
+
+        $notification = [
+            'message' => 'Cập nhật thành công!',
+            'alert-type' => 'success'
+        ];
         return redirect()->route('all.subcategory')->with($notification);
     }
 }
