@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Validator;
 
 class VendorController extends Controller
 {
@@ -114,5 +116,41 @@ class VendorController extends Controller
     public function becomeVendor(): Factory|View|Application
     {
         return view('auth.become_vendor');
+    }
+
+    public function vendorRegister(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        if ($validator->fails()) {
+            $notification = [
+                'message' => $validator->errors()->first(),
+                'alert-type' => 'success'
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'vendor_join' => $request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive'
+        ]);
+
+        $notification = [
+            'message' => 'Vendor Register Successfully!',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('vendor.login')->with($notification);
     }
 }

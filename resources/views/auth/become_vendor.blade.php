@@ -15,6 +15,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}"/>
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}" >
 </head>
 
 <body>
@@ -40,9 +41,9 @@
                                     <div class="heading_s1">
                                         <h1 class="mb-5">Create an Account</h1>
                                         <p class="mb-30">Already have an account? <a
-                                                href="{{ route('login') }}">Login</a></p>
+                                                href="{{ route('vendor.login') }}">Vendor Login</a></p>
                                     </div>
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="{{ route('vendor.register') }}">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" id="name" required="" name="name"
@@ -53,19 +54,19 @@
                                                    placeholder="User Name"/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" id="email" required="" name="username"
-                                                   placeholder="User Name"/>
+                                            <input type="email" id="email" required="" name="email"
+                                                   placeholder="email"/>
                                         </div>
                                         <div class="form-group">
                                             <input type="text" id="phone" required="" name="phone"
-                                                   placeholder="User Name"/>
+                                                   placeholder="phone"/>
                                         </div>
                                         <div class="form-group">
                                             <select name="vendor_join" class="form-select mb-3" aria-label="Default select example">
-                                                <option selected="">Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option selected="">Open this selected join date</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
                                             </select>
                                         </div>
 
@@ -157,6 +158,30 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+<script type="text/javascript" src="{{ asset('admin_backend/assets/js/toastr.min.js') }}"></script>
+
+<script>
+    @if(Session::has('message'))
+    const type = "{{ Session::get('alert-type','info') }}";
+    switch(type){
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+</script>
 </body>
 
 </html>

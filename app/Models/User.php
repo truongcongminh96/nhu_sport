@@ -28,7 +28,10 @@ class User extends Authenticatable
         'password',
         'photo',
         'phone',
-        'address'
+        'address',
+        'vendor_join',
+        'vendor_short_infor',
+        'role'
     ];
 
     /**
