@@ -36,7 +36,7 @@
                         <div class="card-body">
                             <div class="border p-4 rounded">
                                 <div class="text-center">
-                                    <h3 class="">Admin - Sign in</h3>
+                                    <h3 class="">Vendor - Sign in</h3>
                                 </div>
 
                                     <hr/>
@@ -102,11 +102,11 @@
     $(document).ready(function () {
         $("#show_hide_password a").on('click', function (event) {
             event.preventDefault();
-            if ($('#show_hide_password input').attr("type") == "text") {
+            if ($('#show_hide_password input').attr("type") === "text") {
                 $('#show_hide_password input').attr('type', 'password');
                 $('#show_hide_password i').addClass("bx-hide");
                 $('#show_hide_password i').removeClass("bx-show");
-            } else if ($('#show_hide_password input').attr("type") == "password") {
+            } else if ($('#show_hide_password input').attr("type") === "password") {
                 $('#show_hide_password input').attr('type', 'text');
                 $('#show_hide_password i').removeClass("bx-hide");
                 $('#show_hide_password i').addClass("bx-show");

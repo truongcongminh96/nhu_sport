@@ -110,4 +110,9 @@ class VendorController extends Controller
 
         return back()->with('status', 'Your password has been changed');
     }
+
+    public function becomeVendor(): Factory|View|Application
+    {
+        return view('auth.become_vendor');
+    }
 }
