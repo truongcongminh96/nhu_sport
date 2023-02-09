@@ -91,4 +91,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/subcategory', 'updateSubCategory')->name('update.subcategory');
         Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
     });
+
+    //Admin Manage Vendor
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/inactive/vendor', 'inactiveVendor')->name('inactive.vendor');
+        Route::get('/active/vendor', 'activeVendor')->name('active.vendor');
+        Route::get('/inactive/vendor/details/{id}', 'inactiveVendorDetails')->name('inactive.vendor.details');
+        Route::post('/active/vendor/approve', 'activeVendorApprove')->name('active.vendor.approve');
+        Route::get('/active/vendor/details/{id}', 'activeVendorDetails')->name('active.vendor.details');
+        Route::post('/inactive/vendor/approve', 'inactiveVendorApprove')->name('inactive.vendor.approve');
+    });
 });

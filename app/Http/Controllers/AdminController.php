@@ -110,4 +110,56 @@ class AdminController extends Controller
 
         return back()->with('status', 'Your password has been changed');
     }
+
+    public function inactiveVendor(): Factory|View|Application
+    {
+        $inactiveVendor = User::where(['status' => User::STATUS_INACTIVE, 'role' => User::ROLE_VENDOR])->latest()->get();
+        return view('backend.vendor.inactive_vendor', compact('inactiveVendor'));
+    }
+
+    public function activeVendor(): Factory|View|Application
+    {
+        $activeVendor = User::where(['status' => User::STATUS_ACTIVE, 'role' => User::ROLE_VENDOR])->latest()->get();
+        return view('backend.vendor.active_vendor', compact('activeVendor'));
+    }
+
+    public function inactiveVendorDetails($id): Factory|View|Application
+    {
+        $inactiveVendorDetails = User::findOrFail($id);
+        return view('backend.vendor.inactive_vendor_details', compact('inactiveVendorDetails'));
+    }
+
+    public function activeVendorApprove(Request $request): RedirectResponse
+    {
+        User::findOrFail($request->id)->update([
+            'status' => User::STATUS_ACTIVE
+        ]);
+
+        $notification = [
+            'message' => 'Vendor Activated Update Successfully!',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('active.vendor')->with($notification);
+    }
+
+    public function activeVendorDetails($id): Factory|View|Application
+    {
+        $activeVendorDetails = User::findOrFail($id);
+        return view('backend.vendor.active_vendor_details', compact('activeVendorDetails'));
+    }
+
+    public function inactiveVendorApprove(Request $request): RedirectResponse
+    {
+        User::findOrFail($request->id)->update([
+            'status' => User::STATUS_INACTIVE
+        ]);
+
+        $notification = [
+            'message' => 'Vendor Activated Update Successfully!',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('active.vendor')->with($notification);
+    }
 }

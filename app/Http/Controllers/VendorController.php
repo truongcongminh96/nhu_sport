@@ -44,9 +44,7 @@ class VendorController extends Controller
     public function vendorLogout(Request $request): Redirector|Application|RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/vendor/login');
