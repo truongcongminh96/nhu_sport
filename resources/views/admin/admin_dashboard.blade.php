@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('admin_backend/assets/images/favicon-32x32.png') }}" type="image/png"/>
+    <link href="{{ asset('admin_backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet"/>
     <!--plugins-->
     <link href="{{ asset('admin_backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
     <link href="{{ asset('admin_backend/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet"/>
@@ -236,6 +237,18 @@
         allowClear: Boolean($(this).data('allow-clear')),
     });
 </script>
-</body>
 
+<script src="{{ asset('admin_backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
+
+<script src="{{ asset('admin_backend/assets/js/tinymce/tinymce.min.js') }}"
+        referrerpolicy="origin">
+</script>
+
+<script>
+    tinymce.init({
+        selector: '#mytextarea'
+    });
+</script>
+
+</body>
 </html>
