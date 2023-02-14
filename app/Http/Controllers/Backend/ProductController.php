@@ -11,12 +11,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * @return Factory|View|Application
+     */
     public function allProduct(): Factory|View|Application
     {
         $products = Product::latest()->get();
         return view('backend.product.product_all', compact('products'));
     }
 
+    /**
+     * @return Factory|View|Application
+     */
     public function addProduct(): Factory|View|Application
     {
         return view('backend.product.product_add');

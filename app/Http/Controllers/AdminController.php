@@ -30,7 +30,7 @@ class AdminController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function adminDashboard(): Factory|View|Application
+    final public function adminDashboard(): Factory|View|Application
     {
         return view('admin.index');
     }
@@ -39,7 +39,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return Redirector|Application|RedirectResponse
      */
-    public function adminLogout(Request $request): Redirector|Application|RedirectResponse
+    final public function adminLogout(Request $request): Redirector|Application|RedirectResponse
     {
         Auth::guard('web')->logout();
 
@@ -53,7 +53,7 @@ class AdminController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function adminLogin(): Factory|View|Application
+    final public function adminLogin(): Factory|View|Application
     {
         return view('admin.admin_login');
     }
@@ -61,7 +61,7 @@ class AdminController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function adminProfile(): Factory|View|Application
+    final public function adminProfile(): Factory|View|Application
     {
         $adminProfile = User::find(Auth::id());
         return view('admin.admin_profile_view', compact('adminProfile'));
@@ -71,7 +71,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function adminProfileStore(Request $request): RedirectResponse
+    final public function adminProfileStore(Request $request): RedirectResponse
     {
         $this->buildProfileContext->runUpdateProfile($request);
         $notification = [
@@ -85,7 +85,7 @@ class AdminController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function adminChangePassword(): Factory|View|Application
+    final public function adminChangePassword(): Factory|View|Application
     {
         return view('admin.admin_change_password');
     }
@@ -94,7 +94,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function adminUpdatePassword(Request $request): RedirectResponse
+    final public function adminUpdatePassword(Request $request): RedirectResponse
     {
         $request->validate([
             'old_password' => 'required|min:8',
@@ -111,25 +111,39 @@ class AdminController extends Controller
         return back()->with('status', 'Your password has been changed');
     }
 
-    public function inactiveVendor(): Factory|View|Application
+    /**
+     * @return Factory|View|Application
+     */
+    final public function inactiveVendor(): Factory|View|Application
     {
         $inactiveVendor = User::where(['status' => User::STATUS_INACTIVE, 'role' => User::ROLE_VENDOR])->latest()->get();
         return view('backend.vendor.inactive_vendor', compact('inactiveVendor'));
     }
 
-    public function activeVendor(): Factory|View|Application
+    /**
+     * @return Factory|View|Application
+     */
+    final public function activeVendor(): Factory|View|Application
     {
         $activeVendor = User::where(['status' => User::STATUS_ACTIVE, 'role' => User::ROLE_VENDOR])->latest()->get();
         return view('backend.vendor.active_vendor', compact('activeVendor'));
     }
 
-    public function inactiveVendorDetails($id): Factory|View|Application
+    /**
+     * @param $id
+     * @return Factory|View|Application
+     */
+    final public function inactiveVendorDetails($id): Factory|View|Application
     {
         $inactiveVendorDetails = User::findOrFail($id);
         return view('backend.vendor.inactive_vendor_details', compact('inactiveVendorDetails'));
     }
 
-    public function activeVendorApprove(Request $request): RedirectResponse
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    final public function activeVendorApprove(Request $request): RedirectResponse
     {
         User::findOrFail($request->id)->update([
             'status' => User::STATUS_ACTIVE
@@ -143,13 +157,21 @@ class AdminController extends Controller
         return redirect()->route('active.vendor')->with($notification);
     }
 
-    public function activeVendorDetails($id): Factory|View|Application
+    /**
+     * @param $id
+     * @return Factory|View|Application
+     */
+    final public function activeVendorDetails($id): Factory|View|Application
     {
         $activeVendorDetails = User::findOrFail($id);
         return view('backend.vendor.active_vendor_details', compact('activeVendorDetails'));
     }
 
-    public function inactiveVendorApprove(Request $request): RedirectResponse
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    final public function inactiveVendorApprove(Request $request): RedirectResponse
     {
         User::findOrFail($request->id)->update([
             'status' => User::STATUS_INACTIVE

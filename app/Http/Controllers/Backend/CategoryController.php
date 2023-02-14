@@ -13,17 +13,27 @@ use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
+    /**
+     * @return Factory|View|Application
+     */
     public function allCategory(): Factory|View|Application
     {
         $categories = Category::latest()->get();
         return view('backend.category.category_all', compact('categories'));
     }
 
+    /**
+     * @return Factory|View|Application
+     */
     public function addCategory(): Factory|View|Application
     {
         return view('backend.category.category_add');
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function storeCategory(Request $request): RedirectResponse
     {
         $image = $request->file('category_image');
@@ -54,12 +64,20 @@ class CategoryController extends Controller
         return redirect()->route('all.category')->with($notification);
     }
 
+    /**
+     * @param $categoryId
+     * @return Factory|View|Application
+     */
     public function editCategory($categoryId): Factory|View|Application
     {
         $category = Category::findOrFail($categoryId);
         return view('backend.category.category_edit', compact('category'));
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function updateCategory(Request $request): RedirectResponse
     {
         if ($request->file('category_image')) {
@@ -91,6 +109,10 @@ class CategoryController extends Controller
         return redirect()->route('all.category')->with($notification);
     }
 
+    /**
+     * @param int $categoryId
+     * @return RedirectResponse
+     */
     public function deleteCategory(int $categoryId): RedirectResponse
     {
         $category = Category::findOrFail($categoryId);

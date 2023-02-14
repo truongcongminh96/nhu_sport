@@ -13,17 +13,27 @@ use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
+    /**
+     * @return Factory|View|Application
+     */
     public function allBrand(): Factory|View|Application
     {
         $brands = Brand::latest()->get();
         return view('backend.brand.brand_all', compact('brands'));
     }
 
+    /**
+     * @return Factory|View|Application
+     */
     public function addBrand(): Factory|View|Application
     {
         return view('backend.brand.brand_add');
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function storeBrand(Request $request): RedirectResponse
     {
         $image = $request->file('brand_image');
@@ -54,12 +64,20 @@ class BrandController extends Controller
         return redirect()->route('all.brand')->with($notification);
     }
 
+    /**
+     * @param int $brandId
+     * @return Factory|View|Application
+     */
     public function editBrand(int $brandId): Factory|View|Application
     {
         $brand = Brand::findOrFail($brandId);
         return view('backend.brand.brand_edit', compact('brand'));
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function updateBrand(Request $request): RedirectResponse
     {
         if ($request->file('brand_image')) {
@@ -91,6 +109,10 @@ class BrandController extends Controller
         return redirect()->route('all.brand')->with($notification);
     }
 
+    /**
+     * @param int $brandId
+     * @return RedirectResponse
+     */
     public function deleteBrand(int $brandId): RedirectResponse
     {
         $brand = Brand::findOrFail($brandId);

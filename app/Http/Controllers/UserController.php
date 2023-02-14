@@ -30,7 +30,7 @@ class UserController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function userDashboard(): Factory|View|Application
+    final public function userDashboard(): Factory|View|Application
     {
         $userData = User::find(Auth::id());
         return view('index', compact('userData'));
@@ -40,7 +40,7 @@ class UserController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function userProfileStore(Request $request): RedirectResponse
+    final public function userProfileStore(Request $request): RedirectResponse
     {
         $this->buildProfileContext->runUpdateProfile($request);
         $notification = [
@@ -55,7 +55,7 @@ class UserController extends Controller
      * @param Request $request
      * @return Redirector|Application|RedirectResponse
      */
-    public function userLogout(Request $request): Redirector|Application|RedirectResponse
+    final public function userLogout(Request $request): Redirector|Application|RedirectResponse
     {
         Auth::guard('web')->logout();
 
@@ -75,7 +75,7 @@ class UserController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function userUpdatePassword(Request $request): RedirectResponse
+    final public function userUpdatePassword(Request $request): RedirectResponse
     {
         $request->validate([
             'old_password' => 'required|min:8',

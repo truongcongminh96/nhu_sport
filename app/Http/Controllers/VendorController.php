@@ -32,7 +32,7 @@ class VendorController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function vendorDashboard(): Factory|View|Application
+    final public function vendorDashboard(): Factory|View|Application
     {
         return view('vendor.index');
     }
@@ -41,7 +41,7 @@ class VendorController extends Controller
      * @param Request $request
      * @return Redirector|Application|RedirectResponse
      */
-    public function vendorLogout(Request $request): Redirector|Application|RedirectResponse
+    final public function vendorLogout(Request $request): Redirector|Application|RedirectResponse
     {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
@@ -53,7 +53,7 @@ class VendorController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function vendorLogin(): Factory|View|Application
+    final public function vendorLogin(): Factory|View|Application
     {
         return view('vendor.vendor_login');
     }
@@ -61,7 +61,7 @@ class VendorController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function vendorProfile(): Factory|View|Application
+    final public function vendorProfile(): Factory|View|Application
     {
         $vendorProfile = User::find(Auth::id());
         return view('vendor.vendor_profile_view', compact('vendorProfile'));
@@ -71,7 +71,7 @@ class VendorController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function vendorProfileStore(Request $request): RedirectResponse
+    final public function vendorProfileStore(Request $request): RedirectResponse
     {
         $this->buildProfileContext->runUpdateProfile($request);
         $notification = [
@@ -85,7 +85,7 @@ class VendorController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function vendorChangePassword(): Factory|View|Application
+    final public function vendorChangePassword(): Factory|View|Application
     {
         return view('vendor.vendor_change_password');
     }
@@ -94,7 +94,7 @@ class VendorController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function vendorUpdatePassword(Request $request): RedirectResponse
+    final public function vendorUpdatePassword(Request $request): RedirectResponse
     {
         $request->validate([
             'old_password' => 'required|min:8',
@@ -111,12 +111,19 @@ class VendorController extends Controller
         return back()->with('status', 'Your password has been changed');
     }
 
-    public function becomeVendor(): Factory|View|Application
+    /**
+     * @return Factory|View|Application
+     */
+    final public function becomeVendor(): Factory|View|Application
     {
         return view('auth.become_vendor');
     }
 
-    public function vendorRegister(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    final public function vendorRegister(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],

@@ -13,18 +13,28 @@ use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
+    /**
+     * @return Factory|View|Application
+     */
     public function allSubCategory(): Factory|View|Application
     {
         $subCategories = SubCategory::latest()->get();
         return view('backend.subcategory.subcategory_all', compact('subCategories'));
     }
 
+    /**
+     * @return Factory|View|Application
+     */
     public function addSubCategory(): Factory|View|Application
     {
         $categories = Category::latest()->get();
         return view('backend.subcategory.subcategory_add', compact('categories'));
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function storeSubCategory(Request $request): RedirectResponse
     {
         SubCategory::insert([
@@ -41,6 +51,10 @@ class SubCategoryController extends Controller
         return redirect()->route('all.subcategory')->with($notification);
     }
 
+    /**
+     * @param $subCategoryId
+     * @return Factory|View|Application
+     */
     public function editSubCategory($subCategoryId): Factory|View|Application
     {
         $categories = Category::latest()->get();
@@ -48,6 +62,10 @@ class SubCategoryController extends Controller
         return view('backend.subcategory.subcategory_edit', compact('categories', 'subCategory'));
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function updateSubCategory(Request $request): RedirectResponse
     {
         SubCategory::findOrFail($request->id)->update([
@@ -63,6 +81,10 @@ class SubCategoryController extends Controller
         return redirect()->route('all.subcategory')->with($notification);
     }
 
+    /**
+     * @param int $subCategoryId
+     * @return RedirectResponse
+     */
     public function deleteSubCategory(int $subCategoryId): RedirectResponse
     {
         SubCategory::findOrFail($subCategoryId)->delete();
