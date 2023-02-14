@@ -10,13 +10,14 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use JsonException;
 
 class SubCategoryController extends Controller
 {
     /**
      * @return Factory|View|Application
      */
-    public function allSubCategory(): Factory|View|Application
+    final public function allSubCategory(): Factory|View|Application
     {
         $subCategories = SubCategory::latest()->get();
         return view('backend.subcategory.subcategory_all', compact('subCategories'));
@@ -25,7 +26,7 @@ class SubCategoryController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function addSubCategory(): Factory|View|Application
+    final public function addSubCategory(): Factory|View|Application
     {
         $categories = Category::latest()->get();
         return view('backend.subcategory.subcategory_add', compact('categories'));
@@ -35,7 +36,7 @@ class SubCategoryController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function storeSubCategory(Request $request): RedirectResponse
+    final public function storeSubCategory(Request $request): RedirectResponse
     {
         SubCategory::insert([
             'category_id' => $request->category_id,
@@ -55,7 +56,7 @@ class SubCategoryController extends Controller
      * @param $subCategoryId
      * @return Factory|View|Application
      */
-    public function editSubCategory($subCategoryId): Factory|View|Application
+    final public function editSubCategory($subCategoryId): Factory|View|Application
     {
         $categories = Category::latest()->get();
         $subCategory = SubCategory::findOrFail($subCategoryId);
@@ -66,7 +67,7 @@ class SubCategoryController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function updateSubCategory(Request $request): RedirectResponse
+    final public function updateSubCategory(Request $request): RedirectResponse
     {
         SubCategory::findOrFail($request->id)->update([
             'category_id' => $request->category_id,
@@ -85,7 +86,7 @@ class SubCategoryController extends Controller
      * @param int $subCategoryId
      * @return RedirectResponse
      */
-    public function deleteSubCategory(int $subCategoryId): RedirectResponse
+    final public function deleteSubCategory(int $subCategoryId): RedirectResponse
     {
         SubCategory::findOrFail($subCategoryId)->delete();
 
@@ -94,5 +95,16 @@ class SubCategoryController extends Controller
             'alert-type' => 'success'
         ];
         return redirect()->back()->with($notification);
+    }
+
+    /**
+     * @param int $categoryId
+     * @return string|false
+     * @throws JsonException
+     */
+    final public function getSubCategory(int $categoryId): string|false
+    {
+        $subCategory = SubCategory::where(['category_id' => $categoryId])->orderBy('subcategory_name', 'ASC')->get();
+        return json_encode($subCategory, JSON_THROW_ON_ERROR);
     }
 }

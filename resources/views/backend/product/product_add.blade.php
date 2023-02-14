@@ -97,37 +97,31 @@
                                     <div class="col-12">
                                         <label for="inputProductType" class="form-label">Thương hiệu sản phẩm</label>
                                         <select name="brand_id" class="form-select" id="inputProductType">
-                                            <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputVendor" class="form-label">Loại sản phẩm</label>
                                         <select name="category_id" class="form-select" id="inputVendor">
-                                            <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach($categories as $cat)
+                                                <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputCollection" class="form-label">Loại sản phẩm con</label>
                                         <select name="subcategory_id" class="form-select" id="inputCollection">
                                             <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label for="inputCollection" class="form-label">Nhà phân phối</label>
                                         <select name="vendor_id" class="form-select" id="inputCollection">
-                                            <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach($activeVendor as $vendor)
+                                                <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-12">
@@ -215,6 +209,30 @@
 
                 } else {
                     alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select[name="category_id"]').on('change', function () {
+                const category_id = $(this).val();
+                if (category_id) {
+                    $.ajax({
+                        url: "{{ url('/subcategory/ajax') }}/" + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="subcategory_id"]').html('');
+                            const d = $('select[name="subcategory_id"]').empty();
+                            $.each(data, function (key, value) {
+                                $('select[name="subcategory_id"]').append('<option value="' + value.id + '">' + value.subcategory_name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
                 }
             });
         });
