@@ -1,8 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-
+    <script src="{{ asset('admin_backend/assets/js/jquery.min.js') }}"></script>
     <div class="page-content">
-
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title pe-3">Thêm sản phẩm</div>
@@ -28,42 +27,47 @@
                         <div class="col-lg-8">
                             <div class="border border-3 p-4 rounded">
                                 <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Name</label>
+                                    <label for="inputProductTitle" class="form-label">Tên sản phẩm</label>
                                     <input type="text" name="product_name" class="form-control" id="inputProductTitle"
                                            placeholder="Enter product title">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Tags</label>
+                                    <label for="inputProductTitle" class="form-label">Tags</label>
                                     <input type="text" name="product_tags" class="form-control visually-hidden"
-                                           data-role="tagsinput" value="new product,top product">
+                                           data-role="tagsinput" value="Sản phẩm mới, Top bán chạy">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Size</label>
+                                    <label for="inputProductTitle" class="form-label">Size Or (3U-4U)</label>
                                     <input type="text" name="product_size" class="form-control visually-hidden"
-                                           data-role="tagsinput" value="Small,Midium,Large ">
+                                           data-role="tagsinput" value="Nhỏ ,Vừa, Lớn">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Color</label>
+                                    <label for="inputProductTitle" class="form-label">Màu sắc</label>
                                     <input type="text" name="product_color" class="form-control visually-hidden"
-                                           data-role="tagsinput" value="Red,Blue,Black">
+                                           data-role="tagsinput" value="Đỏ,Xanh,Đen">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Short Description</label>
+                                    <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới
+                                        thiệu)</label>
                                     <textarea name="short_descp" class="form-control" id="inputProductDescription"
                                               rows="3"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Long Description</label>
+                                    <label for="inputProductDescription" class="form-label">Mô tả chi tiết</label>
                                     <textarea id="mytextarea" name="long_descp">Hello, World!</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Main Thambnail</label>
-                                    <input name="product_thambnail" class="form-control" type="file" id="formFile">
+                                    <label for="inputProductTitle" class="form-label">Hình đại diện sản phẩm
+                                        (Thumbnail)</label>
+                                    <input name="product_thumbnail" class="form-control" type="file" id="formFile"
+                                           onChange="mainThumbUrl(this)">
+                                    <img src="" id="mainThumb"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Multiple Image</label>
-                                    <input class="form-control" name="multi_img[]" type="file" id="formFileMultiple"
+                                    <label for="inputProductTitle" class="form-label">Hình sản phẩm</label>
+                                    <input class="form-control" name="multi_img[]" type="file" id="multiImg"
                                            multiple="">
+                                    <div class="row" id="preview_img"></div>
                                 </div>
                             </div>
                         </div>
@@ -71,27 +75,27 @@
                             <div class="border border-3 p-4 rounded">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label for="inputPrice" class="form-label">Product Price</label>
+                                        <label for="inputPrice" class="form-label">Giá gốc</label>
                                         <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                placeholder="00.00">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="inputCompareatprice" class="form-label">Discount Price </label>
+                                        <label for="inputCompareatprice" class="form-label">Giá sau khi giảm</label>
                                         <input type="text" name="discount_price" class="form-control"
                                                id="inputCompareatprice" placeholder="00.00">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="inputCostPerPrice" class="form-label">Product Code</label>
+                                        <label for="inputCostPerPrice" class="form-label">Code sản phẩm</label>
                                         <input type="text" name="product_code" class="form-control"
                                                id="inputCostPerPrice" placeholder="00.00">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="inputStarPoints" class="form-label">Product Quantity</label>
+                                        <label for="inputStarPoints" class="form-label">Số lượng</label>
                                         <input type="text" name="product_qty" class="form-control" id="inputStarPoints"
                                                placeholder="00.00">
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputProductType" class="form-label">Product Brand</label>
+                                        <label for="inputProductType" class="form-label">Thương hiệu sản phẩm</label>
                                         <select name="brand_id" class="form-select" id="inputProductType">
                                             <option></option>
                                             <option value="1">One</option>
@@ -100,7 +104,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputVendor" class="form-label">Product Category</label>
+                                        <label for="inputVendor" class="form-label">Loại sản phẩm</label>
                                         <select name="category_id" class="form-select" id="inputVendor">
                                             <option></option>
                                             <option value="1">One</option>
@@ -109,7 +113,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputCollection" class="form-label">Product SubCategory</label>
+                                        <label for="inputCollection" class="form-label">Loại sản phẩm con</label>
                                         <select name="subcategory_id" class="form-select" id="inputCollection">
                                             <option></option>
                                             <option value="1">One</option>
@@ -118,7 +122,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <label for="inputCollection" class="form-label">Select Vendor</label>
+                                        <label for="inputCollection" class="form-label">Nhà phân phối</label>
                                         <select name="vendor_id" class="form-select" id="inputCollection">
                                             <option></option>
                                             <option value="1">One</option>
@@ -176,4 +180,43 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function mainThumbUrl(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#mainThumb').attr('src', e.target.result).width(80).height(80);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#multiImg').on('change', function () { //on file input change
+                if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+                {
+                    const data = $(this)[0].files; //this file data
+
+                    $.each(data, function (index, file) { //loop though each file
+                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                            const fRead = new FileReader(); //new filereader
+                            fRead.onload = (function (file) { //trigger function on successful read
+                                return function (e) {
+                                    var img = $('<img/>').addClass('thumb').attr('src', e.target.result).width(80)
+                                        .height(80); //create image element
+                                    $('#preview_img').append(img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
+
+                } else {
+                    alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
+    </script>
 @endsection
