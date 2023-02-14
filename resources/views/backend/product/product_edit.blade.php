@@ -4,13 +4,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Thêm sản phẩm</div>
+            <div class="breadcrumb-title pe-3">Chỉnh sửa sản phẩm</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
+                        <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa sản phẩm</li>
                     </ol>
                 </nav>
             </div>
@@ -20,7 +20,7 @@
 
         <div class="card">
             <div class="card-body p-4">
-                <h5 class="card-title">Thêm sản phẩm</h5>
+                <h5 class="card-title">Chỉnh sửa sản phẩm</h5>
                 <hr/>
                 <form id="myForm" method="post" action="{{ route('store.product') }}" enctype="multipart/form-data">
                     @csrf
@@ -29,35 +29,33 @@
                             <div class="col-lg-8">
                                 <div class="border border-3 p-4 rounded">
                                     <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Tên sản phẩm</label>
-                                        <input type="text" name="product_name" class="form-control"
-                                               id="inputProductTitle"
-                                               placeholder="Enter product title">
+                                        <label for="inputProductTitle" class="form-label">Product Name</label>
+                                        <input type="text" name="product_name" class="form-control" id="inputProductTitle" value="{{ $products->product_name }}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Tags</label>
                                         <input type="text" name="product_tags" class="form-control visually-hidden"
-                                               data-role="tagsinput" value="Sản phẩm mới, Top bán chạy">
+                                               data-role="tagsinput" value="{{ $products->product_tags }}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Size Or (3U-4U)</label>
                                         <input type="text" name="product_size" class="form-control visually-hidden"
-                                               data-role="tagsinput" value="Nhỏ ,Vừa, Lớn">
+                                               data-role="tagsinput" value="{{ $products->product_size }}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Màu sắc</label>
                                         <input type="text" name="product_color" class="form-control visually-hidden"
-                                               data-role="tagsinput" value="Đỏ,Xanh,Đen">
+                                               data-role="tagsinput" value="{{ $products->product_color }}">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới
-                                            thiệu)</label>
-                                        <textarea name="short_description" class="form-control"
-                                                  id="inputProductDescription" rows="3"></textarea>
+                                        <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới thiệu)</label>
+                                        <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3">
+                                            {{ $products->short_description }}
+                                        </textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Mô tả chi tiết</label>
-                                        <textarea id="mytextarea" name="long_description">Hello, World!</textarea>
+                                        <textarea id="mytextarea" name="long_description"> {!! $products->long_description !!}</textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Hình đại diện sản phẩm
@@ -79,28 +77,26 @@
                                     <div class="row g-3">
                                         <div class="form-group col-md-6">
                                             <label for="inputPrice" class="form-label">Giá gốc</label>
-                                            <input type="text" name="selling_price" class="form-control" id="inputPrice"
-                                                   placeholder="00.00">
+                                            <input type="text" name="selling_price" class="form-control" id="inputPrice" value="{{ $products->selling_price }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Giá sau khi giảm</label>
                                             <input type="text" name="discount_price" class="form-control"
-                                                   id="inputCompareatprice" placeholder="00.00">
+                                                   id="inputCompareatprice" value="{{ $products->discount_price }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputCostPerPrice" class="form-label">Code sản phẩm</label>
                                             <input type="text" name="product_code" class="form-control"
-                                                   id="inputCostPerPrice" placeholder="00.00">
+                                                   id="inputCostPerPrice" value="{{ $products->product_code }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputStarPoints" class="form-label">Số lượng</label>
                                             <input type="text" name="product_qty" class="form-control"
                                                    id="inputStarPoints"
-                                                   placeholder="00.00">
+                                                   value="{{ $products->product_qty }}">
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="inputProductType" class="form-label">Thương hiệu sản
-                                                phẩm</label>
+                                            <label for="inputProductType" class="form-label">Thương hiệu sản phẩm</label>
                                             <select name="brand_id" class="form-select" id="inputProductType">
                                                 @foreach($brands as $brand)
                                                     <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>

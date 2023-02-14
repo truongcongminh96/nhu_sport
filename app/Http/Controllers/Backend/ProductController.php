@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultipleImage;
 use App\Models\Product;
+use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -92,5 +93,19 @@ class ProductController extends Controller
         );
 
         return redirect()->route('all.product')->with($notification);
+    }
+
+    /**
+     * @param int $id
+     * @return Factory|View|Application
+     */
+    final public function editProduct(int $id): Factory|View|Application
+    {
+        $activeVendor = User::where(['status' => 'active', 'role' => 'vendor'])->latest()->get();
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategory = SubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+        return view('backend.product.product_edit', compact('brands', 'categories', 'activeVendor', 'products', 'subcategory'));
     }
 }
