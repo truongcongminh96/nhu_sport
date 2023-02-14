@@ -30,7 +30,8 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Name</label>
-                                        <input type="text" name="product_name" class="form-control" id="inputProductTitle" value="{{ $products->product_name }}">
+                                        <input type="text" name="product_name" class="form-control"
+                                               id="inputProductTitle" value="{{ $products->product_name }}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Tags</label>
@@ -48,14 +49,17 @@
                                                data-role="tagsinput" value="{{ $products->product_color }}">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới thiệu)</label>
-                                        <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3">
+                                        <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới
+                                            thiệu)</label>
+                                        <textarea name="short_description" class="form-control"
+                                                  id="inputProductDescription" rows="3">
                                             {{ $products->short_description }}
                                         </textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Mô tả chi tiết</label>
-                                        <textarea id="mytextarea" name="long_description"> {!! $products->long_description !!}</textarea>
+                                        <textarea id="mytextarea"
+                                                  name="long_description"> {!! $products->long_description !!}</textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Hình đại diện sản phẩm
@@ -77,7 +81,8 @@
                                     <div class="row g-3">
                                         <div class="form-group col-md-6">
                                             <label for="inputPrice" class="form-label">Giá gốc</label>
-                                            <input type="text" name="selling_price" class="form-control" id="inputPrice" value="{{ $products->selling_price }}">
+                                            <input type="text" name="selling_price" class="form-control" id="inputPrice"
+                                                   value="{{ $products->selling_price }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Giá sau khi giảm</label>
@@ -96,10 +101,14 @@
                                                    value="{{ $products->product_qty }}">
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="inputProductType" class="form-label">Thương hiệu sản phẩm</label>
+                                            <label for="inputProductType" class="form-label">Thương hiệu sản
+                                                phẩm</label>
                                             <select name="brand_id" class="form-select" id="inputProductType">
                                                 @foreach($brands as $brand)
-                                                    <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                                    <option
+                                                        value="{{ $brand->id }}" {{ $brand->id === $products->brand_id ? 'selected' : '' }} >
+                                                        {{ $brand->brand_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -108,21 +117,26 @@
                                             <select name="category_id" class="form-select" id="inputVendor">
                                                 <option></option>
                                                 @foreach($categories as $cat)
-                                                    <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+                                                    <option
+                                                        value="{{ $cat->id }}" {{ $cat->id === $products->category_id ? 'selected' : '' }}>{{ $cat->category_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="inputCollection" class="form-label">Loại sản phẩm con</label>
                                             <select name="subcategory_id" class="form-select" id="inputCollection">
-                                                <option></option>
+                                                @foreach($subcategory as $subcat)
+                                                    <option
+                                                        value="{{ $subcat->id }}" {{ $subcat->id === $products->subcategory_id ? 'selected' : '' }}>{{ $subcat->subcategory_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-12">
                                             <label for="inputCollection" class="form-label">Nhà phân phối</label>
                                             <select name="vendor_id" class="form-select" id="inputCollection">
                                                 @foreach($activeVendor as $vendor)
-                                                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                                    <option
+                                                        value="{{ $vendor->id }}" {{ $vendor->id === $products->vendor_id ? 'selected' : '' }}>{{ $vendor->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -131,7 +145,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="hot_deals" type="checkbox"
-                                                               value="1" id="flexCheckDefault">
+                                                               value="1"
+                                                               id="flexCheckDefault" {{ $products->hot_deals === 1 ? 'checked' : '' }} >
                                                         <label class="form-check-label" for="flexCheckDefault"> Hot
                                                             Deals</label>
                                                     </div>
@@ -139,7 +154,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="featured" type="checkbox"
-                                                               value="1" id="flexCheckDefault">
+                                                               value="1"
+                                                               id="flexCheckDefault" {{ $products->featured === 1 ? 'checked' : '' }}>
                                                         <label class="form-check-label"
                                                                for="flexCheckDefault">Featured</label>
                                                     </div>
@@ -147,7 +163,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="special_offer"
-                                                               type="checkbox" value="1" id="flexCheckDefault">
+                                                               type="checkbox" value="1"
+                                                               id="flexCheckDefault" {{ $products->special_offer === 1 ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="flexCheckDefault">Special
                                                             Offer</label>
                                                     </div>
@@ -155,8 +172,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="special_deals"
-                                                               type="checkbox"
-                                                               value="1" id="flexCheckDefault">
+                                                               type="checkbox" value="1"
+                                                               id="flexCheckDefault" {{ $products->special_deals === 1 ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="flexCheckDefault">Special
                                                             Deals</label>
                                                     </div>
