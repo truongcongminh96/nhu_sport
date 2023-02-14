@@ -24,7 +24,9 @@ class ConcreteVendorProfile implements BuildProfileStrategyInterface
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            if ($vendorData->photo) @unlink(public_path('upload/vendor_images/' . $vendorData->photo));
+            if ($vendorData->photo) {
+                unlink(public_path('upload/vendor_images/' . $vendorData->photo));
+            }
             $fileName = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/vendor_images'), $fileName);
             $vendorData->photo = $fileName;

@@ -25,7 +25,9 @@ class ConcreteUserProfile implements BuildProfileStrategyInterface
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            if ($userData->photo) @unlink(public_path('upload/user_images/' . $userData->photo));
+            if ($userData->photo) {
+                unlink(public_path('upload/user_images/' . $userData->photo));
+            }
             $fileName = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/user_images'), $fileName);
             $userData->photo = $fileName;

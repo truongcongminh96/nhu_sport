@@ -46,7 +46,7 @@ class BrandController extends Controller
             return redirect()->back()->with($notification);
         }
 
-        $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        $generateName = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(300, 300)->save('upload/brand/' . $generateName);
         $saveUrl = 'upload/brand/' . $generateName;
 
@@ -83,7 +83,7 @@ class BrandController extends Controller
         if ($request->file('brand_image')) {
             $image = $request->file('brand_image');
 
-            $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $generateName = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(300, 300)->save('upload/brand/' . $generateName);
             $saveUrl = 'upload/brand/' . $generateName;
 

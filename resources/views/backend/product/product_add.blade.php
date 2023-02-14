@@ -22,7 +22,7 @@
             <div class="card-body p-4">
                 <h5 class="card-title">Thêm sản phẩm</h5>
                 <hr/>
-                <form id="myForm" method="post" action="{{ route('store.category') }}" enctype="multipart/form-data">
+                <form id="myForm" method="post" action="{{ route('store.product') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body mt-4">
                         <div class="row">
@@ -50,8 +50,10 @@
                                                data-role="tagsinput" value="Đỏ,Xanh,Đen">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới thiệu)</label>
-                                        <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                        <label for="inputProductDescription" class="form-label">Mô tả sản phẩm (Giới
+                                            thiệu)</label>
+                                        <textarea name="short_description" class="form-control"
+                                                  id="inputProductDescription" rows="3"></textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Mô tả chi tiết</label>
@@ -108,6 +110,7 @@
                                         <div class="form-group col-12">
                                             <label for="inputVendor" class="form-label">Loại sản phẩm</label>
                                             <select name="category_id" class="form-select" id="inputVendor">
+                                                <option></option>
                                                 @foreach($categories as $cat)
                                                     <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                                                 @endforeach
@@ -148,8 +151,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="special_offer"
-                                                               type="checkbox"
-                                                               value="1" id="flexCheckDefault">
+                                                               type="checkbox" value="1" id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">Special
                                                             Offer</label>
                                                     </div>
@@ -272,12 +274,11 @@
                     const data = $(this)[0].files; //this file data
 
                     $.each(data, function (index, file) { //loop though each file
-                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                        if (/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file.type)) {  //check supported file type
                             const fRead = new FileReader(); //new filereader
                             fRead.onload = (function (file) { //trigger function on successful read
                                 return function (e) {
-                                    var img = $('<img/>').addClass('thumb').attr('src', e.target.result).width(80)
-                                        .height(80); //create image element
+                                    const img = $('<img/>').addClass('thumb').attr('src', e.target.result).width(80).height(80); //create image element
                                     $('#preview_img').append(img); //append image to output element
                                 };
                             })(file);

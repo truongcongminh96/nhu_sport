@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->string('discount_price')->nullable();
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
-            $table->integer('product_thumbnail');
+            $table->string('product_thumbnail');
             $table->integer('vendor_id')->nullable();
             $table->integer('hot_deals')->nullable();
             $table->integer('featured')->nullable();

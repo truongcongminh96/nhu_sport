@@ -46,7 +46,7 @@ class CategoryController extends Controller
             return redirect()->back()->with($notification);
         }
 
-        $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        $generateName = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
         Image::make($image)->resize(300, 300)->save('upload/category/' . $generateName);
         $saveUrl = 'upload/category/' . $generateName;
 
@@ -83,7 +83,7 @@ class CategoryController extends Controller
         if ($request->file('category_image')) {
             $image = $request->file('category_image');
 
-            $generateName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $generateName = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(300, 300)->save('upload/category/' . $generateName);
             $saveUrl = 'upload/category/' . $generateName;
 

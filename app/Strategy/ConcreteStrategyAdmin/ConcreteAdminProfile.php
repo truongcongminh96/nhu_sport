@@ -23,7 +23,9 @@ class ConcreteAdminProfile implements BuildProfileStrategyInterface
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            if ($adminData->photo) @unlink(public_path('upload/admin_images/' . $adminData->photo));
+            if ($adminData->photo) {
+                unlink(public_path('upload/admin_images/' . $adminData->photo));
+            }
             $fileName = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/admin_images'), $fileName);
             $adminData->photo = $fileName;
