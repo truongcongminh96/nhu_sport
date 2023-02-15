@@ -110,7 +110,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/add/product', 'addProduct')->name('add.product');
         Route::post('/store/product' , 'storeProduct')->name('store.product');
         Route::get('/edit/product/{id}' , 'editProduct')->name('edit.product');
-//        Route::post('/update/subcategory', 'updateSubCategory')->name('update.subcategory');
+        Route::post('/update/product' , 'updateProduct')->name('update.product');
 //        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
     });
 });
