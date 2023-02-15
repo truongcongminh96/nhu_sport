@@ -248,7 +248,7 @@ class ProductController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function ProductDelete(int $id): RedirectResponse
+    final public function ProductDelete(int $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
         unlink($product->product_thumbnail);
