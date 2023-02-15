@@ -111,7 +111,7 @@
             <ul>
                 <li><a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All slider</a>
                 </li>
-                <li><a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>Add slider</a>
+                <li> <a href="{{ route('add.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
                 </li>
             </ul>
         </li>
