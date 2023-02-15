@@ -106,7 +106,8 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         $subcategory = SubCategory::latest()->get();
         $products = Product::findOrFail($id);
-        return view('backend.product.product_edit', compact('brands', 'categories', 'activeVendor', 'products', 'subcategory'));
+        $multipleImages = MultipleImage::where(['product_id' => $id])->get();
+        return view('backend.product.product_edit', compact('brands', 'categories', 'activeVendor', 'products', 'subcategory', 'multipleImages'));
     }
 
     /**
@@ -150,5 +151,74 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.product')->with($notification);
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    final public function updateProductThumbnail(Request $request): RedirectResponse
+    {
+        $image = $request->file('product_thumbnail');
+        $nameGenerate = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(800, 800)->save('upload/products/thumbnail/' . $nameGenerate);
+        $saveUrl = 'upload/products/thumbnail/' . $nameGenerate;
+
+        if (file_exists($request->old_image)) unlink($request->old_image);
+
+        Product::findOrFail($request->id)->update([
+            'product_thumbnail' => $saveUrl,
+            'update_at' => Carbon::now()
+        ]);
+
+        $notification = array(
+            'message' => 'Product Updated Thumbnail Image Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    final public function updateProductMultipleImages(Request $request): RedirectResponse
+    {
+        if(empty($request->multiple_images)) {
+            return redirect()->back();
+        }
+
+        foreach ($request->multiple_images as $id => $image) {
+            $imageDelete = MultipleImage::findOrFail($id);
+            if ($imageDelete) unlink($imageDelete->photo_name);
+
+            $makeName = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(800, 800)->save('upload/products/multiple-image/' . $makeName);
+            $uploadPath = 'upload/products/multiple-image/' . $makeName;
+
+            MultipleImage::where('id', $id)->update([
+                'photo_name' => $uploadPath,
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
+        $notification = array(
+            'message' => 'Product Multi Image Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    final public function deleteProductMultipleImages(int $id): RedirectResponse
+    {
+        $oldImage = MultipleImage::findOrFail($id);
+        if ($oldImage) unlink($oldImage->photo_name);
+
+        MultipleImage::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Product Multi Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

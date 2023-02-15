@@ -111,6 +111,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/store/product' , 'storeProduct')->name('store.product');
         Route::get('/edit/product/{id}' , 'editProduct')->name('edit.product');
         Route::post('/update/product' , 'updateProduct')->name('update.product');
-//        Route::get('/delete/subcategory/{id}', 'deleteSubCategory')->name('delete.subcategory');
+        Route::post('/update/product/thumbnail' , 'updateProductThumbnail')->name('update.product.thumbnail');
+        Route::post('/update/product/multiple_images' , 'updateProductMultipleImages')->name('update.product.multiple_images');
+        Route::get('/delete/product/multiple_images/{id}' , 'deleteProductMultipleImages')->name('product.multiple.images.delete');
     });
 });

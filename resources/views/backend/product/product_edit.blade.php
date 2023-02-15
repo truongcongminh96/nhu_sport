@@ -62,19 +62,6 @@
                                         <textarea id="mytextarea"
                                                   name="long_description"> {!! $products->long_description !!}</textarea>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Hình đại diện sản phẩm
-                                            (Thumbnail)</label>
-                                        <input name="product_thumbnail" class="form-control" type="file" id="formFile"
-                                               onChange="mainThumbUrl(this)">
-                                        <img src="" id="mainThumb"/>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Hình sản phẩm</label>
-                                        <input class="form-control" name="multi_img[]" type="file" id="multiImg"
-                                               multiple="">
-                                        <div class="row" id="preview_img"></div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -196,6 +183,75 @@
             </div>
         </div>
     </div>
+    <div class="page-content">
+        <div class="card">
+            <form method="post" action="{{ route('update.product.thumbnail') }}" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $products->id }}">
+                <input type="hidden" name="old_image" value="{{ $products->product_thumbnail }}">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label for="inputProductTitle" class="form-label">Hình đại diện sản phẩm
+                            (Thumbnail)</label>
+                        <input name="product_thumbnail" class="form-control" type="file" id="formFile"
+                               onChange="mainThumbUrl(this)">
+                        <img src="" id="mainThumb"/>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputProductTitle" class="form-label">Hình đại diện sản phẩm
+                            (Thumbnail)</label>
+                        <img src="{{ asset($products->product_thumbnail) }}" id="mainThumb"
+                             style="width: 100px; height: 100px;"/>
+                    </div>
+                    <input type="submit" class="btn btn-primary px-4" value="Cập nhật hình đại diện sản phẩm"/>
+                    {{--                <div class="form-group mb-3">--}}
+                    {{--                    <label for="inputProductTitle" class="form-label">Hình sản phẩm</label>--}}
+                    {{--                    <input class="form-control" name="multi_img[]" type="file" id="multiImg"--}}
+                    {{--                           multiple="">--}}
+                    {{--                    <div class="row" id="preview_img"></div>--}}
+                    {{--                </div>--}}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <h6 class="mb-0 text-uppercase">Update Multi Image </h6>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <table class="table mb-0 table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#Sl</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Change Image</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <form method="post" action="{{ route('update.product.multiple_images') }}"
+                          enctype="multipart/form-data">
+                        @csrf
+                        @foreach($multipleImages as $key => $image)
+                            <tr>
+                                <th scope="row">{{ $key+1 }}</th>
+                                <td><img src="{{ asset($image->photo_name) }}" style="width:70px; height: 70px;"></td>
+                                <td><input type="file" class="form-group" name="multiple_images[{{ $image->id }}]"></td>
+                                <td>
+                                    <input type="submit" class="btn btn-primary px-4" value="Xác nhận"/>
+                                    <a href="{{ route('product.multiple.images.delete',$image->id) }}"
+                                       class="btn btn-danger" id="delete"> Xóa </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#myForm').validate({
