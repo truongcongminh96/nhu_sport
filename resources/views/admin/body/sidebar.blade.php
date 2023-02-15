@@ -52,8 +52,10 @@
                 <div class="menu-title">Loại sản phẩm</div>
             </a>
             <ul>
-                <li><a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản phẩm</a></li>
-                <li><a href="{{ route('add.category') }}"><i class="bx bx-right-arrow-alt"></i>Thêm loại sản phẩm</a></li>
+                <li><a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản
+                        phẩm</a></li>
+                <li><a href="{{ route('add.category') }}"><i class="bx bx-right-arrow-alt"></i>Thêm loại sản phẩm</a>
+                </li>
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
@@ -65,7 +67,8 @@
                 <div class="menu-title">Loại sản phẩm phụ</div>
             </a>
             <ul>
-                <li><a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản phẩm con</a>
+                <li><a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Danh sách loại sản
+                        phẩm con</a>
                 </li>
                 <li><a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Thêm loại sản phẩm con</a>
                 </li>
@@ -103,14 +106,12 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bx bx-repeat"></i>
                 </div>
-                <div class="menu-title">Content</div>
+                <div class="menu-title">Slider Manage</div>
             </a>
             <ul>
-                <li><a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>Grid System</a>
+                <li><a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All slider</a>
                 </li>
-                <li><a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>Typography</a>
-                </li>
-                <li><a href="content-text-utilities.html"><i class="bx bx-right-arrow-alt"></i>Text Utilities</a>
+                <li><a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>Add slider</a>
                 </li>
             </ul>
         </li>
@@ -185,16 +186,16 @@
                         Up</a>
                 </li>
                 <li><a href="authentication-signin-with-header-footer.html" target="_blank"><i
-                                class="bx bx-right-arrow-alt"></i>Sign In with Header & Footer</a>
+                            class="bx bx-right-arrow-alt"></i>Sign In with Header & Footer</a>
                 </li>
                 <li><a href="authentication-signup-with-header-footer.html" target="_blank"><i
-                                class="bx bx-right-arrow-alt"></i>Sign Up with Header & Footer</a>
+                            class="bx bx-right-arrow-alt"></i>Sign Up with Header & Footer</a>
                 </li>
                 <li><a href="authentication-forgot-password.html" target="_blank"><i
-                                class="bx bx-right-arrow-alt"></i>Forgot Password</a>
+                            class="bx bx-right-arrow-alt"></i>Forgot Password</a>
                 </li>
                 <li><a href="authentication-reset-password.html" target="_blank"><i
-                                class="bx bx-right-arrow-alt"></i>Reset Password</a>
+                            class="bx bx-right-arrow-alt"></i>Reset Password</a>
                 </li>
                 <li><a href="authentication-lock-screen.html" target="_blank"><i class="bx bx-right-arrow-alt"></i>Lock
                         Screen</a>
