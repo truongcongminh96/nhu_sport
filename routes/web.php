@@ -114,5 +114,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/product/thumbnail' , 'updateProductThumbnail')->name('update.product.thumbnail');
         Route::post('/update/product/multiple_images' , 'updateProductMultipleImages')->name('update.product.multiple_images');
         Route::get('/delete/product/multiple_images/{id}' , 'deleteProductMultipleImages')->name('product.multiple.images.delete');
+        Route::get('/product/inactive/{id}' , 'productInactive')->name('product.inactive');
+        Route::get('/product/active/{id}' , 'productActive')->name('product.active');
+        Route::get('/delete/product/{id}' , 'productDelete')->name('delete.product');
     });
 });

@@ -184,7 +184,7 @@ class ProductController extends Controller
      */
     final public function updateProductMultipleImages(Request $request): RedirectResponse
     {
-        if(empty($request->multiple_images)) {
+        if (empty($request->multiple_images)) {
             return redirect()->back();
         }
 
@@ -217,6 +217,51 @@ class ProductController extends Controller
         MultipleImage::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Product Multi Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    final public function ProductInactive(int $id): RedirectResponse
+    {
+        Product::findOrFail($id)->update(['status' => 0]);
+        $notification = array(
+            'message' => 'Product Inactive',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    final public function ProductActive(int $id): RedirectResponse
+    {
+        Product::findOrFail($id)->update(['status' => 1]);
+        $notification = array(
+            'message' => 'Product Active',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    }
+
+
+    /**
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function ProductDelete(int $id): RedirectResponse
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+
+        $images = MultipleImage::where(['product_id' => $id])->get();
+        foreach ($images as $img) {
+            unlink($img->photo_name);
+            MultipleImage::where(['product_id' => $id])->delete();
+        }
+
+        $notification = array(
+            'message' => 'Product Deleted Successfully',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
