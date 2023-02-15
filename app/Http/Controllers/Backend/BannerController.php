@@ -53,4 +53,73 @@ class BannerController extends Controller
         );
         return redirect()->route('all.banner')->with($notification);
     }
+
+    /**
+     * @param int $id
+     * @return Factory|View|Application
+     */
+    final public function editBanner(int $id): Factory|View|Application
+    {
+        $banner = Banner::findOrFail($id);
+        return view('backend.banner.banner_edit', compact('banner'));
+    }
+
+
+    final public function updateBanner(Request $request): RedirectResponse
+    {
+        if ($request->file('banner_image')) {
+            $image = $request->file('banner_image');
+            $nameGen = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(768, 450)->save('upload/banner/' . $nameGen);
+            $saveUrl = 'upload/banner/' . $nameGen;
+
+            if (file_exists($request->old_image)) {
+                unlink($request->old_image);
+            }
+
+            Banner::findOrFail($request->id)->update([
+                'banner_title' => $request->banner_title,
+                'banner_url' => $request->banner_url,
+                'banner_image' => $saveUrl,
+            ]);
+
+            $notification = array(
+                'message' => 'Banner Updated with image Successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('all.banner')->with($notification);
+        }
+
+        Banner::findOrFail($request->id)->update([
+            'banner_title' => $request->banner_title,
+            'banner_url' => $request->banner_url,
+        ]);
+
+        $notification = array(
+            'message' => 'Banner Updated without image Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all.banner')->with($notification);
+    }
+
+
+    /**
+     * @param int $id
+     * @return RedirectResponse
+     */
+    final public function deleteBanner(int $id): RedirectResponse
+    {
+        $banner = Banner::findOrFail($id);
+        $img = $banner->banner_image;
+        if ($img) unlink($img);
+
+        Banner::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Banner Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }

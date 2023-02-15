@@ -140,11 +140,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     //Admin Slider
     Route::controller(BannerController::class)->group(function () {
         Route::get('/all/banner', 'allBanner')->name('all.banner');
-        Route::get('/add/banner' , 'addBanner')->name('add.banner');
-        Route::post('/store/banner' , 'storeBanner')->name('store.banner');
-//        Route::post('/store/slider', 'storeSlider')->name('store.slider');
-//        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
-//        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
-//        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+        Route::get('/add/banner', 'addBanner')->name('add.banner');
+        Route::post('/store/banner', 'storeBanner')->name('store.banner');
+        Route::get('/edit/banner/{id}', 'editBanner')->name('edit.banner');
+        Route::post('/update/banner', 'updateBanner')->name('update.banner');
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
 });
