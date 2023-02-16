@@ -75,10 +75,10 @@
                                     @endif
                                 </div>
                                 <div class="short-desc mb-30">
-                                    <p class="font-lg"> {{ $product->short_descp }}</p>
+                                    <p class="font-lg"> {{ $product->short_description }}</p>
                                 </div>
 
-                                @if($product->product_size == NULL)
+                                @if($product->product_size === NULL)
 
                                 @else
                                     <div class="attr-detail attr-size mb-30">
@@ -178,8 +178,7 @@
                             <div class="tab-content shop_info_tab entry-main-content">
                                 <div class="tab-pane fade show active" id="Description">
                                     <div class="">
-                                        <p> {!! $product->long_descp !!} </p>
-
+                                        <p> {!! $product->long_description !!} </p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="Additional-info">

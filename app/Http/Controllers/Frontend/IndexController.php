@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+    final public function index(): Factory|View|Application
+    {
+        $hotDeals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
+        $specialOffer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $featured = Product::where('featured', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
+        $specialDeals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('frontend.index', compact('hotDeals', 'specialOffer', 'featured', 'specialDeals'));
+    }
+
     /**
      * @param int $id
      * @param string $slug

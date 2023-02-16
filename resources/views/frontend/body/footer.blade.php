@@ -1,27 +1,4 @@
 <footer class="main">
-    <section class="newsletter mb-15 wow animate__animated animate__fadeIn">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="position-relative newsletter-inner">
-                        <div class="newsletter-content">
-                            <h2 class="mb-20">
-                                Stay home & get your daily <br/>
-                                needs from our shop
-                            </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span>
-                            </p>
-                            <form class="form-subcriber d-flex">
-                                <input type="email" placeholder="Your emaill address"/>
-                                <button class="btn" type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                        <img src="{{ asset('frontend/assets/imgs/banner/banner-9.png') }}" alt="newsletter"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="featured section-padding">
         <div class="container">
             <div class="row">
@@ -32,8 +9,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-1.svg') }}" alt=""/>
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Best prices & offers</h3>
-                            <p>Orders $50 or more</p>
+                            <h3 class="icon-box-title">Giá & ưu đãi tốt nhất</h3>
+                            <p>Đơn hàng 500K trở lên</p>
                         </div>
                     </div>
                 </div>
@@ -44,8 +21,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-2.svg') }}" alt=""/>
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Free delivery</h3>
-                            <p>24/7 amazing services</p>
+                            <h3 class="icon-box-title">Giao hàng miễn phí</h3>
+                            <p>Dịch vụ 24/7</p>
                         </div>
                     </div>
                 </div>
@@ -56,8 +33,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-3.svg') }}" alt=""/>
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Great daily deal</h3>
-                            <p>When you sign up</p>
+                            <h3 class="icon-box-title">Deals hàng ngày</h3>
+                            <p>Khi bạn đăng ký</p>
                         </div>
                     </div>
                 </div>
@@ -68,8 +45,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-4.svg') }}" alt=""/>
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Wide assortment</h3>
-                            <p>Mega Discounts</p>
+                            <h3 class="icon-box-title">Sản phẩm đa dạng</h3>
+                            <p>Giảm giá từng sản phẩm</p>
                         </div>
                     </div>
                 </div>
@@ -80,8 +57,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-5.svg') }}" alt=""/>
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Easy returns</h3>
-                            <p>Within 30 days</p>
+                            <h3 class="icon-box-title">Đổi trả dễ dàng</h3>
+                            <p>Trong vòng 30 ngày</p>
                         </div>
                     </div>
                 </div>
@@ -108,68 +85,68 @@
                          data-wow-delay="0">
                         <div class="logo mb-30">
                             <a href="index.html" class="mb-15"><img
-                                        src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo"/></a>
-                            <p class="font-lg text-heading">Awesome grocery store website template</p>
+                                        src="{{ asset('frontend/assets/imgs/theme/logo.png') }}" alt="logo"/></a>
+                            <p class="font-lg text-heading">Như Sport - Shop bán vợt cầu lông chính hãng</p>
                         </div>
                         <ul class="contact-infor">
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
-                                     alt=""/><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span>
+                                     alt=""/><strong>Địa chỉ: </strong> <span>số 2a nguyễn hiến lê ,phường 13.tân bình,hcm (gần sân cầu lông viettel)</span>
                             </li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
-                                     alt=""/><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                                     alt=""/><strong>Điện thoại:</strong><span>0796 1111 54</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}"
-                                     alt=""/><strong>Email:</strong><span>sale@Nest.com</span></li>
+                                     alt=""/><strong>Email:</strong><span>tranthiynhu214@gmail.com</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}"
-                                     alt=""/><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
+                                     alt=""/><strong>Hours:</strong><span>08:00 - 18:00, Thứ Hai -> Chủ Nhật</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                    <h4 class=" widget-title">Company</h4>
+                    <h4 class=" widget-title">Công ty</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Support Center</a></li>
-                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Thông tin giao hàng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản và điều kiện</a></li>
+                        <li><a href="#">Liên hệ chúng tôi</a></li>
+                        <li><a href="#">Trung tâm hỗ trợ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                    <h4 class="widget-title">Account</h4>
+                    <h4 class="widget-title">Tài khoản</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="#">View Cart</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
-                        <li><a href="#">Help Ticket</a></li>
-                        <li><a href="#">Shipping Details</a></li>
-                        <li><a href="#">Compare products</a></li>
+                        <li><a href="#">Đăng nhập</a></li>
+                        <li><a href="#">Xem giỏ hàng</a></li>
+                        <li><a href="#">Sản phẩm yêu thích</a></li>
+                        <li><a href="#">Theo dõi đơn hàng của tôi</a></li>
+                        <li><a href="#">Vé trợ giúp</a></li>
+                        <li><a href="#">Chi tiết vận chuyển</a></li>
+                        <li><a href="#">So sánh sản phẩm</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                    <h4 class="widget-title">Corporate</h4>
+                    <h4 class="widget-title">Nhượng quyền</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Become a Vendor</a></li>
-                        <li><a href="#">Affiliate Program</a></li>
-                        <li><a href="#">Farm Business</a></li>
-                        <li><a href="#">Farm Careers</a></li>
-                        <li><a href="#">Our Suppliers</a></li>
+                        <li><a href="#">Trở thành nhà cung cấp</a></li>
+                        <li><a href="#">Chương trình liên kết</a></li>
+                        <li><a href="#">kinh doanh</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Nhà cung cấp của chúng tôi</a></li>
                         <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Promotions</a></li>
+                        <li><a href="#">Khả năng tiếp cận</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                    <h4 class="widget-title">Popular</h4>
+                    <h4 class="widget-title">Phổ biến</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Milk & Flavoured Milk</a></li>
-                        <li><a href="#">Butter and Margarine</a></li>
-                        <li><a href="#">Eggs Substitutes</a></li>
-                        <li><a href="#">Marmalades</a></li>
-                        <li><a href="#">Sour Cream and Dips</a></li>
-                        <li><a href="#">Tea & Kombucha</a></li>
-                        <li><a href="#">Cheese</a></li>
+                        <li><a href="#">Vợt Cầu Lông</a></li>
+                        <li><a href="#">Giày Cầu Lông</a></li>
+                        <li><a href="#">Áo Cầu Lông</a></li>
+                        <li><a href="#">Quần Cầu Lông</a></li>
+                        <li><a href="#">Váy Cầu Lông</a></li>
+                        <li><a href="#">Túi Vợt Cầu Lông</a></li>
+                        <li><a href="#">Balo Cầu Lông</a></li>
                     </ul>
                 </div>
             </div>
@@ -181,14 +158,14 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template
+                <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Như</strong> - Như Sport
                     <br/>All rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
 
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline"/>
-                    <p>1900 - 8888<span>24/7 Support Center</span></p>
+                    <p>0796 1111 54<span>24/7 Support Center</span></p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
