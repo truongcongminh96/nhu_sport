@@ -222,7 +222,7 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    final public function ProductInactive(int $id): RedirectResponse
+    final public function productInactive(int $id): RedirectResponse
     {
         Product::findOrFail($id)->update(['status' => 0]);
         $notification = array(
@@ -232,7 +232,7 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    final public function ProductActive(int $id): RedirectResponse
+    final public function productActive(int $id): RedirectResponse
     {
         Product::findOrFail($id)->update(['status' => 1]);
         $notification = array(
@@ -248,7 +248,7 @@ class ProductController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    final public function ProductDelete(int $id): RedirectResponse
+    final public function productDelete(int $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
         unlink($product->product_thumbnail);
