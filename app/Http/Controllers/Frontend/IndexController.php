@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\MultipleImage;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
@@ -54,5 +55,20 @@ class IndexController extends Controller
     {
         $brands = Brand::get();
         return view('frontend.brand.list_brand_all', compact('brands'));
+    }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @param string $slug
+     * @return Factory|View|Application
+     */
+    final public function catWiseProduct(Request $request, int $id, string $slug): Factory|View|Application
+    {
+        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $breadCategory = Category::where('id',$id)->first();
+
+        return view('frontend.product.category_view', compact('products', 'categories', 'breadCategory'));
     }
 }
