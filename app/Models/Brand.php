@@ -18,6 +18,9 @@ class Brand extends Model
         'id',
         'brand_name',
         'brand_slug',
-        'brand_image'
+        'brand_image',
+        'brand_since',
+        'brand_address',
+        'short_info'
     ];
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\MultipleImage;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
@@ -39,5 +40,19 @@ class IndexController extends Controller
         $relatedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
 
         return view('frontend.product.product_details', compact('product', 'productColor', 'productSize', 'multipleImage', 'relatedProduct'));
+    }
+
+    final public function brandDetails(int $id): Factory|View|Application
+    {
+        $brand = Brand::findOrfail($id);
+        $brandProduct = Product::where(['brand_id' => $brand->id])->get();
+
+        return view('frontend.brand.brand_details', compact('brand', 'brandProduct'));
+    }
+
+    final public function listBrandAll(): Factory|View|Application
+    {
+        $brands = Brand::get();
+        return view('frontend.brand.list_brand_all', compact('brands'));
     }
 }

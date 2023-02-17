@@ -149,3 +149,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 /// Frontend Product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/brand/details/{id}', [IndexController::class, 'brandDetails'])->name('brand.details');
+Route::get('/list/brand/all', [IndexController::class, 'listBrandAll'])->name('list.brand.all');
