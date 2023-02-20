@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultipleImage;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -70,5 +71,21 @@ class IndexController extends Controller
         $breadCategory = Category::where('id', $id)->first();
 
         return view('frontend.product.category_view', compact('products', 'categories', 'breadCategory'));
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $slug
+     * @return Factory|View|Application
+     */
+    final public function subCatWiseProduct(Request $request, $id, $slug): Factory|View|Application
+    {
+        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->get();
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        $breadSubCat = SubCategory::where('id', $id)->first();
+        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadSubCat', 'newProduct'));
     }
 }

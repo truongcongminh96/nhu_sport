@@ -152,3 +152,4 @@ Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDeta
 Route::get('/brand/details/{id}', [IndexController::class, 'brandDetails'])->name('brand.details');
 Route::get('/list/brand/all', [IndexController::class, 'listBrandAll'])->name('list.brand.all');
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'catWiseProduct']);
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'subCatWiseProduct']);

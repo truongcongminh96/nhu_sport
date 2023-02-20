@@ -188,7 +188,7 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a class="active" href="{{ url('/') }}">Trang chủ  </a>
+                                    <a class="active" href="{{ url('/') }}">Trang chủ </a>
 
                                 </li>
                                 <li>
@@ -206,11 +206,13 @@
                                             @php
                                                 $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
                                             @endphp
-                                            @foreach($subcategories as $subcategory)
+
                                             <ul>
-                                                <li><a href="shop-product-right.html">{{ $subcategory->subcategory_name }}</a></li>
+                                                @foreach($subcategories as $subcategory)
+                                                <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                                @endforeach
                                             </ul>
-                                            @endforeach
+
                                         </li>
                                         @endforeach
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
