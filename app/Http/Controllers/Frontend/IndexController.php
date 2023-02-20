@@ -67,7 +67,7 @@ class IndexController extends Controller
     {
         $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
         $categories = Category::orderBy('category_name', 'ASC')->get();
-        $breadCategory = Category::where('id',$id)->first();
+        $breadCategory = Category::where('id', $id)->first();
 
         return view('frontend.product.category_view', compact('products', 'categories', 'breadCategory'));
     }

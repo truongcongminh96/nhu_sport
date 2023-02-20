@@ -188,7 +188,7 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a class="active" href="index.html">Home  </a>
+                                    <a class="active" href="{{ url('/') }}">Trang chủ  </a>
 
                                 </li>
                                 <li>
