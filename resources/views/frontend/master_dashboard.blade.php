@@ -2,22 +2,25 @@
 <html class="no-js" lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Như Sport - Shop Bán Vợt Cầu Lông Chính Hãng 2022 Giá Rẻ Toàn Quốc</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="Như Sport - Shop bán vợt cầu lông Yonex chính hãng, vợt Victor, vợt Lining 2022... và là điểm mua vợt cầu lông giá rẻ, báo giá vợt cầu lông, COD toàn quốc." />
-    <meta name="keywords" content="Shop Vợt cầu lông, vợt cầu lông giá rẻ, vot cau long, mua vợt cầu lông, giá vợt cầu lông, vợt cầu lông yonex, vợt cầu lông proace,  vợt yonex chính hãng, vợt Victor,  vợt Lining, vợt cầu lông Apacs,"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="description"
+          content="Như Sport - Shop bán vợt cầu lông Yonex chính hãng, vợt Victor, vợt Lining 2022... và là điểm mua vợt cầu lông giá rẻ, báo giá vợt cầu lông, COD toàn quốc."/>
+    <meta name="keywords"
+          content="Shop Vợt cầu lông, vợt cầu lông giá rẻ, vot cau long, mua vợt cầu lông, giá vợt cầu lông, vợt cầu lông yonex, vợt cầu lông proace,  vợt yonex chính hãng, vợt Victor,  vợt Lining, vợt cầu lông Apacs,"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content=""/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.ico') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.ico') }}"/>
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/slider-range.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}"/>
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/slider-range.css') }}"/>
 </head>
 
 <body>
@@ -39,7 +42,7 @@
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
             <div class="text-center">
-                <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt="" />
+                <img src="{{ asset('frontend/assets/imgs/theme/loading.gif') }}" alt=""/>
             </div>
         </div>
     </div>
@@ -68,6 +71,18 @@
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+<script type="text/javascript">
+    function productView(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/product/view/modal/' + id,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    }
+</script>
 </body>
 
 </html>

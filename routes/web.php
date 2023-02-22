@@ -153,3 +153,4 @@ Route::get('/brand/details/{id}', [IndexController::class, 'brandDetails'])->nam
 Route::get('/list/brand/all', [IndexController::class, 'listBrandAll'])->name('list.brand.all');
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'catWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'subCatWiseProduct']);
+Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
