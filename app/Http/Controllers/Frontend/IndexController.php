@@ -11,6 +11,7 @@ use App\Models\SubCategory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -87,5 +88,21 @@ class IndexController extends Controller
         $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
 
         return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadSubCat', 'newProduct'));
+    }
+
+    public function productViewAjax($id): JsonResponse
+    {
+        $product = Product::with('category', 'brand')->findOrFail($id);
+        $color = $product->product_color;
+        $product_color = explode(',', $color);
+
+        $size = $product->product_size;
+        $product_size = explode(',', $size);
+
+        return response()->json(array(
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size,
+        ));
     }
 }

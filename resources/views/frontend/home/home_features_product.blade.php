@@ -11,7 +11,7 @@
                 <div class="banner-img style-2">
                     <div class="banner-text">
                         <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
-                                class="fi-rs-arrow-small-right"></i></a>
+                                    class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -32,9 +32,7 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
-                                                <a aria-label="Quick view" class="action-btn small hover-up"
-                                                   data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
-                                                        class="fi-rs-eye"></i></a>
+                                                <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fi-rs-eye"></i></a>
                                                 <a aria-label="Add To Wishlist" class="action-btn small hover-up"
                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" class="action-btn small hover-up"
@@ -81,7 +79,7 @@
                                                 <span class="font-xs text-heading"> Sold: 90/120</span>
                                             </div>
                                             <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
                                         </div>
                                     </div>
                                 @endforeach
