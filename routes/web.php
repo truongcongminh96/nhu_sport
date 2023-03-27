@@ -161,3 +161,10 @@ Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
 Route::get('/product/mini/cart', [CartController::class, 'addMiniCart']);
 Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'removeMiniCart']);
 Route::post('/dcart/data/store/{id}', [CartController::class, 'addToCartDetails']);
+
+
+// Cart All Route
+Route::controller(CartController::class)->group(function () {
+    Route::get('/mycart', 'myCart')->name('mycart');
+
+});
