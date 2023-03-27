@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
     public function addToCart(Request $request, int $id): JsonResponse
     {
         $product = Product::findOrFail($id);
@@ -28,7 +33,6 @@ class CartController extends Controller
                 ]
             ]);
 
-            return response()->json(['success' => 'Thêm vào giỏ hàng thành công']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -42,7 +46,20 @@ class CartController extends Controller
                     'size' => $request->size,
                 ]
             ]);
-            return response()->json(['success' => 'Thêm vào giỏ hàng thành công']);
         }
+        return response()->json(['success' => 'Thêm vào giỏ hàng thành công']);
+    }
+
+    public function addMiniCart(): JsonResponse
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal
+        ));
     }
 }
