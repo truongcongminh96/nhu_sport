@@ -220,7 +220,7 @@
     });
 </script>
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('frontend/assets/js/plugins/sweetalert2.all.min.js') }}"></script>
 <script src="{{ asset('admin_backend/assets/js/code.js') }}"></script>
 
 <script src="{{ asset('admin_backend/assets/plugins/select2/js/select2.min.js') }}"></script>

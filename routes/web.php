@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -154,3 +155,6 @@ Route::get('/list/brand/all', [IndexController::class, 'listBrandAll'])->name('l
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'catWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'subCatWiseProduct']);
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
+
+//Add to cart store data
+Route::post('/cart/data/store/{id}', [CartController::class, 'addToCart']);
