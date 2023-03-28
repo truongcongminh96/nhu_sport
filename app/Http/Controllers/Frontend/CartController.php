@@ -123,4 +123,10 @@ class CartController extends Controller
             'cartTotal' => $cartTotal
         ));
     }
+
+    public function cartRemove($rowId): JsonResponse
+    {
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Đã xóa sản phẩm']);
+    }
 }

@@ -84,7 +84,7 @@
                                     <div class="attr-detail attr-size mb-30">
                                         <strong class="mr-10" style="width:50px;">Size : </strong>
                                         <select class="form-control unicase-form-control" id="dsize">
-                                            <option selected="" disabled="">--Choose Size--</option>
+                                            <option selected="" disabled="">--Chọn Size--</option>
                                             @foreach($productSize as $size)
                                                 <option value="{{ $size }}">{{ ucwords($size)  }}</option>
                                             @endforeach
@@ -98,7 +98,7 @@
                                     <div class="attr-detail attr-size mb-30">
                                         <strong class="mr-10" style="width:50px;">Color : </strong>
                                         <select class="form-control unicase-form-control" id="dcolor">
-                                            <option selected="" disabled="">--Choose Color--</option>
+                                            <option selected="" disabled="">--Chon Màu--</option>
                                             @foreach($productColor as $color)
                                                 <option value="{{ $color }}">{{ ucwords($color)  }}</option>
                                             @endforeach
@@ -498,7 +498,7 @@
                     </div>
                     <div class="row mt-60">
                         <div class="col-12">
-                            <h2 class="section-title style-1 mb-30">Related products</h2>
+                            <h2 class="section-title style-1 mb-30">Sản phẩm tương tự</h2>
                         </div>
                         <div class="col-12">
                             <div class="row related-products">

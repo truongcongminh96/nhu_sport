@@ -167,4 +167,5 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'addToCartDetails'
 Route::controller(CartController::class)->group(function () {
     Route::get('/mycart', 'myCart')->name('mycart');
     Route::get('/get-cart-product' , 'getCartProduct');
+    Route::get('/cart-remove/{rowId}' , 'cartRemove');
 });

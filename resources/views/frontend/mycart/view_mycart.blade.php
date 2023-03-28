@@ -27,12 +27,12 @@
 
                             </th>
                             <th scope="col" colspan="2">Product</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Color</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Màu sắc</th>
                             <th scope="col">Size</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Subtotal</th>
-                            <th scope="col" class="end">Remove</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng cộng</th>
+                            <th scope="col" class="end">Xóa</th>
                         </tr>
                         </thead>
                         <tbody id="cartPage">
