@@ -111,4 +111,18 @@ class CartController extends Controller
     {
         return view('frontend.mycart.view_mycart');
     }
+
+    public function getCartProduct(): JsonResponse
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal
+
+        ));
+    }
 }

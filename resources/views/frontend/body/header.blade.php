@@ -11,7 +11,7 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
                         <ul>
-                            <li><a href="page-account.html">Giỏ hàng</a></li>
+                            <li><a href="{{ route('mycart') }}">Giỏ hàng</a></li>
                             <li><a href="shop-wishlist.html">Thanh toán</a></li>
                             <li><a href="shop-order.html">Theo dõi đơn hàng</a></li>
                         </ul>
@@ -41,7 +41,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.png') }}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.png') }}" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -72,8 +72,8 @@
                                             <h4>Total <span id="cartSubTotal"> </span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
-                                            <a href="shop-checkout.html">Checkout</a>
+                                            <a href="{{ route('mycart') }}" class="outline">Xem giỏ hàng</a>
+                                            <a href="shop-checkout.html">Thanh toán ngay</a>
                                         </div>
                                     </div>
                                 </div>
@@ -107,9 +107,9 @@
                                         </ul>
                                     </div>
                                 @else
-                                    <a href="{{ route('login') }}"><span class="lable ml-0">Login</span></a>
+                                    <a href="{{ route('login') }}"><span class="lable ml-0">Đăng ký</span></a>
                                     <span class="lable" style="margin-left: 2px; margin-right: 2px;" > | </span>
-                                    <a href="{{ route('register') }}"><span class="lable ml-0">Register</span></a>
+                                    <a href="{{ route('register') }}"><span class="lable ml-0">Đăng nhập</span></a>
                                 @endauth
                             </div>
                         </div>
