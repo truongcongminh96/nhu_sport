@@ -129,4 +129,11 @@ class CartController extends Controller
         Cart::remove($rowId);
         return response()->json(['success' => 'Đã xóa sản phẩm']);
     }
+
+    public function cartDecrement($rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty - 1);
+        return response()->json('Decrement');
+    }
 }
