@@ -66,7 +66,7 @@ class CartController extends Controller
         ));
     }
 
-    public function removeMiniCart($rowId): JsonResponse
+    public function removeMiniCart(string $rowId): JsonResponse
     {
         Cart::remove($rowId);
         return response()->json(['success' => 'Đã xóa sản phẩm']);
@@ -124,16 +124,23 @@ class CartController extends Controller
         ));
     }
 
-    public function cartRemove($rowId): JsonResponse
+    public function cartRemove(string $rowId): JsonResponse
     {
         Cart::remove($rowId);
         return response()->json(['success' => 'Đã xóa sản phẩm']);
     }
 
-    public function cartDecrement($rowId)
+    public function cartDecrement(string $rowId)
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty - 1);
         return response()->json('Decrement');
+    }
+
+    public function cartIncrement(string $rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty + 1);
+        return response()->json('Increment');
     }
 }
