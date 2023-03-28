@@ -10,8 +10,8 @@
             <div class="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
                 <div class="banner-img style-2">
                     <div class="banner-text">
-                        <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
-                                    class="fi-rs-arrow-small-right"></i></a>
+                        <a href="#" class="btn btn-xs">Shop Now <i
+                                class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -32,11 +32,10 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
-                                                <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"> <i class="fi-rs-eye"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                   href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn small hover-up"
-                                                   href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                                <a style="width: 100%" aria-label="Quick view"
+                                                   class="btn btn-sm hover-up" data-bs-toggle="modal"
+                                                   data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                                   onclick="productView(this.id)">xem nhanh</a>
                                             </div>
                                             @php
                                                 $amount = $product->selling_price - $product->discount_price;
@@ -52,23 +51,29 @@
                                         </div>
                                         <div class="product-content-wrap">
                                             <div class="product-category">
-                                                <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                                <a href="{{ url('product/category/'.$product['category']['id'].'/'.$product['category']['category_slug']) }}">{{ $product['category']['category_name'] }}</a>
                                             </div>
                                             <h2>
                                                 <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                                    href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a>
                                             </h2>
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
+                                            <div>
+                                                @if($product->vendor_id === NULL)
+                                                    <span class="font-small text-muted">By <a>Owner</a></span>
+                                                @else
+                                                    <span class="font-small text-muted">By <a
+                                                            href="{{ route('brand.details', $product['brand']['id']) }}">{{ $product['brand']['brand_name'] }}</a></span>
+                                                @endif
                                             </div>
                                             @if($product->discount_price === NULL)
                                                 <div class="product-price mt-10">
-                                                    <span>${{ $product->selling_price }} </span>
+                                                    <span>{{ number_format($product->selling_price, 0, '') }} </span>
                                                 </div>
                                             @else
                                                 <div class="product-price mt-10">
-                                                    <span>${{ $product->discount_price }} </span>
-                                                    <span class="old-price">${{ $product->selling_price }}</span>
+                                                    <span>{{ number_format($product->discount_price, 0, '') }} </span>
+                                                    <span
+                                                        class="old-price">{{ number_format($product->selling_price, 0, '') }}</span>
                                                 </div>
                                             @endif
                                             <div class="sold mt-15 mb-15">
@@ -76,10 +81,12 @@
                                                     <div class="progress-bar" role="progressbar" style="width: 50%"
                                                          aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
-                                                <span class="font-xs text-heading"> Sold: 90/120</span>
+                                                <span class="font-xs text-heading">Còn hàng</span>
                                             </div>
-                                            <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                        class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            <a class="btn w-100 hover-up" data-bs-toggle="modal"
+                                               data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                               onclick="productView(this.id)"><i class="fi-rs-shopping-cart mr-5"></i>Thêm
+                                                vào giỏ</a>
                                         </div>
                                     </div>
                                 @endforeach

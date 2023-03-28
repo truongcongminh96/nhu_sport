@@ -34,11 +34,9 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                               href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
-                                            <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $badmintonRacket->id }}" onclick="productView(this.id)"> <i class="fi-rs-eye"></i></a>
+                                            <a style="width: 100%" aria-label="Quick view" class="btn btn-sm hover-up"
+                                               data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                               id="{{ $badmintonRacket->id }}" onclick="productView(this.id)">Xem nhanh</a>
                                         </div>
                                         @php
                                             $amount = $badmintonRacket->selling_price - $badmintonRacket->discount_price;
@@ -54,38 +52,34 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ $badmintonRacket['category']['category_name'] }}</a>
+                                            <a href="{{ url('product/category/'.$badmintonRacket['category']['id'].'/'.$badmintonRacket['category']['category_slug']) }}">{{ $badmintonRacket['category']['category_name'] }}</a>
                                         </div>
                                         <h2>
                                             <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                                href="{{ url('product/details/'.$badmintonRacket->id.'/'.$badmintonRacket->product_slug) }}">{{ $badmintonRacket->product_name }}</a>
                                         </h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
+
                                         <div>
                                             @if($badmintonRacket->vendor_id === NULL)
-                                                <span class="font-small text-muted">By <a href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a>Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $badmintonRacket['vendor']['name'] }}</a></span>
+                                                        href="{{ route('brand.details', $badmintonRacket['brand']['id']) }}">{{ $badmintonRacket['brand']['brand_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
                                                 @if($badmintonRacket->discount_price === NULL)
-                                                    <span>${{ $badmintonRacket->selling_price }} </span>
+                                                    <span>{{ number_format($badmintonRacket->selling_price, 0, '') }} </span>
                                                 @else
-                                                    <span>${{ $badmintonRacket->discount_price }} </span>
+                                                    <span>{{ number_format($badmintonRacket->discount_price, 0, '') }} </span>
                                                     <span
-                                                        class="old-price">${{ $badmintonRacket->selling_price }}</span>
+                                                        class="old-price">{{ number_format($badmintonRacket->selling_price, 0, '') }}</span>
                                                 @endif
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <a class="add" data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                   id="{{ $badmintonRacket->id }}" onclick="productView(this.id)"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -126,12 +120,9 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                               href="shop-wishlist.html"><i
-                                                    class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
-                                            <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $badmintonShoe->id }}" onclick="productView(this.id)"> <i class="fi-rs-eye"></i></a>
+                                            <a style="width: 100%" aria-label="Quick view" class="btn btn-sm hover-up"
+                                               data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                               id="{{ $badmintonShoe->id }}" onclick="productView(this.id)">Xem nhanh</a>
                                         </div>
                                         @php
                                             $amount = $badmintonShoe->selling_price - $badmintonShoe->discount_price;
@@ -147,38 +138,34 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ $badmintonShoe['category']['category_name'] }}</a>
+                                            <a href="{{ url('product/category/'.$badmintonShoe['category']['id'].'/'.$badmintonRacket['category']['category_slug']) }}">{{ $badmintonShoe['category']['category_name'] }}</a>
                                         </div>
                                         <h2>
                                             <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                                href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">{{ $badmintonShoe->product_name }}</a>
                                         </h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
+
                                         <div>
                                             @if($badmintonShoe->vendor_id === NULL)
-                                                <span class="font-small text-muted">By <a href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $badmintonRacket['vendor']['name'] }}</a></span>
+                                                        href="{{ route('brand.details', $badmintonShoe['brand']['id']) }}">{{ $badmintonShoe['brand']['brand_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
-                                                @if($badmintonRacket->discount_price === NULL)
-                                                    <span>${{ $badmintonRacket->selling_price }} </span>
+                                                @if($badmintonShoe->discount_price === NULL)
+                                                    <span>{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
                                                 @else
-                                                    <span>${{ $badmintonRacket->discount_price }} </span>
+                                                    <span>{{ number_format($badmintonShoe->discount_price, 0, '') }} </span>
                                                     <span
-                                                        class="old-price">${{ $badmintonRacket->selling_price }}</span>
+                                                        class="old-price">{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
                                                 @endif
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <a class="add" data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                   id="{{ $badmintonShoe->id }}" onclick="productView(this.id)"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -214,20 +201,22 @@
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                            href="{{ url('product/details/'.$hotDeal->id.'/'.$hotDeal->product_slug) }}">{{ $hotDeal->product_name }}</a>
                                     </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <div>
+                                        @if($hotDeal->vendor_id === NULL)
+                                            <span class="font-small text-muted">By <a>Owner</a></span>
+                                        @else
+                                            <span class="font-small text-muted">By <a
+                                                    href="{{ route('brand.details', $hotDeal['brand']['id']) }}">{{ $hotDeal['brand']['brand_name'] }}</a></span>
+                                        @endif
                                     </div>
                                     @if($hotDeal->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>${{ $hotDeal->selling_price }} </span>
+                                            <span>{{ number_format($hotDeal->selling_price, 0, '') }} </span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>${{ $hotDeal->discount_price }} </span>
-                                            <span class="old-price">${{ $hotDeal->selling_price }}</span>
+                                            <span>{{ number_format($hotDeal->discount_price, 0, '') }} </span>
+                                            <span class="old-price">{{ number_format($hotDeal->selling_price, 0, '') }} </span>
                                         </div>
                                     @endif
                                 </div>
@@ -252,20 +241,22 @@
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                            href="{{ url('product/details/'.$special->id.'/'.$special->product_slug) }}">{{ $special->product_name }}</a>
                                     </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <div>
+                                        @if($special->vendor_id === NULL)
+                                            <span class="font-small text-muted">By <a>Owner</a></span>
+                                        @else
+                                            <span class="font-small text-muted">By <a
+                                                    href="{{ route('brand.details', $special['brand']['id']) }}">{{ $special['brand']['brand_name'] }}</a></span>
+                                        @endif
                                     </div>
                                     @if($hotDeal->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>${{ $special->selling_price }} </span>
+                                            <span>{{ number_format($special->selling_price, 0, '') }}</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>${{ $special->discount_price }} </span>
-                                            <span class="old-price">${{ $special->selling_price }}</span>
+                                            <span>{{ number_format($special->discount_price, 0, '') }} </span>
+                                            <span class="old-price">{{ number_format($special->selling_price, 0, '') }}</span>
                                         </div>
                                     @endif
                                 </div>
@@ -291,20 +282,22 @@
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                            href="{{ url('product/details/'.$recentlyAdded->id.'/'.$recentlyAdded->product_slug) }}">{{ $recentlyAdded->product_name }}</a>
                                     </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <div>
+                                        @if($recentlyAdded->vendor_id === NULL)
+                                            <span class="font-small text-muted">By <a>Owner</a></span>
+                                        @else
+                                            <span class="font-small text-muted">By <a
+                                                    href="{{ route('brand.details', $recentlyAdded['brand']['id']) }}">{{ $recentlyAdded['brand']['brand_name'] }}</a></span>
+                                        @endif
                                     </div>
                                     @if($recentlyAdded->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>${{ $recentlyAdded->selling_price }} </span>
+                                            <span>{{ number_format($recentlyAdded->selling_price, 0, '') }}</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>${{ $recentlyAdded->discount_price }} </span>
-                                            <span class="old-price">${{ $recentlyAdded->selling_price }}</span>
+                                            <span>{{ number_format($recentlyAdded->discount_price, 0, '') }}</span>
+                                            <span class="old-price">{{ number_format($recentlyAdded->selling_price, 0, '') }}</span>
                                         </div>
                                     @endif
                                 </div>
@@ -330,20 +323,22 @@
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                            href="{{ url('product/details/'.$specialDeal->id.'/'.$specialDeal->product_slug) }}">{{ $specialDeal->product_name }}</a>
                                     </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <div>
+                                        @if($specialDeal->vendor_id === NULL)
+                                            <span class="font-small text-muted">By <a>Owner</a></span>
+                                        @else
+                                            <span class="font-small text-muted">By <a
+                                                    href="{{ route('brand.details', $specialDeal['brand']['id']) }}">{{ $specialDeal['brand']['brand_name'] }}</a></span>
+                                        @endif
                                     </div>
                                     @if($specialDeal->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>${{ $specialDeal->selling_price }} </span>
+                                            <span>{{ number_format($specialDeal->selling_price, 0, '') }}</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>${{ $specialDeal->discount_price }} </span>
-                                            <span class="old-price">${{ $specialDeal->selling_price }}</span>
+                                            <span>{{ number_format($specialDeal->discount_price, 0, '') }} </span>
+                                            <span class="old-price">{{ number_format($specialDeal->selling_price, 0, '') }}</span>
                                         </div>
                                     @endif
                                 </div>

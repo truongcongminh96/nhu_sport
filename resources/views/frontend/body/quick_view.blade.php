@@ -50,7 +50,7 @@
                                 <div class="product-extra-link2">
                                     <input type="hidden" id="product_id">
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCart()">
-                                        <i class="fi-rs-shopping-cart"></i>Add to cart
+                                        <i class="fi-rs-shopping-cart"></i>Thêm vào giỏ
                                     </button>
                                 </div>
                             </div>
