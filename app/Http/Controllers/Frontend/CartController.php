@@ -69,8 +69,7 @@ class CartController extends Controller
     public function removeMiniCart($rowId): JsonResponse
     {
         Cart::remove($rowId);
-        return response()->json(['success' => 'Product Remove From Cart']);
-
+        return response()->json(['success' => 'Đã xóa sản phẩm']);
     }
 
     public function addToCartDetails(Request $request, $id): JsonResponse
@@ -104,7 +103,7 @@ class CartController extends Controller
                 ],
             ]);
         }
-        return response()->json(['success' => 'Successfully Added on Your Cart']);
+        return response()->json(['success' => 'Thêm vào giỏ hàng thành công']);
     }
 
     public function myCart(): Factory|View|Application
@@ -122,7 +121,6 @@ class CartController extends Controller
             'carts' => $carts,
             'cartQty' => $cartQty,
             'cartTotal' => $cartTotal
-
         ));
     }
 }
