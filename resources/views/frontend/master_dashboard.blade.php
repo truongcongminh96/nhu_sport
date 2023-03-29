@@ -308,17 +308,24 @@
 
                 var rows = ""
                 $.each(response.carts, function (key, value) {
+
+                    let productPrice = value.price;
+                    productPrice = productPrice.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+
+                    let productSubTotal =value.subtotal;
+                    productSubTotal = productSubTotal.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+
                     rows += `<tr class="pt-30">
             <td class="custome-checkbox pl-30">
 
             </td>
             <td class="image product-thumbnail pt-40"><img src="/${value.options.image} " alt="#"></td>
             <td class="product-des product-name">
-                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${value.name} </a></h6>
+                <h6 class="mb-5"><a class="product-name mb-10 text-heading">${value.name} </a></h6>
 
             </td>
             <td class="price" data-title="Price">
-                <h4 class="text-body">${value.price} </h4>
+                <h4 class="text-body">${productPrice} </h4>
             </td>
               <td class="price" data-title="Price">
               ${value.options.color == null
@@ -343,7 +350,7 @@
                 </div>
             </td>
             <td class="price" data-title="Price">
-                <h4 class="text-brand">${value.subtotal} </h4>
+                <h4 class="text-brand">${productSubTotal} </h4>
             </td>
                         <td class="action text-center" data-title="Remove">
             <a type="submit" class="text-body"  id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>

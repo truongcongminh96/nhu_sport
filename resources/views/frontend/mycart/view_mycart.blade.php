@@ -3,18 +3,15 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Cart
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+                <span></span> Giỏ hàng
             </div>
         </div>
     </div>
     <div class="container mb-80 mt-50">
         <div class="row">
             <div class="col-lg-8 mb-40">
-                <h4 class="heading-2 mb-10">Your Cart</h4>
-                <div class="d-flex justify-content-between">
-                    <h6 class="text-body">There are products in your cart</h6>
-                </div>
+                <h4 class="heading-2 mb-10">Giỏ hàng của bạn</h4>
             </div>
         </div>
         <div class="row">
@@ -26,7 +23,7 @@
                             <th class="custome-checkbox start pl-30">
 
                             </th>
-                            <th scope="col" colspan="2">Product</th>
+                            <th scope="col" colspan="2">Sản phẩm</th>
                             <th scope="col">Đơn giá</th>
                             <th scope="col">Màu sắc</th>
                             <th scope="col">Size</th>
@@ -43,11 +40,11 @@
                     <div class="col-lg-5">
                         <div class="p-40">
                             <h4 class="mb-10">Apply Coupon</h4>
-                            <p class="mb-30"><span class="font-lg text-muted">Using A Promo Code?</p>
+                            <p class="mb-30"><span class="font-lg text-muted">Using A Promo Code?</span></p>
                             <form action="#">
                                 <div class="d-flex justify-content-between">
                                     <input class="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon">
-                                    <button class="btn"><i class="fi-rs-label mr-10"></i>Apply</button>
+                                    <button class="btn"><i class="fi-rs-label mr-10" disabled></i>Apply</button>
                                 </div>
                             </form>
                         </div>
