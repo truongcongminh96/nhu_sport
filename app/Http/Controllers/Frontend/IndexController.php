@@ -67,7 +67,7 @@ class IndexController extends Controller
      */
     final public function catWiseProduct(Request $request, int $id, string $slug): Factory|View|Application
     {
-        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
+        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->paginate(15);
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadCategory = Category::where('id', $id)->first();
 
