@@ -182,3 +182,7 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart-decrement/{rowId}' , 'cartDecrement');
     Route::get('/cart-increment/{rowId}' , 'cartIncrement');
 });
+
+//Checkout
+Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
+Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);

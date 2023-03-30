@@ -99,10 +99,18 @@
                 if (data.product.discount_price == null) {
                     $('#pprice').text('');
                     $('#oldprice').text('');
-                    $('#pprice').text(data.product.selling_price);
+                    let productPrice = parseInt(data.product.selling_price);
+                    productPrice = productPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
+
+                    $('#pprice').text(productPrice);
                 } else {
-                    $('#pprice').text(data.product.discount_price);
-                    $('#oldprice').text(data.product.selling_price);
+                    let discountPrice = parseInt(data.product.discount_price);
+                    discountPrice = discountPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
+                    $('#pprice').text(discountPrice);
+
+                    // let sellingPrice = parseInt(data.product.selling_price);
+                    // sellingPrice = sellingPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
+                    // $('#oldprice').text(sellingPrice);
                 }
 
                 if (data.product.product_qty > 0) {
@@ -236,14 +244,18 @@
 
                 var miniCart = ""
                 $.each(response.carts, function (key, value) {
+
+                    let productPrice = value.price;
+                    productPrice = productPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
+
                     miniCart += ` <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image} " style="width:50px;height:50px;" /></a>
+                                            <a><img alt="Nest" src="/${value.options.image} " style="width:50px;height:50px;" /></a>
                                         </div>
                                         <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
-                                            <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
-                                            <h4><span>${value.qty} × </span>${value.price}</h4>
+                                            <h4><a> ${value.name} </a></h4>
+                                            <h4><span>${value.qty} × </span>${productPrice}</h4>
                                         </div>
                                         <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
                                             <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"  ><i class="fi-rs-cross-small"></i></a>
@@ -310,10 +322,10 @@
                 $.each(response.carts, function (key, value) {
 
                     let productPrice = value.price;
-                    productPrice = productPrice.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+                    productPrice = productPrice.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
 
-                    let productSubTotal =value.subtotal;
-                    productSubTotal = productSubTotal.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+                    let productSubTotal = value.subtotal;
+                    productSubTotal = productSubTotal.toLocaleString('it-IT', {style: 'currency', currency: 'VND'});
 
                     rows += `<tr class="pt-30">
             <td class="custome-checkbox pl-30">
@@ -431,6 +443,77 @@
     }
 
 </script>
-<!--  // End Load MY Cart // -->
+
+<script type="text/javascript">
+    // Start CouponCalculation Method
+    function couponCalculation(){
+        $.ajax({
+            type: 'GET',
+            url: "/coupon-calculation",
+            dataType: 'json',
+            success:function(data){
+                if (data.total) {
+                    $('#couponCalField').html(
+                        ` <tr>
+                    <td class="cart_total_label">
+                        <h6 class="text-muted">Tạm tính</h6>
+                    </td>
+                    <td class="cart_total_amount">
+                        <h4 class="text-brand text-end">${data.total} VND</h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cart_total_label">
+                        <h6 class="text-muted">Tổng cộng</h6>
+                    </td>
+                    <td class="cart_total_amount">
+                        <h4 class="text-brand text-end">${data.total} VND</h4>
+                    </td>
+                </tr>
+                ` )
+                }else{
+                    $('#couponCalField').html(
+                        `<tr>
+                    <td class="cart_total_label">
+                        <h6 class="text-muted">Tạm tính</h6>
+                    </td>
+                    <td class="cart_total_amount">
+                        <h4 class="text-brand text-end">${data.subtotal} VND</h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cart_total_label">
+                        <h6 class="text-muted">Coupon </h6>
+                    </td>
+                    <td class="cart_total_amount">
+  <h6 class="text-brand text-end">${data.coupon_name} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i> </a> </h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cart_total_label">
+                        <h6 class="text-muted">Giảm giá</h6>
+                    </td>
+                    <td class="cart_total_amount">
+    <h4 class="text-brand text-end">${data.discount_amount} VND</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cart_total_label">
+                        <h6 class="text-muted">Tổng cộng </h6>
+                    </td>
+                    <td class="cart_total_amount">
+          <h4 class="text-brand text-end">${data.total_amount} VND</h4>
+                    </td>
+                </tr> `
+                    )
+                }
+            }
+        })
+    }
+    couponCalculation();
+</script>
+
 </body>
 </html>

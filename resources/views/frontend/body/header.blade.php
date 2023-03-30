@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="shopping-cart-button">
                                             <a href="{{ route('mycart') }}" class="outline">Xem giỏ hàng</a>
-                                            <a href="shop-checkout.html">Thanh toán ngay</a>
+                                            <a href="{{ route('checkout') }}">Thanh toán ngay</a>
                                         </div>
                                     </div>
                                 </div>

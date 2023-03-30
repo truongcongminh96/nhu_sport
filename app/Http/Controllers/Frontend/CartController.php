@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -130,17 +131,51 @@ class CartController extends Controller
         return response()->json(['success' => 'Đã xóa sản phẩm']);
     }
 
-    public function cartDecrement(string $rowId)
+    public function cartDecrement(string $rowId): JsonResponse
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty - 1);
         return response()->json('Decrement');
     }
 
-    public function cartIncrement(string $rowId)
+    public function cartIncrement(string $rowId): JsonResponse
     {
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty + 1);
         return response()->json('Increment');
+    }
+
+
+    public function checkoutCreate()
+    {
+        if (Cart::total() > 0) {
+            $carts = Cart::content();
+            $cartQty = Cart::count();
+            $cartTotal = Cart::total();
+            return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
+        }
+
+        $notification = array(
+            'message' => 'Shopping At list One Product',
+            'alert-type' => 'error'
+        );
+        return redirect()->to('/')->with($notification);
+    }
+
+    public function couponCalculation(): JsonResponse
+    {
+        if (Session::has('coupon')) {
+            return response()->json(array(
+                'subtotal' => Cart::total(),
+                'coupon_name' => session()->get('coupon')['coupon_name'],
+                'coupon_discount' => session()->get('coupon')['coupon_discount'],
+                'discount_amount' => session()->get('coupon')['discount_amount'],
+                'total_amount' => session()->get('coupon')['total_amount'],
+            ));
+        } else {
+            return response()->json(array(
+                'total' => Cart::total(),
+            ));
+        }
     }
 }
