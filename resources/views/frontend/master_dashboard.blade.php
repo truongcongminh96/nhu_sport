@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}"/>
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/slider-range.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin_backend/assets/css/toastr.css') }}">
 </head>
 
 <body>
@@ -69,6 +70,7 @@
 <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/plugins/slider-range.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/plugins/sweetalert2.all.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin_backend/assets/js/toastr.min.js') }}"></script>
 <!-- Template  JS -->
 <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
 <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
@@ -446,12 +448,12 @@
 
 <script type="text/javascript">
     // Start CouponCalculation Method
-    function couponCalculation(){
+    function couponCalculation() {
         $.ajax({
             type: 'GET',
             url: "/coupon-calculation",
             dataType: 'json',
-            success:function(data){
+            success: function (data) {
                 if (data.total) {
                     $('#couponCalField').html(
                         ` <tr>
@@ -471,8 +473,8 @@
                         <h4 class="text-brand text-end">${data.total} VND</h4>
                     </td>
                 </tr>
-                ` )
-                }else{
+                `)
+                } else {
                     $('#couponCalField').html(
                         `<tr>
                     <td class="cart_total_label">
@@ -512,8 +514,28 @@
             }
         })
     }
+
     couponCalculation();
 </script>
 
+<script type="text/javascript">
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch (type) {
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+</script>
 </body>
 </html>
