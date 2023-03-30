@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -186,3 +187,4 @@ Route::controller(CartController::class)->group(function () {
 //Checkout
 Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
 Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
+Route::post('/checkout/store' , [CheckoutController::class,'checkoutStore'])->name('checkout.store');
