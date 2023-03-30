@@ -85,7 +85,7 @@
                          data-wow-delay="0">
                         <div class="logo mb-30">
                             <a href="index.html" class="mb-15"><img
-                                        src="{{ asset('frontend/assets/imgs/theme/logo.png') }}" alt="logo"/></a>
+                                        src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo"/></a>
                             <p class="font-lg text-heading">Như Sport - Shop bán vợt cầu lông chính hãng</p>
                         </div>
                         <ul class="contact-infor">
