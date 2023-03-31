@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [IndexController::class, 'index'])->name('home.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('dashboard');
@@ -188,3 +188,5 @@ Route::controller(CartController::class)->group(function () {
 Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
 Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
 Route::post('/checkout/store' , [CheckoutController::class,'checkoutStore'])->name('checkout.store');
+Route::post('/cash/order' , [CheckoutController::class,'cashOrder'])->name('cash.order');
+Route::post('/cash/bank' , [CheckoutController::class,'bankOrder'])->name('bank.order');

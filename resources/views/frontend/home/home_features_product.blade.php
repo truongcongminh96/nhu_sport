@@ -83,10 +83,7 @@
                                                 </div>
                                                 <span class="font-xs text-heading">Còn hàng</span>
                                             </div>
-                                            <a class="btn w-100 hover-up" data-bs-toggle="modal"
-                                               data-bs-target="#quickViewModal" id="{{ $product->id }}"
-                                               onclick="productView(this.id)"><i class="fi-rs-shopping-cart mr-5"></i>Thêm
-                                                vào giỏ</a>
+                                            <a class="btn w-100 hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)"><i class="fi-rs-shopping-cart mr-5"></i>Thêm vào giỏ</a>
                                         </div>
                                     </div>
                                 @endforeach

@@ -7,7 +7,7 @@
                     <div class="col-xl-3">
                         <h1 class="mb-15">{{ $breadCategory->category_name }}</h1>
                         <div class="breadcrumb">
-                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
                             <span></span> Shop <span></span> {{ $breadCategory->category_name }}
                         </div>
                     </div>
@@ -98,17 +98,14 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                        <a href="{{ url('product/category/'.$product['category']['id'].'/'.$product['category']['category_slug']) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
                                     <h2>
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
                                            href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a>
                                     </h2>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    <div>
+                                        <span>Hãng: {{ $product['brand']['brand_name'] }} </span>
                                     </div>
                                     <div>
                                         @if($product->vendor_id == NULL)
@@ -123,20 +120,19 @@
                                     <div class="product-card-bottom">
                                         @if($product->discount_price == NULL)
                                             <div class="product-price">
-                                                <span>${{ $product->selling_price }}</span>
-
+                                                <span>{{ number_format($product->selling_price, 0, '') }}</span>
                                             </div>
-
                                         @else
                                             <div class="product-price">
-                                                <span>${{ $product->discount_price }}</span>
-                                                <span class="old-price">${{ $product->selling_price }}</span>
+                                                <span>{{ number_format($product->discount_price, 0, '') }}</span>
+                                                <span class="old-price">{{ number_format($product->selling_price, 0, '') }}</span>
                                             </div>
                                         @endif
-                                        <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                        </div>
+                                            <div class="add-cart">
+                                                <a class="add" data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                   id="{{ $product->id }}" onclick="productView(this.id)"><i
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -150,14 +146,14 @@
             </div>
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
                 <div class="sidebar-widget widget-category-2 mb-30">
-                    <h5 class="section-title style-1 mb-30">Category</h5>
+                    <h5 class="section-title style-1 mb-30">Danh mục</h5>
                     <ul>
                         @foreach($categories as $category)
                             @php
                                 $products = App\Models\Product::where('category_id',$category->id)->get();
                             @endphp
                             <li>
-                                <a href="shop-grid-right.html"> <img src=" {{ asset($category->category_image) }} "
+                                <a href="{{ url('product/category/'.$product['category']['id'].'/'.$product['category']['category_slug']) }}"> <img src=" {{ asset($category->category_image) }} "
                                                                      alt=""/>{{ $category->category_name }}</a><span
                                     class="count">{{ count($products) }}</span>
                             </li>

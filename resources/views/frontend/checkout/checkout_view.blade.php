@@ -23,29 +23,29 @@
                         <h4 class="mb-30">Thông tin khách hàng</h4>
                         <div class="row">
                             <div class="form-group col-lg-6">
-                                <input type="text" required="" name="shipping_name" value="Họ tên khách hàng">
+                                <input type="text" required="" name="shipping_name" placeholder="Họ tên khách hàng">
                             </div>
                             <div class="form-group col-lg-6">
-                                <input type="email" required="" name="shipping_email" value="email">
+                                <input type="email" name="shipping_email" placeholder="Địa chỉ email">
                             </div>
                         </div>
 
 
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
-                                <input required="" type="text" name="shipping_phone" value="Số điện thoại">
+                                <input required="" type="text" name="shipping_phone" placeholder="Số điện thoại">
                             </div>
                         </div>
 
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
-                                <input required="" type="text" name="shipping_address" placeholder="Address *" value="">
+                                <input required="" type="text" name="shipping_address" placeholder="Địa chỉ cụ thể" value="">
                             </div>
                         </div>
 
 
                         <div class="form-group mb-30">
-                            <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
+                            <textarea rows="5" placeholder="Ghi chú" name="notes"></textarea>
                         </div>
 
 
@@ -70,8 +70,8 @@
                                                 alt="#" style="width:50px; height: 50px;">
                                         </td>
                                         <td>
-                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html"
-                                                                      class="text-heading">{{ $item->name }}</a>
+                                            <h6 class="w-160 mb-5">
+                                                <a class="text-heading">{{ $item->name }}</a>
                                             </h6>
                                             <div class="product-rate-cover">
 
