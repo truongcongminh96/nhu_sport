@@ -128,8 +128,8 @@ class CheckoutController extends Controller
             'post_code' => $request->post_code,
             'notes' => $request->notes,
 
-            'payment_type' => 'Cash On Delivery',
-            'payment_method' => 'Cash On Delivery',
+            'payment_type' => 'bank',
+            'payment_method' => 'bank',
 
             'currency' => 'VND',
             'amount' => (int)$formatAmount,

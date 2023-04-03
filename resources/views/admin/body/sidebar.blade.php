@@ -139,6 +139,15 @@
                 <div class="menu-title">User Profile</div>
             </a>
         </li>
+
+        <li class="menu-label">Quản lý đơn hàng</li>
+        <li>
+            <a href="{{ route('pending.order') }}">
+                <div class="parent-icon"><i class="bx bx-user-circle"></i>
+                </div>
+                <div class="menu-title">Đơn hàng đang chờ</div>
+            </a>
+        </li>
     </ul>
     <!--end navigation-->
 </div>

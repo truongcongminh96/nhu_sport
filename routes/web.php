@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -157,6 +158,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/coupon/{id}' , 'editCoupon')->name('edit.coupon');
         Route::post('/update/coupon' , 'updateCoupon')->name('update.coupon');
         Route::get('/delete/coupon/{id}' , 'deleteCoupon')->name('delete.coupon');
+    });
+
+    // Admin Order All Route
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('/pending/order' , 'pendingOrder')->name('pending.order');
     });
 });
 
