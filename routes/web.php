@@ -151,18 +151,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     // Banner All Route
-    Route::controller(CouponController::class)->group(function(){
-        Route::get('/all/coupon' , 'allCoupon')->name('all.coupon');
-        Route::get('/add/coupon' , 'addCoupon')->name('add.coupon');
-        Route::post('/store/coupon' , 'storeCoupon')->name('store.coupon');
-        Route::get('/edit/coupon/{id}' , 'editCoupon')->name('edit.coupon');
-        Route::post('/update/coupon' , 'updateCoupon')->name('update.coupon');
-        Route::get('/delete/coupon/{id}' , 'deleteCoupon')->name('delete.coupon');
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/all/coupon', 'allCoupon')->name('all.coupon');
+        Route::get('/add/coupon', 'addCoupon')->name('add.coupon');
+        Route::post('/store/coupon', 'storeCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}', 'editCoupon')->name('edit.coupon');
+        Route::post('/update/coupon', 'updateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}', 'deleteCoupon')->name('delete.coupon');
     });
 
     // Admin Order All Route
-    Route::controller(OrderController::class)->group(function(){
-        Route::get('/pending/order' , 'pendingOrder')->name('pending.order');
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/pending/order', 'pendingOrder')->name('pending.order');
+        Route::get('/admin/order/details/{order_id}', 'adminOrderDetails')->name('admin.order.details');
+        Route::get('/pending/confirm/{order_id}' , 'pendingToConfirm')->name('pending-confirm');
+        Route::get('/admin/confirmed/order' , 'adminConfirmedOrder')->name('admin.confirmed.order');
     });
 });
 
@@ -184,15 +187,15 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'addToCartDetails'
 // Cart All Route
 Route::controller(CartController::class)->group(function () {
     Route::get('/mycart', 'myCart')->name('mycart');
-    Route::get('/get-cart-product' , 'getCartProduct');
-    Route::get('/cart-remove/{rowId}' , 'cartRemove');
-    Route::get('/cart-decrement/{rowId}' , 'cartDecrement');
-    Route::get('/cart-increment/{rowId}' , 'cartIncrement');
+    Route::get('/get-cart-product', 'getCartProduct');
+    Route::get('/cart-remove/{rowId}', 'cartRemove');
+    Route::get('/cart-decrement/{rowId}', 'cartDecrement');
+    Route::get('/cart-increment/{rowId}', 'cartIncrement');
 });
 
 //Checkout
 Route::get('/checkout', [CartController::class, 'checkoutCreate'])->name('checkout');
 Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
-Route::post('/checkout/store' , [CheckoutController::class,'checkoutStore'])->name('checkout.store');
-Route::post('/cash/order' , [CheckoutController::class,'cashOrder'])->name('cash.order');
-Route::post('/cash/bank' , [CheckoutController::class,'bankOrder'])->name('bank.order');
+Route::post('/checkout/store', [CheckoutController::class, 'checkoutStore'])->name('checkout.store');
+Route::post('/cash/order', [CheckoutController::class, 'cashOrder'])->name('cash.order');
+Route::post('/cash/bank', [CheckoutController::class, 'bankOrder'])->name('bank.order');

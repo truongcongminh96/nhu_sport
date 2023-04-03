@@ -140,13 +140,18 @@
             </a>
         </li>
 
-        <li class="menu-label">Quản lý đơn hàng</li>
         <li>
-            <a href="{{ route('pending.order') }}">
-                <div class="parent-icon"><i class="bx bx-user-circle"></i>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
                 </div>
-                <div class="menu-title">Đơn hàng đang chờ</div>
+                <div class="menu-title">Quản lý đơn hàng</div>
             </a>
+            <ul>
+                <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Đơn chờ xác nhận</a>
+                </li>
+                <li> <a href="{{ route('admin.confirmed.order') }}"><i class="bx bx-right-arrow-alt"></i>Đơn đã xác nhận</a>
+                </li>
+            </ul>
         </li>
     </ul>
     <!--end navigation-->
