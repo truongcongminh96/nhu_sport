@@ -175,6 +175,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/blog/category', 'allBlogCategory')->name('admin.blog.category');
         Route::get('/admin/add/blog/category', 'addBlogCategory')->name('add.blog.category');
         Route::post('/admin/store/blog/category', 'storeBlogCategory')->name('store.blog.category');
+
+        Route::get('/admin/edit/blog/category/{id}', 'editBlogCategory')->name('edit.blog.category');
+        Route::post('/admin/update/blog/category', 'updateBlogCategory')->name('update.blog.category');
+        Route::get('/admin/delete/blog/category/{id}', 'deleteBlogCategory')->name('delete.blog.category');
     });
 });
 
