@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
@@ -164,9 +165,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'pendingOrder')->name('pending.order');
         Route::get('/admin/order/details/{order_id}', 'adminOrderDetails')->name('admin.order.details');
-        Route::get('/pending/confirm/{order_id}' , 'pendingToConfirm')->name('pending-confirm');
-        Route::get('/admin/confirmed/order' , 'adminConfirmedOrder')->name('admin.confirmed.order');
-        Route::get('/confirm/delete/{order_id}' , 'confirmToDelete')->name('confirm-delete');
+        Route::get('/pending/confirm/{order_id}', 'pendingToConfirm')->name('pending-confirm');
+        Route::get('/admin/confirmed/order', 'adminConfirmedOrder')->name('admin.confirmed.order');
+        Route::get('/confirm/delete/{order_id}', 'confirmToDelete')->name('confirm-delete');
+    });
+
+    // Admin Blog All Route
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/admin/blog/category', 'allBlogCategory')->name('admin.blog.category');
+        Route::get('/admin/add/blog/category', 'addBlogCategory')->name('add.blog.category');
+        Route::post('/admin/store/blog/category', 'storeBlogCategory')->name('store.blog.category');
     });
 });
 
