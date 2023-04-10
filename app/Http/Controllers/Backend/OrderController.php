@@ -38,8 +38,20 @@ class OrderController extends Controller
         return redirect()->route('admin.confirmed.order')->with($notification);
     }
 
-    public function adminConfirmedOrder(){
-        $orders = Order::where('status','confirm')->orderBy('id','DESC')->get();
-        return view('backend.orders.confirmed_orders',compact('orders'));
+    public function adminConfirmedOrder()
+    {
+        $orders = Order::where('status', 'confirm')->orderBy('id', 'DESC')->get();
+        return view('backend.orders.confirmed_orders', compact('orders'));
+    }
+
+    public function confirmToDelete(int $orderId)
+    {
+        Order::findOrFail($orderId)->delete();
+        OrderItem::where('order_id', $orderId)->delete();
+        $notification = array(
+            'message' => 'Xác nhận đơn hàng thành công',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.confirmed.order')->with($notification);
     }
 }

@@ -166,6 +166,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/order/details/{order_id}', 'adminOrderDetails')->name('admin.order.details');
         Route::get('/pending/confirm/{order_id}' , 'pendingToConfirm')->name('pending-confirm');
         Route::get('/admin/confirmed/order' , 'adminConfirmedOrder')->name('admin.confirmed.order');
+        Route::get('/confirm/delete/{order_id}' , 'confirmToDelete')->name('confirm-delete');
     });
 });
 

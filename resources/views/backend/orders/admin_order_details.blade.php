@@ -4,13 +4,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Admin Order Details</div>
+            <div class="breadcrumb-title pe-3">Chi tiết đơn hàng</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Admin Order Details</li>
+                        <li class="breadcrumb-item active" aria-current="page">Chi tiết đơn hàng</li>
                     </ol>
                 </nav>
             </div>
@@ -23,7 +23,7 @@
         <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
             <div class="col">
                 <div class="card">
-                    <div class="card-header"><h4>Shipping Details</h4> </div>
+                    <div class="card-header"><h4>Shipping Details</h4></div>
                     <hr>
                     <div class="card-body">
                         <table class="table" style="background:#F4F6FA;font-weight: 600;">
@@ -48,12 +48,12 @@
                             </tr>
 
                             <tr>
-                                <th>Post Code  :</th>
+                                <th>Post Code :</th>
                                 <th>{{ $order->post_code }}</th>
                             </tr>
 
                             <tr>
-                                <th>Order Date   :</th>
+                                <th>Order Date :</th>
                                 <th>{{ $order->order_date }}</th>
                             </tr>
 
@@ -101,7 +101,7 @@
 
                             <tr>
                                 <th>Order Amonut:</th>
-                                <th>${{ $order->amount }}</th>
+                                <th>{{ number_format($order->amount, 0, '', '.') }}</th>
                             </tr>
 
                             <tr>
@@ -111,12 +111,13 @@
 
 
                             <tr>
-                                <th> </th>
+                                <th></th>
                                 <th>
                                     @if($order->status == 'pending')
-                                        <a href="{{ route('pending-confirm',$order->id) }}" class="btn btn-block btn-success" id="confirm" >Xác nhận đơn hàng</a>
+                                        <a href="{{ route('pending-confirm',$order->id) }}"
+                                           class="btn btn-block btn-success" id="confirm">Xác nhận đơn hàng</a>
                                     @elseif($order->status == 'confirm')
-                                        <a href="" class="btn btn-block btn-success" >Xóa đơn hàng</a>
+                                        <a href="{{ route('confirm-delete',$order->id) }}" class="btn btn-block btn-success">Xóa đơn hàng</a>
                                     @endif
 
                                 </th>
@@ -134,7 +135,7 @@
             <div class="col">
                 <div class="card">
                     <div class="table-responsive">
-                        <table class="table" style="font-weight: 600;"  >
+                        <table class="table" style="font-weight: 600;">
                             <tbody>
                             <tr>
                                 <td class="col-md-1">
@@ -147,7 +148,7 @@
                                     <label>Vendor Name </label>
                                 </td>
                                 <td class="col-md-2">
-                                    <label>Product Code  </label>
+                                    <label>Product Code </label>
                                 </td>
                                 <td class="col-md-1">
                                     <label>Color </label>
@@ -160,14 +161,15 @@
                                 </td>
 
                                 <td class="col-md-3">
-                                    <label>Price  </label>
+                                    <label>Price </label>
                                 </td>
 
                             </tr>
                             @foreach($orderItem as $item)
                                 <tr>
                                     <td class="col-md-1">
-                                        <label><img src="{{ asset($item->product->product_thumbnail) }}" style="width:50px; height:50px;" > </label>
+                                        <label><img src="{{ asset($item->product->product_thumbnail) }}"
+                                                    style="width:50px; height:50px;"> </label>
                                     </td>
                                     <td class="col-md-2">
                                         <label>{{ $item->product->product_name }}</label>
@@ -209,7 +211,8 @@
                                     </td>
 
                                     <td class="col-md-3">
-                                        <label>${{ $item->price }} <br> Total = ${{ $item->price * $item->qty }}   </label>
+                                        <label>{{ number_format($item->price, 0, '', '.') }}<br> Total
+                                            = {{ number_format(($item->price * $item->qty), 0, '', '.') }}</label>
                                     </td>
 
                                 </tr>
