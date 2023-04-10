@@ -219,3 +219,7 @@ Route::get('/coupon-calculation', [CartController::class, 'couponCalculation']);
 Route::post('/checkout/store', [CheckoutController::class, 'checkoutStore'])->name('checkout.store');
 Route::post('/cash/order', [CheckoutController::class, 'cashOrder'])->name('cash.order');
 Route::post('/cash/bank', [CheckoutController::class, 'bankOrder'])->name('bank.order');
+
+Route::controller(BlogController::class)->group(function(){
+    Route::get('/blog' , 'allBlog')->name('home.blog');
+});

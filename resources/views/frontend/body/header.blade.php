@@ -171,6 +171,9 @@
                                 <li>
                                     <a href="page-contact.html">Liên hệ</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('home.blog') }}">Blog</a>
+                                </li>
                                 <li class="position-static">
                                     <a href="#">Sản phẩm <i class="fi-rs-angle-down"></i></a>
                                     @php

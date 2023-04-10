@@ -190,4 +190,11 @@ class BlogController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+    public function allBlog(): Factory|View|Application
+    {
+        $blogCategories = BlogCategory::latest()->get();
+        $blogpost = BlogPost::latest()->get();
+        return view('frontend.blog.home_blog', compact('blogCategories', 'blogpost'));
+    }
 }
