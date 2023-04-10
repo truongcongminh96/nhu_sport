@@ -179,6 +179,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit/blog/category/{id}', 'editBlogCategory')->name('edit.blog.category');
         Route::post('/admin/update/blog/category', 'updateBlogCategory')->name('update.blog.category');
         Route::get('/admin/delete/blog/category/{id}', 'deleteBlogCategory')->name('delete.blog.category');
+
+        Route::get('/admin/blog/post' , 'allBlogPost')->name('admin.blog.post');
+        Route::get('/admin/add/blog/post' , 'addBlogPost')->name('add.blog.post');
+        Route::post('/admin/store/blog/post' , 'storeBlogPost')->name('store.blog.post');
+        Route::get('/admin/edit/blog/post/{id}' , 'editBlogPost')->name('edit.blog.post');
+        Route::post('/admin/update/blog/post' , 'updateBlogPost')->name('update.blog.post');
+        Route::get('/admin/delete/blog/post/{id}' , 'deleteBlogPost')->name('delete.blog.post');
     });
 });
 
