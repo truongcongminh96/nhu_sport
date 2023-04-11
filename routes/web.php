@@ -222,4 +222,6 @@ Route::post('/cash/bank', [CheckoutController::class, 'bankOrder'])->name('bank.
 
 Route::controller(BlogController::class)->group(function(){
     Route::get('/blog' , 'allBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}' , 'blogDetails');
+    Route::get('/post/category/{id}/{slug}' , 'blogPostCategory');
 });

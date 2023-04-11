@@ -197,4 +197,21 @@ class BlogController extends Controller
         $blogpost = BlogPost::latest()->get();
         return view('frontend.blog.home_blog', compact('blogCategories', 'blogpost'));
     }
+
+    public function blogDetails(int $id, string $slug): Factory|View|Application
+    {
+        $blogCategories = BlogCategory::latest()->get();
+        $blogDetails = BlogPost::findOrFail($id);
+        $breadCat = BlogCategory::where('id', $id)->get();
+        return view('frontend.blog.blog_details', compact('blogCategories', 'blogDetails', 'breadCat'));
+    }
+
+    public function blogPostCategory(int $id, string $slug)
+    {
+        $blogCategories = BlogCategory::latest()->get();
+        $blogPost = BlogPost::where('category_id', $id)->get();
+        $breadCat = BlogCategory::where('id', $id)->get();
+        return view('frontend.blog.category_post', compact('blogCategories', 'blogPost', 'breadCat'));
+
+    }
 }
