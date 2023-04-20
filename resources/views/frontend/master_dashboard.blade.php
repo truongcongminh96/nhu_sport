@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>Như Sport - Shop Bán Vợt Cầu Lông Chính Hãng 2022 Giá Rẻ Toàn Quốc</title>
+    <title>@yield('title')</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="description"
           content="Như Sport - Shop bán vợt cầu lông Yonex chính hãng, vợt Victor, vợt Lining 2022... và là điểm mua vợt cầu lông giá rẻ, báo giá vợt cầu lông, COD toàn quốc."/>

@@ -212,6 +212,5 @@ class BlogController extends Controller
         $blogPost = BlogPost::where('category_id', $id)->get();
         $breadCat = BlogCategory::where('id', $id)->get();
         return view('frontend.blog.category_post', compact('blogCategories', 'blogPost', 'breadCat'));
-
     }
 }

@@ -1,5 +1,8 @@
 @extends('frontend.master_dashboard')
 @section('main')
+    @section('title')
+        Như Sport - Shop bán vợt cầu lông chính hãng
+    @endsection
     @include('frontend.home.home_slider')
     <!--End hero slider-->
     @include('frontend.home.home_features_category')

@@ -1,5 +1,10 @@
 @extends('frontend.master_dashboard')
 @section('main')
+    @section('title')
+        @foreach($breadCat as $cat)
+            {{ $cat->blog_category_name }}
+        @endforeach
+    @endsection
 
     <div class="page-header mt-30 mb-75">
         <div class="container">
@@ -77,7 +82,8 @@
                             <article class="wow fadeIn animated hover-up mb-30 animated">
                                 <div class="post-thumb" style="background-image: url({{ asset($post->post_image)  }})">
                                     <div class="entry-meta">
-                                        <a class="entry-meta meta-2" href="blog-category-grid.html"><i class="fi-rs-play-alt"></i></a>
+                                        <a class="entry-meta meta-2" href="blog-category-grid.html"><i
+                                                class="fi-rs-play-alt"></i></a>
                                     </div>
                                 </div>
                                 <div class="entry-content-2 pl-50">
@@ -90,12 +96,13 @@
                                             <span class="post-on">{{ $post->created_at->format('M d Y') }}</span>
 
                                         </div>
-                                        <a href="{{ url('post/details/'.$post->id.'/'.$post->post_slug) }}" class="text-brand font-heading font-weight-bold">Read more <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="{{ url('post/details/'.$post->id.'/'.$post->post_slug) }}"
+                                           class="text-brand font-heading font-weight-bold">Read more <i
+                                                class="fi-rs-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </article>
                         @endforeach
-
 
 
                     </div>
@@ -122,7 +129,7 @@
                         <div class="sidebar-widget-2 widget_search mb-50">
                             <div class="search-form">
                                 <form action="#">
-                                    <input type="text" placeholder="Search…" />
+                                    <input type="text" placeholder="Search…"/>
                                     <button type="submit"><i class="fi-rs-search"></i></button>
                                 </form>
                             </div>
@@ -137,12 +144,14 @@
                                     @endphp
 
                                     <li>
-                                        <a href="{{ url('post/category/'.$category->id.'/'.$category->blog_category_slug) }}"> <img src="{{ asset('frontend/assets/imgs/theme/icons/category-1.svg') }}" alt="" />{{ $category->blog_category_name }}</a><span class="count">{{ count($posts) }}</span>
+                                        <a href="{{ url('post/category/'.$category->id.'/'.$category->blog_category_slug) }}">
+                                            <img src="{{ asset('frontend/assets/imgs/theme/icons/category-1.svg') }}"
+                                                 alt=""/>{{ $category->blog_category_name }}</a><span
+                                            class="count">{{ count($posts) }}</span>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
-
 
 
                         <!-- Product sidebar Widget -->
@@ -151,12 +160,12 @@
                         <!--Tags-->
 
                         <div class="banner-img wow fadeIn mb-50 animated d-lg-block d-none">
-                            <img src="{{ asset('frontend/assets/imgs/banner/banner-11.png') }}" alt="" />
+                            <img src="{{ asset('frontend/assets/imgs/banner/banner-11.png') }}" alt=""/>
                             <div class="banner-text">
                                 <span>Oganic</span>
                                 <h4>
-                                    Save 17% <br />
-                                    on <span class="text-brand">Oganic</span><br />
+                                    Save 17% <br/>
+                                    on <span class="text-brand">Oganic</span><br/>
                                     Juice
                                 </h4>
                             </div>
@@ -166,7 +175,5 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection

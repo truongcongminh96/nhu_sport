@@ -1,12 +1,14 @@
 @extends('frontend.master_dashboard')
 @section('main')
-
+    @section('title')
+        {{ $blogDetails->post_title }}
+    @endsection
 
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> <a href="shop-grid-right.html">
+                <span></span> <a href="">
                     @foreach($breadCat as $cat)
                         {{ $cat->blog_category_name }}
                     @endforeach
