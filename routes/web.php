@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
@@ -180,12 +181,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/update/blog/category', 'updateBlogCategory')->name('update.blog.category');
         Route::get('/admin/delete/blog/category/{id}', 'deleteBlogCategory')->name('delete.blog.category');
 
-        Route::get('/admin/blog/post' , 'allBlogPost')->name('admin.blog.post');
-        Route::get('/admin/add/blog/post' , 'addBlogPost')->name('add.blog.post');
-        Route::post('/admin/store/blog/post' , 'storeBlogPost')->name('store.blog.post');
-        Route::get('/admin/edit/blog/post/{id}' , 'editBlogPost')->name('edit.blog.post');
-        Route::post('/admin/update/blog/post' , 'updateBlogPost')->name('update.blog.post');
-        Route::get('/admin/delete/blog/post/{id}' , 'deleteBlogPost')->name('delete.blog.post');
+        Route::get('/admin/blog/post', 'allBlogPost')->name('admin.blog.post');
+        Route::get('/admin/add/blog/post', 'addBlogPost')->name('add.blog.post');
+        Route::post('/admin/store/blog/post', 'storeBlogPost')->name('store.blog.post');
+        Route::get('/admin/edit/blog/post/{id}', 'editBlogPost')->name('edit.blog.post');
+        Route::post('/admin/update/blog/post', 'updateBlogPost')->name('update.blog.post');
+        Route::get('/admin/delete/blog/post/{id}', 'deleteBlogPost')->name('delete.blog.post');
+    });
+
+    Route::controller(SiteSettingController::class)->group(function () {
+
+        Route::get('/site/setting', 'siteSetting')->name('site.setting');
+        Route::post('/site/setting/update', 'siteSettingUpdate')->name('site.setting.update');
+
     });
 });
 
@@ -220,8 +228,8 @@ Route::post('/checkout/store', [CheckoutController::class, 'checkoutStore'])->na
 Route::post('/cash/order', [CheckoutController::class, 'cashOrder'])->name('cash.order');
 Route::post('/cash/bank', [CheckoutController::class, 'bankOrder'])->name('bank.order');
 
-Route::controller(BlogController::class)->group(function(){
-    Route::get('/blog' , 'allBlog')->name('home.blog');
-    Route::get('/post/details/{id}/{slug}' , 'blogDetails');
-    Route::get('/post/category/{id}/{slug}' , 'blogPostCategory');
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog', 'allBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}', 'blogDetails');
+    Route::get('/post/category/{id}/{slug}', 'blogPostCategory');
 });
