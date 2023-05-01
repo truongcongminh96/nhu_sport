@@ -97,7 +97,7 @@
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}"
                                      alt=""/><strong>Email:</strong><span>tranthiynhu214@gmail.com</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}"
-                                     alt=""/><strong>Hours:</strong><span>08:00 - 18:00, Thứ Hai -> Chủ Nhật</span></li>
+                                     alt=""/><strong>Giờ làm việc:</strong><span>(08:00 - 20:00)Thứ Hai -> Thứ 7, (08:00 - 12:00) Chủ Nhật</span></li>
                         </ul>
                     </div>
                 </div>

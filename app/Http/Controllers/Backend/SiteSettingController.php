@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use App\Models\SiteSetting;
 use Intervention\Image\Facades\Image;
 
 class SiteSettingController extends Controller
@@ -18,7 +18,6 @@ class SiteSettingController extends Controller
     public function siteSettingUpdate(Request $request)
     {
         $settingId = $request->id;
-
         if ($request->file('logo')) {
             $image = $request->file('logo');
             $nameGen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
@@ -42,7 +41,6 @@ class SiteSettingController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
-
         } else {
             SiteSetting::findOrFail($settingId)->update([
                 'support_phone' => $request->support_phone,
@@ -59,7 +57,6 @@ class SiteSettingController extends Controller
                 'message' => 'Site Setting Updated without image Successfully',
                 'alert-type' => 'success'
             );
-
             return redirect()->back()->with($notification);
         }
     }

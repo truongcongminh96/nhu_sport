@@ -1,6 +1,20 @@
 @php
     $categories = App\Models\Category::orderBy('id','ASC')->get();
 @endphp
+
+<style>
+    #searchProducts{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+</style>
+
 <header class="header-area header-style-1 header-height-2">
     <div class="mobile-promotion">
         <span>Giảm giá <strong>lên đến 15%</strong> tất cả sản phẩm tại <strong>Như Sport</strong> </span>
@@ -45,14 +59,16 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="#">
+                        <form action="{{ route('product.search') }}" method="post">
+                            @csrf
                             <select class="select-active">
                                 <option>Danh mục</option>
                                 @foreach($categories as $category)
                                 <option>{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
-                            <input type="text" placeholder="Tìm kiếm nhanh" />
+                            <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Tìm kiếm nhanh..." />
+                            <div id="searchProducts"></div>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -268,9 +284,11 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
-                    <input type="text" placeholder="Search for items…" />
+                <form action="{{ route('product.search') }}" method="post">
+                    @csrf
+                    <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Tìm kiếm nhanh..." />
                     <button type="submit"><i class="fi-rs-search"></i></button>
+                    <div id="searchProducts"></div>
                 </form>
             </div>
             <div class="mobile-menu-wrap mobile-header-border">
@@ -418,3 +436,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function search_result_show(){
+        $("#searchProducts").slideDown();
+    }
+    function search_result_hide(){
+        $("#searchProducts").slideUp();
+    }
+</script>
+

@@ -190,10 +190,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     Route::controller(SiteSettingController::class)->group(function () {
-
         Route::get('/site/setting', 'siteSetting')->name('site.setting');
         Route::post('/site/setting/update', 'siteSettingUpdate')->name('site.setting.update');
-
     });
 });
 
@@ -232,4 +230,10 @@ Route::controller(BlogController::class)->group(function () {
     Route::get('/blog', 'allBlog')->name('home.blog');
     Route::get('/post/details/{id}/{slug}', 'blogDetails');
     Route::get('/post/category/{id}/{slug}', 'blogPostCategory');
+});
+
+// Search All Route
+Route::controller(IndexController::class)->group(function(){
+    Route::post('/search' , 'productSearch')->name('product.search');
+    Route::post('/search-product' , 'searchProduct');
 });
