@@ -210,23 +210,19 @@
 
                 <!-- Product sidebar Widget -->
                 <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
-                    <h5 class="section-title style-1 mb-30">New products</h5>
+                    <h5 class="section-title style-1 mb-30">Sản phẩm mới</h5>
                     @foreach($newProduct as $product)
                         <div class="single-post clearfix">
                             <div class="image">
-                                <img src="{{ asset( $product->product_thambnail ) }}" alt="#" />
+                                <img src="{{ asset( $product->product_thumbnail ) }}" alt="#" />
                             </div>
                             <div class="content pt-10">
                                 <p><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></p>
                                 @if($product->discount_price == NULL)
-                                    <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
+                                    <p class="price mb-0 mt-5">{{ $product->selling_price }}</p>
                                 @else
-                                    <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
+                                    <p class="price mb-0 mt-5">{{ $product->discount_price }}</p>
                                 @endif
-
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
                             </div>
                         </div>
                     @endforeach
