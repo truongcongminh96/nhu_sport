@@ -1,9 +1,10 @@
 @php
     $categories = App\Models\Category::orderBy('id','ASC')->get();
 @endphp
+<script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
 
 <style>
-    #searchProducts{
+    #searchProducts {
         position: absolute;
         top: 100%;
         left: 0;
@@ -55,7 +56,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo"/></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -64,10 +65,11 @@
                             <select class="select-active">
                                 <option>Danh mục</option>
                                 @foreach($categories as $category)
-                                <option>{{ $category->category_name }}</option>
+                                    <option>{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
-                            <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Tìm kiếm nhanh..." />
+                            <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
+                                   id="search" placeholder="Tìm kiếm nhanh..."/>
                             <div id="searchProducts"></div>
                         </form>
                     </div>
@@ -75,7 +77,8 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{ route('mycart') }}">
-                                    <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
+                                    <img alt="Nest"
+                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}"/>
                                     <span class="pro-count blue" id="cartQty">0 </span>
                                 </a>
                                 <a href="{{ route('mycart') }}"><span class="lable">Giỏ hàng</span></a>
@@ -96,35 +99,42 @@
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
+                                    <img class="svgInject" alt="Nest"
+                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}"/>
                                 </a>
                                 @auth
                                     <a href="page-account.html"><span class="lable ml-0">Tài khoản</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-user mr-10"></i>My Account</a>
+                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-user mr-10"></i>My
+                                                    Account</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
+                                                <a href="{{ route('dashboard') }}"><i
+                                                        class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My Voucher</a>
+                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My
+                                                    Voucher</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
+                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-heart mr-10"></i>My
+                                                    Wishlist</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
+                                                <a href="{{ route('dashboard') }}"><i
+                                                        class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('user.logout') }}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                                <a href="{{ route('user.logout') }}"><i
+                                                        class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
                                             </li>
                                         </ul>
                                     </div>
                                 @else
                                     <a href="{{ route('login') }}"><span class="lable ml-0">Đăng ký</span></a>
-                                    <span class="lable" style="margin-left: 2px; margin-right: 2px;" > | </span>
+                                    <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span>
                                     <a href="{{ route('register') }}"><span class="lable ml-0">Đăng nhập</span></a>
                                 @endauth
                             </div>
@@ -150,7 +160,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo"/></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
@@ -162,14 +172,18 @@
                                 <ul>
                                     @foreach($leftCategory as $item)
                                         <li>
-                                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}">
+                                                <img src="{{ asset( $item->category_image ) }}"
+                                                     alt=""/> {{ $item->category_name }} </a>
                                         </li>
                                     @endforeach
                                 </ul>
                                 <ul class="end">
                                     @foreach($rightCategory as $item)
                                         <li>
-                                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                                            <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}">
+                                                <img src="{{ asset( $item->category_image ) }}"
+                                                     alt=""/> {{ $item->category_name }} </a>
                                         </li>
                                     @endforeach
 
@@ -197,23 +211,27 @@
                                     @endphp
                                     <ul class="mega-menu">
                                         @foreach($categories as $category)
-                                        <li class="sub-mega-menu sub-mega-menu-width-22">
-                                            <a class="menu-title" href="#">{{ $category->category_name }}</a>
-                                            @php
-                                                $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
-                                            @endphp
+                                            <li class="sub-mega-menu sub-mega-menu-width-22">
+                                                <a class="menu-title" href="#">{{ $category->category_name }}</a>
+                                                @php
+                                                    $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
+                                                @endphp
 
-                                            <ul>
-                                                @foreach($subcategories as $subcategory)
-                                                <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                                @endforeach
-                                            </ul>
+                                                <ul>
+                                                    @foreach($subcategories as $subcategory)
+                                                        <li>
+                                                            <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
 
-                                        </li>
+                                            </li>
                                         @endforeach
                                         <li class="sub-mega-menu sub-mega-menu-width-34">
                                             <div class="menu-banner-wrap">
-                                                <a href="shop-product-right.html"><img src="{{ asset('frontend/assets/imgs/banner/banner-menu.png') }}" alt="Nest"></a>
+                                                <a href="shop-product-right.html"><img
+                                                        src="{{ asset('frontend/assets/imgs/banner/banner-menu.png') }}"
+                                                        alt="Nest"></a>
                                                 <div class="menu-banner-content">
                                                     <h4>Hot deals</h4>
                                                     <h3>
@@ -244,7 +262,7 @@
 
 
                 <div class="hotline d-none d-lg-flex">
-                    <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
+                    <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline"/>
                     <p>0796 1111 54<span>24/7 Support Center</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
@@ -258,7 +276,7 @@
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="{{ route('mycart') }}">
-                                <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
+                                <img alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}"/>
                             </a>
                         </div>
                     </div>
@@ -273,7 +291,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo" /></a>
+                <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo"/></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -286,7 +304,8 @@
             <div class="mobile-search search-style-3 mobile-header-border">
                 <form action="{{ route('product.search') }}" method="post">
                     @csrf
-                    <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search" placeholder="Tìm kiếm nhanh..." />
+                    <input onfocus="search_result_show()" onblur="search_result_hide()" name="search" id="search"
+                           placeholder="Tìm kiếm nhanh..."/>
                     <button type="submit"><i class="fi-rs-search"></i></button>
                     <div id="searchProducts"></div>
                 </form>
@@ -426,11 +445,13 @@
             </div>
             <div class="mobile-social-icon mb-50">
                 <h6 class="mb-15">Follow Us</h6>
-                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
-                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}" alt="" /></a>
-                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
-                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt="" /></a>
-                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
+                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt=""/></a>
+                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}"
+                                 alt=""/></a>
+                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt=""/></a>
+                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt=""/></a>
+                <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}"
+                                 alt=""/></a>
             </div>
             <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
         </div>
@@ -438,11 +459,40 @@
 </div>
 
 <script>
-    function search_result_show(){
+    function search_result_show() {
         $("#searchProducts").slideDown();
     }
-    function search_result_hide(){
+
+    function search_result_hide() {
         $("#searchProducts").slideUp();
     }
 </script>
+<script>
+    const site_url = "http://127.0.0.1:8000/";
+    $("body").on("keyup", "#search", function () {
 
+        let text = $("#search").val();
+        //console.log(text);
+
+        if (text.length > 0) {
+            $.ajax({
+                data: {search: text},
+                url: site_url + "search-product",
+                method: 'post',
+                beforSend: function (request) {
+                    return request.setRequestHeader('X-CSRF-TOKEN', ("meta[name='csrf-token']"))
+                },
+
+                success: function (result) {
+                    $("#searchProducts").html(result);
+
+                }
+            }); //End Ajax
+
+        }// end if
+
+        if (text.length < 1) $("#searchProducts").html("");
+
+    });
+
+</script>
