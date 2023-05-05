@@ -48,7 +48,7 @@ class IndexController extends Controller
     final public function brandDetails(int $id): Factory|View|Application
     {
         $brand = Brand::findOrfail($id);
-        $brandProduct = Product::where(['brand_id' => $brand->id])->get();
+        $brandProduct = Product::where(['brand_id' => $brand->id])->paginate(15);
 
         return view('frontend.brand.brand_details', compact('brand', 'brandProduct'));
     }
