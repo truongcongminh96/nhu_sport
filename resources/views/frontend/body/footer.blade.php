@@ -84,8 +84,8 @@
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp"
                          data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="index.html" class="mb-15"><img
-                                        src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo"/></a>
+                            <a href="{{ url('/') }}" class="mb-15"><img
+                                    src="{{ asset('frontend/assets/imgs/theme/logo.jpg') }}" alt="logo"/></a>
                             <p class="font-lg text-heading">Như Sport - Shop bán vợt cầu lông chính hãng</p>
                         </div>
                         <ul class="contact-infor">
@@ -97,7 +97,8 @@
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}"
                                      alt=""/><strong>Email:</strong><span>tranthiynhu214@gmail.com</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}"
-                                     alt=""/><strong>Giờ làm việc:</strong><span>(08:00 - 20:00)Thứ Hai -> Thứ 7, (08:00 - 12:00) Chủ Nhật</span></li>
+                                     alt=""/><strong>Giờ làm việc:</strong><span>(08:00 - 20:00)Thứ Hai -> Thứ 7, (08:00 - 12:00) Chủ Nhật</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -113,18 +114,6 @@
                         <li><a href="#">Tuyển dụng</a></li>
                     </ul>
                 </div>
-                <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                    <h4 class="widget-title">Tài khoản</h4>
-                    <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Đăng nhập</a></li>
-                        <li><a href="#">Xem giỏ hàng</a></li>
-                        <li><a href="#">Sản phẩm yêu thích</a></li>
-                        <li><a href="#">Theo dõi đơn hàng của tôi</a></li>
-                        <li><a href="#">Vé trợ giúp</a></li>
-                        <li><a href="#">Chi tiết vận chuyển</a></li>
-                        <li><a href="#">So sánh sản phẩm</a></li>
-                    </ul>
-                </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
                     <h4 class="widget-title">Nhượng quyền</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
@@ -132,22 +121,14 @@
                         <li><a href="#">Chương trình liên kết</a></li>
                         <li><a href="#">kinh doanh</a></li>
                         <li><a href="#">Tuyển dụng</a></li>
-                        <li><a href="#">Nhà cung cấp của chúng tôi</a></li>
-                        <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Khả năng tiếp cận</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                    <h4 class="widget-title">Phổ biến</h4>
-                    <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Vợt Cầu Lông</a></li>
-                        <li><a href="#">Giày Cầu Lông</a></li>
-                        <li><a href="#">Áo Cầu Lông</a></li>
-                        <li><a href="#">Quần Cầu Lông</a></li>
-                        <li><a href="#">Váy Cầu Lông</a></li>
-                        <li><a href="#">Túi Vợt Cầu Lông</a></li>
-                        <li><a href="#">Balo Cầu Lông</a></li>
-                    </ul>
+                    <h4 class="widget-title">Địa chỉ</h4>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0597757484015!2d106.64510657589882!3d10.806733858632242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529469731a1ef%3A0x7d5c8d700323ef6f!2zMmEgTmd1eeG7hW4gSGnhur9uIEzDqiwgUGjGsOG7nW5nIDEzLCBUw6JuIELDrG5oLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1683268210572!5m2!1svi!2s"
+                        width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

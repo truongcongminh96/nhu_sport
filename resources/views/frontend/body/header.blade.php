@@ -180,12 +180,12 @@
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="page-contact.html">Liên hệ</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('home.blog') }}">Blog</a>
-                                </li>
+{{--                                <li>--}}
+{{--                                    <a href="page-contact.html">Liên hệ</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('home.blog') }}">Blog</a>--}}
+{{--                                </li>--}}
 
                             </ul>
                         </nav>

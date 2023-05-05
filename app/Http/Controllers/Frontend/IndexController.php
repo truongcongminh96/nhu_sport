@@ -82,10 +82,10 @@ class IndexController extends Controller
      */
     final public function subCatWiseProduct(Request $request, $id, $slug): Factory|View|Application
     {
-        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->get();
+        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->paginate(15);
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadSubCat = SubCategory::where('id', $id)->first();
-        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+        $newProduct = Product::where('subcategory_id', $id)->orderBy('id', 'DESC')->limit(3)->get();
 
         return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadSubCat', 'newProduct'));
     }

@@ -91,11 +91,9 @@
                                     </div>
                                     <div>
                                         @if($product->vendor_id == NULL)
-                                            <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">Owner</a></span>
+                                            <span class="font-small text-muted">By <a>Owner</a></span>
                                         @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+                                            <span class="font-small text-muted">By <a>{{ $product['vendor']['name'] }}</a></span>
 
                                         @endif
                                     </div>
