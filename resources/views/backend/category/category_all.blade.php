@@ -15,17 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Cài đặt</button>
-                    <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
-                            data-bs-toggle="dropdown"><span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                        <a class="dropdown-item" href="{{ route('add.category') }}">Thêm loại sản phẩm</a>
-                        <a class="dropdown-item" href="">Another action</a>
-                        <a class="dropdown-item" href="">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="">Separated link</a>
-                    </div>
+                    <a href="{{ route('add.category') }}" class="btn btn-primary">Thêm loại sản phẩm</a>
                 </div>
             </div>
         </div>

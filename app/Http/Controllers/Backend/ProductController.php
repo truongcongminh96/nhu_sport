@@ -114,7 +114,7 @@ class ProductController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    final public function UpdateProduct(Request $request): RedirectResponse
+    final public function updateProduct(Request $request): RedirectResponse
     {
         Product::findOrFail($request->id)->update([
 
@@ -190,7 +190,7 @@ class ProductController extends Controller
 
         foreach ($request->multiple_images as $id => $image) {
             $imageDelete = MultipleImage::findOrFail($id);
-            if ($imageDelete) unlink($imageDelete->photo_name);
+            if ($imageDelete && $imageDelete->photo_name) unlink($imageDelete->photo_name);
 
             $makeName = hexdec(uniqid('', false)) . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(800, 800)->save('upload/products/multiple-image/' . $makeName);
@@ -212,7 +212,7 @@ class ProductController extends Controller
     final public function deleteProductMultipleImages(int $id): RedirectResponse
     {
         $oldImage = MultipleImage::findOrFail($id);
-        if ($oldImage) unlink($oldImage->photo_name);
+        if ($oldImage && $oldImage->photo_name) unlink($oldImage->photo_name);
 
         MultipleImage::findOrFail($id)->delete();
         $notification = array(
