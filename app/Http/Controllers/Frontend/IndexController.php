@@ -20,8 +20,8 @@ class IndexController extends Controller
     {
         $badmintonDress = Product::where('category_id', 4)->orderBy('id', 'DESC')->limit(3)->get();
         $badmintonShoes = Product::where('category_id', 2)->orderBy('id', 'DESC')->limit(3)->get();
-        $badmintonBackpack = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $badmintonBag = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $badmintonBackpack = Product::where('category_id', 7)->orderBy('id', 'DESC')->limit(3)->get();
+        $badmintonBag = Product::where('category_id', 6)->orderBy('id', 'DESC')->limit(3)->get();
 
         return view('frontend.index', compact('badmintonDress', 'badmintonShoes', 'badmintonBackpack', 'badmintonBag'));
     }
