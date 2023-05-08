@@ -102,14 +102,14 @@
     <section class="product-tabs section-padding position-relative">
         <div class="container">
             <div class="section-title style-2 wow animate__animated animate__fadeIn">
-                <h3>Giày Cầu Lông </h3>
+                <h3>Áo Cầu Lông</h3>
             </div>
             <!--End nav-tabs-->
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                     <div class="row product-grid-4">
                         @php
-                            $badmintonShoes = App\Models\Product::where('category_id',2)->orderBy('id','DESC')->limit(6)->get();
+                            $badmintonShoes = App\Models\Product::where('category_id',3)->orderBy('id','DESC')->limit(6)->get();
                         @endphp
                         @foreach($badmintonShoes as $badmintonShoe)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
@@ -183,15 +183,102 @@
             <!--End tab-content-->
         </div>
     </section>
+
+
+    <section class="product-tabs section-padding position-relative">
+        <div class="container">
+            <div class="section-title style-2 wow animate__animated animate__fadeIn">
+                <h3>Quần Cầu Lông</h3>
+            </div>
+            <!--End nav-tabs-->
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                    <div class="row product-grid-4">
+                        @php
+                            $badmintonShoes = App\Models\Product::where('category_id',5)->orderBy('id','DESC')->limit(6)->get();
+                        @endphp
+                        @foreach($badmintonShoes as $badmintonShoe)
+                            <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                     data-wow-delay=".1s">
+                                    <div class="product-img-action-wrap">
+                                        <div class="product-img product-img-zoom">
+                                            <a href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">
+                                                <img class="default-img"
+                                                     src="{{ asset( $badmintonShoe->product_thumbnail ) }}" alt=""/>
+                                            </a>
+                                        </div>
+                                        <div class="product-action-1">
+                                            <a style="width: 100%" aria-label="Quick view" class="btn btn-sm hover-up"
+                                               data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                               id="{{ $badmintonShoe->id }}" onclick="productView(this.id)">Xem nhanh</a>
+                                        </div>
+                                        @php
+                                            $amount = $badmintonShoe->selling_price - $badmintonShoe->discount_price;
+                                            $discount = ($amount/$badmintonShoe->selling_price) * 100;
+                                        @endphp
+                                        <div class="product-badges product-badges-position product-badges-mrg">
+                                            @if($badmintonShoe->discount_price === NULL)
+                                                <span class="new">New</span>
+                                            @else
+                                                <span class="hot"> {{ round($discount) }} %</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="product-content-wrap">
+                                        <div class="product-category">
+                                            <a href="{{ url('product/category/'.$badmintonShoe['category']['id'].'/'.$badmintonRacket['category']['category_slug']) }}">{{ $badmintonShoe['category']['category_name'] }}</a>
+                                        </div>
+                                        <h2>
+                                            <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
+                                               href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">{{ $badmintonShoe->product_name }}</a>
+                                        </h2>
+
+                                        <div>
+                                            @if($badmintonShoe->vendor_id === NULL)
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
+                                            @else
+                                                <span class="font-small text-muted">By <a
+                                                        href="{{ route('brand.details', $badmintonShoe['brand']['id']) }}">{{ $badmintonShoe['brand']['brand_name'] }}</a></span>
+                                            @endif
+                                        </div>
+                                        <div class="product-card-bottom">
+                                            <div class="product-price">
+                                                @if($badmintonShoe->discount_price === NULL)
+                                                    <span>{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
+                                                @else
+                                                    <span>{{ number_format($badmintonShoe->discount_price, 0, '') }} </span>
+                                                    <span
+                                                        class="old-price">{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
+                                                @endif
+                                            </div>
+                                            <div class="add-cart">
+                                                <a class="add" data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                   id="{{ $badmintonShoe->id }}" onclick="productView(this.id)"><i
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <!--End product-grid-4-->
+                </div>
+            </div>
+            <!--End tab-content-->
+        </div>
+    </section>
+
     <!--End Tshirt Category -->
     <section class="section-padding mb-30">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp"
                      data-wow-delay="0">
-                    <h4 class="section-title style-1 mb-30 animated animated"> Hot Deals </h4>
+                    <h4 class="section-title style-1 mb-30 animated animated"> Váy cầu lông </h4>
                     <div class="product-list-small animated animated">
-                        @foreach($hotDeals as $hotDeal)
+                        @foreach($badmintonDress as $hotDeal)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
                                     <a href="{{ url('product/details/'.$hotDeal->id.'/'.$hotDeal->product_slug) }}">
@@ -229,9 +316,9 @@
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-md-0 wow animate__animated animate__fadeInUp"
                      data-wow-delay=".1s">
-                    <h4 class="section-title style-1 mb-30 animated animated"> Special Offer </h4>
+                    <h4 class="section-title style-1 mb-30 animated animated"> Giày cầu lông </h4>
                     <div class="product-list-small animated animated">
-                        @foreach($specialOffer as $special)
+                        @foreach($badmintonShoes as $special)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
                                     <a href="{{ url('product/details/'.$special->id.'/'.$special->product_slug) }}">
@@ -270,9 +357,9 @@
                 <div
                     class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-lg-block wow animate__animated animate__fadeInUp"
                     data-wow-delay=".2s">
-                    <h4 class="section-title style-1 mb-30 animated animated">Recently added</h4>
+                    <h4 class="section-title style-1 mb-30 animated animated">Balo cầu lông</h4>
                     <div class="product-list-small animated animated">
-                        @foreach($featured as $recentlyAdded)
+                        @foreach($badmintonBackpack as $recentlyAdded)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
                                     <a href="{{ url('product/details/'.$recentlyAdded->id.'/'.$recentlyAdded->product_slug) }}">
@@ -311,9 +398,9 @@
                 <div
                     class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-xl-block wow animate__animated animate__fadeInUp"
                     data-wow-delay=".3s">
-                    <h4 class="section-title style-1 mb-30 animated animated"> Special Deals </h4>
+                    <h4 class="section-title style-1 mb-30 animated animated">Túi vợt cầu lông</h4>
                     <div class="product-list-small animated animated">
-                        @foreach($specialDeals as $specialDeal)
+                        @foreach($badmintonBag as $specialDeal)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
                                     <a href="{{ url('product/details/'.$specialDeal->id.'/'.$specialDeal->product_slug) }}">

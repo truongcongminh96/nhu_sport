@@ -18,12 +18,12 @@ class IndexController extends Controller
 {
     final public function index(): Factory|View|Application
     {
-        $hotDeals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
-        $specialOffer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $featured = Product::where('featured', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
-        $specialDeals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $badmintonDress = Product::where('category_id', 4)->orderBy('id', 'DESC')->limit(3)->get();
+        $badmintonShoes = Product::where('category_id', 2)->orderBy('id', 'DESC')->limit(3)->get();
+        $badmintonBackpack = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $badmintonBag = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
-        return view('frontend.index', compact('hotDeals', 'specialOffer', 'featured', 'specialDeals'));
+        return view('frontend.index', compact('badmintonDress', 'badmintonShoes', 'badmintonBackpack', 'badmintonBag'));
     }
 
     /**
@@ -117,13 +117,14 @@ class IndexController extends Controller
         return view('frontend.product.search', compact('products', 'item', 'categories', 'newProduct'));
     }
 
-    public function searchProduct(Request $request){
+    public function searchProduct(Request $request)
+    {
 
         $request->validate(['search' => "required"]);
 
         $item = $request->search;
-        $products = Product::where('product_name','LIKE',"%$item%")->select('product_name','product_slug','product_thumbnail','selling_price','id')->limit(6)->get();
+        $products = Product::where('product_name', 'LIKE', "%$item%")->select('product_name', 'product_slug', 'product_thumbnail', 'selling_price', 'id')->limit(6)->get();
 
-        return view('frontend.product.search_product',compact('products'));
+        return view('frontend.product.search_product', compact('products'));
     }
 }
