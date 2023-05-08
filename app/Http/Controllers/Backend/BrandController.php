@@ -52,6 +52,9 @@ class BrandController extends Controller
 
         Brand::insert([
             'brand_name' => $request->brand_name,
+            'brand_since' => $request->brand_since,
+            'brand_address' => $request->brand_address,
+            'short_info' => $request->short_info,
             'brand_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->brand_name))),
             'brand_image' => $saveUrl
         ]);
@@ -91,6 +94,9 @@ class BrandController extends Controller
 
             Brand::findOrFail($request->id)->update([
                 'brand_name' => $request->brand_name,
+                'brand_since' => $request->brand_since,
+                'brand_address' => $request->brand_address,
+                'short_info' => $request->short_info,
                 'brand_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->brand_name))),
                 'brand_image' => $saveUrl
             ]);
@@ -98,6 +104,9 @@ class BrandController extends Controller
         } else {
             Brand::findOrFail($request->id)->update([
                 'brand_name' => $request->brand_name,
+                'brand_since' => $request->brand_since,
+                'brand_address' => $request->brand_address,
+                'short_info' => $request->short_info,
                 'brand_slug' => strtolower(str_replace(' ', '-', $this->vnToStr($request->brand_name)))
             ]);
         }

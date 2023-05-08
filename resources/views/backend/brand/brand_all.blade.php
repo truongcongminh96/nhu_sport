@@ -30,6 +30,9 @@
                         <tr>
                             <th>STT</th>
                             <th>Tên thương hiệu</th>
+                            <th>Since</th>
+                            <th>Address</th>
+                            <th>Short info</th>
                             <th>Hình ảnh</th>
                             <th>Hoạt động</th>
                         </tr>
@@ -39,6 +42,9 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $brand->brand_name }}</td>
+                                <td>{{ $brand->brand_since }}</td>
+                                <td>{{ $brand->brand_address }}</td>
+                                <td>{{ $brand->short_info }}</td>
                                 <td><img alt="" src="{{ asset($brand->brand_image) }}"
                                          style="width: 50px; height: 50px;"></td>
                                 <td>

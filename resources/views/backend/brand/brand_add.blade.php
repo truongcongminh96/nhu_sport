@@ -35,6 +35,30 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
+                                            <h6 class="mb-0">Since</h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <label><input type="text" name="brand_since" class="form-control"/></label>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Brand Address</h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <label><input type="text" name="brand_address" class="form-control"/></label>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Short Info</h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <label><input type="text" name="short_info" class="form-control"/></label>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
                                             <h6 class="mb-0">Hình ảnh</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
