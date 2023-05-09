@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,9 +20,22 @@ class InitDataBaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->createAdminUSer();
         $this->createBrands();
         $this->createCategoryAndSubcategory();
         $this->createSlider();
+    }
+
+    private function createAdminUSer() {
+        User::create([
+            'name' => 'Admin',
+            'username'=> 'admin_email@example.com',
+            'email' =>'admin_email@example.com',
+            'password'=> Hash::make('11111111'),
+            'phone' => '0844444402',
+            'role' => 'admin',
+            'status' => 1
+        ]);
     }
 
     private function createBrands()
