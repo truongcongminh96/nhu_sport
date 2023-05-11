@@ -106,10 +106,13 @@
                     <h4 class=" widget-title">Công ty</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <li><a href="#">Về chúng tôi</a></li>
-                        <li><a href="#">Thông tin giao hàng</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
-                        <li><a href="#">Điều khoản và điều kiện</a></li>
-                        <li><a href="#">Liên hệ chúng tôi</a></li>
+                        <li>
+                            <div class="logo mb-30">
+                                <a href="{{ url('/') }}" class="mb-15"><img
+                                        src="{{ asset('frontend/assets/imgs/theme/logobbct.png') }}" alt="logo"/></a>
+                                <p class="font-lg text-heading">Như Sport - Shop bán vợt cầu lông chính hãng</p>
+                            </div>
+                        </li>
                         <li><a href="#">Trung tâm hỗ trợ</a></li>
                         <li><a href="#">Tuyển dụng</a></li>
                     </ul>
