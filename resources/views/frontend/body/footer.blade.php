@@ -113,8 +113,6 @@
                                 <p class="font-lg text-heading">Như Sport - Shop bán vợt cầu lông chính hãng</p>
                             </div>
                         </li>
-                        <li><a href="#">Trung tâm hỗ trợ</a></li>
-                        <li><a href="#">Tuyển dụng</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
