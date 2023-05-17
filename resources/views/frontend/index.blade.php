@@ -109,30 +109,30 @@
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                     <div class="row product-grid-4">
                         @php
-                            $badmintonShoes = App\Models\Product::where('category_id',3)->orderBy('id','DESC')->limit(6)->get();
+                            $badmintonShirts = App\Models\Product::where('category_id',3)->orderBy('id','DESC')->limit(6)->get();
                         @endphp
-                        @foreach($badmintonShoes as $badmintonShoe)
+                        @foreach($badmintonShirts as $badmintonShirt)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                      data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">
+                                            <a href="{{ url('product/details/'.$badmintonShirt->id.'/'.$badmintonShirt->product_slug) }}">
                                                 <img class="default-img"
-                                                     src="{{ asset( $badmintonShoe->product_thumbnail ) }}" alt=""/>
+                                                     src="{{ asset( $badmintonShirt->product_thumbnail ) }}" alt=""/>
                                             </a>
                                         </div>
                                         <div class="product-action-1">
                                             <a style="width: 100%" aria-label="Quick view" class="btn btn-sm hover-up"
                                                data-bs-toggle="modal" data-bs-target="#quickViewModal"
-                                               id="{{ $badmintonShoe->id }}" onclick="productView(this.id)">Xem nhanh</a>
+                                               id="{{ $badmintonShirt->id }}" onclick="productView(this.id)">Xem nhanh</a>
                                         </div>
                                         @php
-                                            $amount = $badmintonShoe->selling_price - $badmintonShoe->discount_price;
-                                            $discount = ($amount/$badmintonShoe->selling_price) * 100;
+                                            $amount = $badmintonShirt->selling_price - $badmintonShirt->discount_price;
+                                            $discount = ($amount/$badmintonShirt->selling_price) * 100;
                                         @endphp
                                         <div class="product-badges product-badges-position product-badges-mrg">
-                                            @if($badmintonShoe->discount_price === NULL)
+                                            @if($badmintonShirt->discount_price === NULL)
                                                 <span class="new">New</span>
                                             @else
                                                 <span class="hot"> {{ round($discount) }} %</span>
@@ -141,34 +141,34 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="{{ url('product/category/'.$badmintonShoe['category']['id'].'/'.$badmintonRacket['category']['category_slug']) }}">{{ $badmintonShoe['category']['category_name'] }}</a>
+                                            <a href="{{ url('product/category/'.$badmintonShirt['category']['id'].'/'.$badmintonShirt['category']['category_slug']) }}">{{ $badmintonShirt['category']['category_name'] }}</a>
                                         </div>
                                         <h2>
                                             <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
-                                               href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">{{ $badmintonShoe->product_name }}</a>
+                                               href="{{ url('product/details/'.$badmintonShirt->id.'/'.$badmintonShirt->product_slug) }}">{{ $badmintonShirt->product_name }}</a>
                                         </h2>
 
                                         <div>
-                                            @if($badmintonShoe->vendor_id === NULL)
+                                            @if($badmintonShirt->vendor_id === NULL)
                                                 <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="{{ route('brand.details', $badmintonShoe['brand']['id']) }}">{{ $badmintonShoe['brand']['brand_name'] }}</a></span>
+                                                        href="{{ route('brand.details', $badmintonShirt['brand']['id']) }}">{{ $badmintonShirt['brand']['brand_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
-                                                @if($badmintonShoe->discount_price === NULL)
-                                                    <span>{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
+                                                @if($badmintonShirt->discount_price === NULL)
+                                                    <span>{{ number_format($badmintonShirt->selling_price, 0, '') }}</span>
                                                 @else
-                                                    <span>{{ number_format($badmintonShoe->discount_price, 0, '') }} </span>
+                                                    <span>{{ number_format($badmintonShirt->discount_price, 0, '') }} </span>
                                                     <span
-                                                        class="old-price">{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
+                                                        class="old-price">{{ number_format($badmintonShirt->selling_price, 0, '') }}</span>
                                                 @endif
                                             </div>
                                             <div class="add-cart">
                                                 <a class="add" data-bs-toggle="modal" data-bs-target="#quickViewModal"
-                                                   id="{{ $badmintonShoe->id }}" onclick="productView(this.id)"><i
+                                                   id="{{ $badmintonShirt->id }}" onclick="productView(this.id)"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -195,30 +195,30 @@
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                     <div class="row product-grid-4">
                         @php
-                            $badmintonShoes = App\Models\Product::where('category_id',5)->orderBy('id','DESC')->limit(6)->get();
+                            $badmintonShorts = App\Models\Product::where('category_id',5)->orderBy('id','DESC')->limit(6)->get();
                         @endphp
-                        @foreach($badmintonShoes as $badmintonShoe)
+                        @foreach($badmintonShorts as $badmintonShort)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                      data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">
+                                            <a href="{{ url('product/details/'.$badmintonShort->id.'/'.$badmintonShort->product_slug) }}">
                                                 <img class="default-img"
-                                                     src="{{ asset( $badmintonShoe->product_thumbnail ) }}" alt=""/>
+                                                     src="{{ asset( $badmintonShort->product_thumbnail ) }}" alt=""/>
                                             </a>
                                         </div>
                                         <div class="product-action-1">
                                             <a style="width: 100%" aria-label="Quick view" class="btn btn-sm hover-up"
                                                data-bs-toggle="modal" data-bs-target="#quickViewModal"
-                                               id="{{ $badmintonShoe->id }}" onclick="productView(this.id)">Xem nhanh</a>
+                                               id="{{ $badmintonShort->id }}" onclick="productView(this.id)">Xem nhanh</a>
                                         </div>
                                         @php
-                                            $amount = $badmintonShoe->selling_price - $badmintonShoe->discount_price;
-                                            $discount = ($amount/$badmintonShoe->selling_price) * 100;
+                                            $amount = $badmintonShort->selling_price - $badmintonShort->discount_price;
+                                            $discount = ($amount/$badmintonShort->selling_price) * 100;
                                         @endphp
                                         <div class="product-badges product-badges-position product-badges-mrg">
-                                            @if($badmintonShoe->discount_price === NULL)
+                                            @if($badmintonShort->discount_price === NULL)
                                                 <span class="new">New</span>
                                             @else
                                                 <span class="hot"> {{ round($discount) }} %</span>
@@ -227,11 +227,11 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="{{ url('product/category/'.$badmintonShoe['category']['id'].'/'.$badmintonRacket['category']['category_slug']) }}">{{ $badmintonShoe['category']['category_name'] }}</a>
+                                            <a href="{{ url('product/category/'.$badmintonShort['category']['id'].'/'.$badmintonShort['category']['category_slug']) }}">{{ $badmintonShort['category']['category_name'] }}</a>
                                         </div>
                                         <h2>
                                             <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
-                                               href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">{{ $badmintonShoe->product_name }}</a>
+                                               href="{{ url('product/details/'.$badmintonShort->id.'/'.$badmintonShort->product_slug) }}">{{ $badmintonShort->product_name }}</a>
                                         </h2>
 
                                         <div>
@@ -239,22 +239,22 @@
                                                 <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="{{ route('brand.details', $badmintonShoe['brand']['id']) }}">{{ $badmintonShoe['brand']['brand_name'] }}</a></span>
+                                                        href="{{ route('brand.details', $badmintonShort['brand']['id']) }}">{{ $badmintonShort['brand']['brand_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
-                                                @if($badmintonShoe->discount_price === NULL)
-                                                    <span>{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
+                                                @if($badmintonShort->discount_price === NULL)
+                                                    <span>{{ number_format($badmintonShort->selling_price, 0, '') }}</span>
                                                 @else
-                                                    <span>{{ number_format($badmintonShoe->discount_price, 0, '') }} </span>
+                                                    <span>{{ number_format($badmintonShort->discount_price, 0, '') }} </span>
                                                     <span
-                                                        class="old-price">{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
+                                                        class="old-price">{{ number_format($badmintonShort->selling_price, 0, '') }}</span>
                                                 @endif
                                             </div>
                                             <div class="add-cart">
                                                 <a class="add" data-bs-toggle="modal" data-bs-target="#quickViewModal"
-                                                   id="{{ $badmintonShoe->id }}" onclick="productView(this.id)"><i
+                                                   id="{{ $badmintonShort->id }}" onclick="productView(this.id)"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -278,35 +278,35 @@
                      data-wow-delay="0">
                     <h4 class="section-title style-1 mb-30 animated animated"> Váy cầu lông </h4>
                     <div class="product-list-small animated animated">
-                        @foreach($badmintonDress as $hotDeal)
+                        @foreach($badmintonDress as $badmintonSkirt)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/details/'.$hotDeal->id.'/'.$hotDeal->product_slug) }}">
+                                    <a href="{{ url('product/details/'.$badmintonSkirt->id.'/'.$badmintonSkirt->product_slug) }}">
                                         <img class="default-img"
-                                             src="{{ asset( $hotDeal->product_thumbnail ) }}" alt=""/>
+                                             src="{{ asset( $badmintonSkirt->product_thumbnail ) }}" alt=""/>
                                     </a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
                                     <h6>
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
-                                           href="{{ url('product/details/'.$hotDeal->id.'/'.$hotDeal->product_slug) }}">{{ $hotDeal->product_name }}</a>
+                                           href="{{ url('product/details/'.$badmintonSkirt->id.'/'.$badmintonSkirt->product_slug) }}">{{ $badmintonSkirt->product_name }}</a>
                                     </h6>
                                     <div>
                                         @if($hotDeal->vendor_id === NULL)
                                             <span class="font-small text-muted">By <a>Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="{{ route('brand.details', $hotDeal['brand']['id']) }}">{{ $hotDeal['brand']['brand_name'] }}</a></span>
+                                                    href="{{ route('brand.details', $badmintonSkirt['brand']['id']) }}">{{ $badmintonSkirt['brand']['brand_name'] }}</a></span>
                                         @endif
                                     </div>
-                                    @if($hotDeal->discount_price === NULL)
+                                    @if($badmintonSkirt->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>{{ number_format($hotDeal->selling_price, 0, '') }} </span>
+                                            <span>{{ number_format($badmintonSkirt->selling_price, 0, '') }} </span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($hotDeal->discount_price, 0, '') }} </span>
-                                            <span class="old-price">{{ number_format($hotDeal->selling_price, 0, '') }} </span>
+                                            <span>{{ number_format($badmintonSkirt->discount_price, 0, '') }} </span>
+                                            <span class="old-price">{{ number_format($badmintonSkirt->selling_price, 0, '') }} </span>
                                         </div>
                                     @endif
                                 </div>
@@ -318,35 +318,35 @@
                      data-wow-delay=".1s">
                     <h4 class="section-title style-1 mb-30 animated animated"> Giày cầu lông </h4>
                     <div class="product-list-small animated animated">
-                        @foreach($badmintonShoes as $special)
+                        @foreach($badmintonShoes as $badmintonShoe)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/details/'.$special->id.'/'.$special->product_slug) }}">
+                                    <a href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">
                                         <img class="default-img"
-                                             src="{{ asset( $special->product_thumbnail ) }}" alt=""/>
+                                             src="{{ asset( $badmintonShoe->product_thumbnail ) }}" alt=""/>
                                     </a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
                                     <h6>
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
-                                           href="{{ url('product/details/'.$special->id.'/'.$special->product_slug) }}">{{ $special->product_name }}</a>
+                                           href="{{ url('product/details/'.$badmintonShoe->id.'/'.$badmintonShoe->product_slug) }}">{{ $badmintonShoe->product_name }}</a>
                                     </h6>
                                     <div>
-                                        @if($special->vendor_id === NULL)
+                                        @if($badmintonShoe->vendor_id === NULL)
                                             <span class="font-small text-muted">By <a>Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="{{ route('brand.details', $special['brand']['id']) }}">{{ $special['brand']['brand_name'] }}</a></span>
+                                                    href="{{ route('brand.details', $badmintonShoe['brand']['id']) }}">{{ $badmintonShoe['brand']['brand_name'] }}</a></span>
                                         @endif
                                     </div>
-                                    @if($hotDeal->discount_price === NULL)
+                                    @if($badmintonShoe->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>{{ number_format($special->selling_price, 0, '') }}</span>
+                                            <span>{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($special->discount_price, 0, '') }} </span>
-                                            <span class="old-price">{{ number_format($special->selling_price, 0, '') }}</span>
+                                            <span>{{ number_format($badmintonShoe->discount_price, 0, '') }} </span>
+                                            <span class="old-price">{{ number_format($badmintonShoe->selling_price, 0, '') }}</span>
                                         </div>
                                     @endif
                                 </div>
@@ -359,35 +359,35 @@
                     data-wow-delay=".2s">
                     <h4 class="section-title style-1 mb-30 animated animated">Balo cầu lông</h4>
                     <div class="product-list-small animated animated">
-                        @foreach($badmintonBackpack as $recentlyAdded)
+                        @foreach($badmintonBackpack as $bBackpack)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/details/'.$recentlyAdded->id.'/'.$recentlyAdded->product_slug) }}">
+                                    <a href="{{ url('product/details/'.$bBackpack->id.'/'.$bBackpack->product_slug) }}">
                                         <img class="default-img"
-                                             src="{{ asset( $recentlyAdded->product_thumbnail ) }}" alt=""/>
+                                             src="{{ asset( $bBackpack->product_thumbnail ) }}" alt=""/>
                                     </a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
                                     <h6>
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
-                                           href="{{ url('product/details/'.$recentlyAdded->id.'/'.$recentlyAdded->product_slug) }}">{{ $recentlyAdded->product_name }}</a>
+                                           href="{{ url('product/details/'.$bBackpack->id.'/'.$bBackpack->product_slug) }}">{{ $bBackpack->product_name }}</a>
                                     </h6>
                                     <div>
-                                        @if($recentlyAdded->vendor_id === NULL)
+                                        @if($bBackpack->vendor_id === NULL)
                                             <span class="font-small text-muted">By <a>Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="{{ route('brand.details', $recentlyAdded['brand']['id']) }}">{{ $recentlyAdded['brand']['brand_name'] }}</a></span>
+                                                    href="{{ route('brand.details', $bBackpack['brand']['id']) }}">{{ $bBackpack['brand']['brand_name'] }}</a></span>
                                         @endif
                                     </div>
-                                    @if($recentlyAdded->discount_price === NULL)
+                                    @if($bBackpack->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>{{ number_format($recentlyAdded->selling_price, 0, '') }}</span>
+                                            <span>{{ number_format($bBackpack->selling_price, 0, '') }}</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($recentlyAdded->discount_price, 0, '') }}</span>
-                                            <span class="old-price">{{ number_format($recentlyAdded->selling_price, 0, '') }}</span>
+                                            <span>{{ number_format($bBackpack->discount_price, 0, '') }}</span>
+                                            <span class="old-price">{{ number_format($bBackpack->selling_price, 0, '') }}</span>
                                         </div>
                                     @endif
                                 </div>
@@ -400,35 +400,35 @@
                     data-wow-delay=".3s">
                     <h4 class="section-title style-1 mb-30 animated animated">Túi vợt cầu lông</h4>
                     <div class="product-list-small animated animated">
-                        @foreach($badmintonBag as $specialDeal)
+                        @foreach($badmintonBag as $bBag)
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
-                                    <a href="{{ url('product/details/'.$specialDeal->id.'/'.$specialDeal->product_slug) }}">
+                                    <a href="{{ url('product/details/'.$bBag->id.'/'.$bBag->product_slug) }}">
                                         <img class="default-img"
-                                             src="{{ asset( $specialDeal->product_thumbnail ) }}" alt=""/>
+                                             src="{{ asset( $bBag->product_thumbnail ) }}" alt=""/>
                                     </a>
                                 </figure>
                                 <div class="col-md-8 mb-0">
                                     <h6>
                                         <a style="height:2.5em;white-space: nowrap; display: block;text-overflow: ellipsis;overflow: hidden;"
-                                           href="{{ url('product/details/'.$specialDeal->id.'/'.$specialDeal->product_slug) }}">{{ $specialDeal->product_name }}</a>
+                                           href="{{ url('product/details/'.$bBag->id.'/'.$bBag->product_slug) }}">{{ $bBag->product_name }}</a>
                                     </h6>
                                     <div>
-                                        @if($specialDeal->vendor_id === NULL)
+                                        @if($bBag->vendor_id === NULL)
                                             <span class="font-small text-muted">By <a>Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="{{ route('brand.details', $specialDeal['brand']['id']) }}">{{ $specialDeal['brand']['brand_name'] }}</a></span>
+                                                    href="{{ route('brand.details', $bBag['brand']['id']) }}">{{ $bBag['brand']['brand_name'] }}</a></span>
                                         @endif
                                     </div>
-                                    @if($specialDeal->discount_price === NULL)
+                                    @if($bBag->discount_price === NULL)
                                         <div class="product-price">
-                                            <span>{{ number_format($specialDeal->selling_price, 0, '') }}</span>
+                                            <span>{{ number_format($bBag->selling_price, 0, '') }}</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($specialDeal->discount_price, 0, '') }} </span>
-                                            <span class="old-price">{{ number_format($specialDeal->selling_price, 0, '') }}</span>
+                                            <span>{{ number_format($bBag->discount_price, 0, '') }} </span>
+                                            <span class="old-price">{{ number_format($bBag->selling_price, 0, '') }}</span>
                                         </div>
                                     @endif
                                 </div>
