@@ -235,7 +235,7 @@
                                         </h2>
 
                                         <div>
-                                            @if($badmintonShoe->vendor_id === NULL)
+                                            @if($badmintonShort->vendor_id === NULL)
                                                 <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
